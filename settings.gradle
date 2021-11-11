@@ -1,0 +1,2 @@
+rootProject.name='IDCardCamera'
+include ':app',':idcard_lib'
