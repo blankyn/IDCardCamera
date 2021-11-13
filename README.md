@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/Blankyn/IDCardCamera.svg)](https://jitpack.io/#Blankyn/IDCardCamera)
 ### 身份证拍照Lib使用文档
 
 身份证正反面连续拍摄、权限申请判断，支持单独拍摄正反类型、自动裁剪、放大、缩小、摄像头自动对焦、支持相册选择图片等功能，链式调用简洁操作
