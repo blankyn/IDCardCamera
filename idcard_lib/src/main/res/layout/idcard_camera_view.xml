@@ -54,7 +54,6 @@
                 android:scaleType="fitXY" />
 
 
-
             <!--手动裁剪区域-->
             <me.blankm.idcardlib.cropper.CropImageView
                 android:id="@+id/crop_image_view"

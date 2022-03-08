@@ -1,37 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="me.blankm.idcardlib">
 
+    <!-- Enable instant app support -->
+    <dist:module dist:instant="true" />
 
+    <!-- Declare features -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <!-- Declare permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+
+
+
+
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="true" />
 
-    <!--    &lt;!&ndash;适配Android R包可见性 开始&ndash;&gt;-->
-    <!--    <queries package="${applicationId}">-->
-    <!--        <intent>-->
-    <!--            <action android:name="android.media.action.IMAGE_CAPTURE" />-->
-    <!--        </intent>-->
-    <!--    </queries>-->
-    <!--    &lt;!&ndash;适配Android R包可见性 结束&ndash;&gt;-->
-    <!--    android:requestLegacyExternalStorage="true"-->
+
     <application>
         <activity
-            android:name="me.blankm.idcardlib.camera.CameraActivity"
+            android:name=".camera.CameraXActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:resizeableActivity="true"
+            android:rotationAnimation="seamless"
+            android:screenOrientation="portrait"
+            android:theme="@style/IdCard_AppTheme">
+            <!-- Declare notch support  刘海屏-->
+<!--            <meta-data-->
+<!--                android:name="android.notch_support"-->
+<!--                android:value="true" />-->
+        </activity>
+
+        <activity
+            android:name=".camera.CameraActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
+
 </manifest>
-
-

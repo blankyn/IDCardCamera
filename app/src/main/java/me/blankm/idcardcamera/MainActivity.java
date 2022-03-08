@@ -1,11 +1,16 @@
 package me.blankm.idcardcamera;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.permissionx.guolindev.PermissionX;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,26 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mIv = findViewById(R.id.iv_front);
         mShowPathTv = findViewById(R.id.show_path_tv);
-        /*
-
-
-2021-11-11 21:35:37.470 18503-18503/me.blankm.idcardcamera I/System.out: w:1080
-2021-11-11 21:35:37.470 18503-18503/me.blankm.idcardcamera I/System.out: h:2090
-2021-11-11 21:35:37.470 18503-18503/me.blankm.idcardcamera I/System.out: bh:102
-2021-11-11 21:35:37.470 18503-18503/me.blankm.idcardcamera I/System.out: nh:118
-
-2021-11-11 21:36:48.445 21048-21048/me.blankm.idcardcamera I/System.out: w:1080
-2021-11-11 21:36:48.445 21048-21048/me.blankm.idcardcamera I/System.out: h:2208
-2021-11-11 21:36:48.445 21048-21048/me.blankm.idcardcamera I/System.out: bh:102
-2021-11-11 21:36:48.445 21048-21048/me.blankm.idcardcamera I/System.out: nh:118
-
-2021-11-11 21:37:51.590 16775-16775/me.blankm.idcardcamera I/System.out: w:720
-2021-11-11 21:37:51.591 16775-16775/me.blankm.idcardcamera I/System.out: h:1436
-2021-11-11 21:37:51.591 16775-16775/me.blankm.idcardcamera I/System.out: bh:56
-2021-11-11 21:37:51.591 16775-16775/me.blankm.idcardcamera I/System.out: nh:84
-
-
-         */
 
 
         System.out.println("w:" + ScreenUtils.getScreenWidth(this)
@@ -62,15 +47,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shootingClick(View view) {
-        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+        PermissionX.init(this)
+                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     public void backClick(View view) {
-        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
+        PermissionX.init(this)
+                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_BACK);
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+                    }
+                });
+
     }
 
     public void commonIDCardClick(View view) {
-        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
+        PermissionX.init(this)
+                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_All);
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     @Override
@@ -85,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     mShowPathTv.setText(("1、" + path.get(0)));
                 }
                 mIv.setImageBitmap(BitmapFactory.decodeFile(path.get(0)));
+                Log.e("wld_____", "======== size:" + path.size());
+            } else {
+                Log.e("wld_____", "path" + (path == null ? "null" : "notNull") + "======== size" + (path == null ? "0" : path.size()));
             }
         }
     }

@@ -15,4 +15,7 @@
     <string name="type_idcard_front_str">身份证人像面</string>
     <string name="type_idcard_back_str">身份证国徽面</string>
     <string name="permission_open_str">请手动打开该应用需要的权限</string>
+
+
+    <string name="capture_button_alt">Capture</string>
 </resources>
