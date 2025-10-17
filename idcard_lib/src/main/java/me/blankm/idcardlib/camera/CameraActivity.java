@@ -495,7 +495,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                             bitmap.recycle();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), R.string.crop_fail, Toast.LENGTH_SHORT).show();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), R.string.crop_fail, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     } finally {
                         if (fos != null) {
                             try {
