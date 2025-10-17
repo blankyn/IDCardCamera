@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.permissionx.guolindev.PermissionX;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,43 +46,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shootingClick(View view) {
-        PermissionX.init(this)
-                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_FRONT);
-                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-                    }
-                });
+//        PermissionX.init(this)
+//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+//                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+//                    }
+//                });
     }
 
     public void backClick(View view) {
-        PermissionX.init(this)
-                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_BACK);
-                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-                    }
-                });
+//        PermissionX.init(this)
+//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+//                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+//                    }
+//                });
 
     }
 
     public void commonIDCardClick(View view) {
-        PermissionX.init(this)
-                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).takePhoto(IDCardCameraSelect.TYPE_IDCARD_All);
-                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-                    }
-                });
+//        PermissionX.init(this)
+//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
+//                    if (allGranted) {
+//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
+//                    }
+//                });
     }
 
     @Override

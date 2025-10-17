@@ -51,5 +51,5 @@ dependencies {
 //    implementation 'androidx.window:window:1.0.0-alpha09'
 
 
-    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+//    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
 }
