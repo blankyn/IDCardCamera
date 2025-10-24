@@ -2,6 +2,7 @@ package me.blankm.idcardcamera;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import me.blankm.idcardlib.camera.IDCardCameraSelect;
 import me.blankm.idcardlib.utils.FileUtils;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mIv;
     private TextView mShowPathTv;
 
+    private int type = IDCardCameraSelect.TYPE_IDCARD_FRONT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,40 +51,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shootingClick(View view) {
-//        PermissionX.init(this)
-//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-//                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-//                    }
-//                });
+        type = IDCardCameraSelect.TYPE_IDCARD_FRONT;
+        // 1. 检查权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 2. 请求权限
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    100);
+        } else {
+            // 已授权，执行相关操作
+            IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+        }
     }
 
     public void backClick(View view) {
-//        PermissionX.init(this)
-//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-//                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-
+        type = IDCardCameraSelect.TYPE_IDCARD_BACK;
+        // 1. 检查权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+        ) {
+            // 2. 请求权限
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    100);
+        } else {
+            // 已授权，执行相关操作
+            IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
+        }
     }
 
     public void commonIDCardClick(View view) {
-//        PermissionX.init(this)
-//                .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-//                .request((boolean allGranted, List<String> grantedList, List<String> deniedList) -> {
-//                    if (allGranted) {
-//                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-//                    }
-//                });
+        type = IDCardCameraSelect.TYPE_IDCARD_All;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+        ) {
+            // 2. 请求权限
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    100);
+        } else {
+            // 已授权，执行相关操作
+            IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
+        }
     }
 
     @Override
@@ -106,5 +124,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         FileUtils.clearCache(getApplicationContext());
+    }
+
+    // 3. 处理回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 权限已授予
+                switch (type) {
+                    case IDCardCameraSelect.TYPE_IDCARD_FRONT:
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_FRONT);
+                        break;
+                    case IDCardCameraSelect.TYPE_IDCARD_BACK:
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_BACK);
+                        break;
+                    case IDCardCameraSelect.TYPE_IDCARD_All:
+                        IDCardCameraSelect.create(this).openCamera(IDCardCameraSelect.TYPE_IDCARD_All);
+                        break;
+                }
+            } else {
+                // 权限被拒绝
+            }
+        }
     }
 }

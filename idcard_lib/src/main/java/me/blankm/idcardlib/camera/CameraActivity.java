@@ -32,6 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import me.blankm.idcardlib.cropper.CropImageView;
 import me.blankm.idcardlib.dialog.IDCardDialog;
 import me.blankm.idcardlib.utils.CommonUtils;
@@ -379,6 +380,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             mCropImageView.setVisibility(View.VISIBLE);
         } else {
             mCropImageView.setVisibility(View.GONE);
+        }
+        if (mType == IDCardCameraSelect.TYPE_IDCARD_All) {
+            mNextResultOk.setText(R.string.idcard_net_step_str);
+        } else {
+            mNextResultOk.setText(R.string.idcard_finish);
         }
         mNextResultOk.setVisibility(View.VISIBLE);
     }

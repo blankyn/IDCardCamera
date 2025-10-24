@@ -3,6 +3,7 @@
 
     <string name="idcard_positive_reverse_tip_str">请尽量将身份证填满框内</string>
     <string name="idcard_net_step_str">下一步</string>
+    <string name="idcard_finish">完成</string>
     <string name="picture_jurisdiction">获取存储权限被拒绝</string>
     <string name="picture_camera">获取系统相机权限被拒绝</string>
     <string name="picture_prompt">提示</string>

@@ -40,7 +40,7 @@
 
 ``` gradle
    dependencies {
-        implementation 'com.github.Blankyn:IDCardCamera:1.0.0'//请使用最新版本
+        implementation 'com.github.Blankyn:IDCardCamera:1.0.5'//请使用最新版本
         implementation 'androidx.appcompat:appcompat:1.3.1'//目前仅支持AndroidX
    }
 ```

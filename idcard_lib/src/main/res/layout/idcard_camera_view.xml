@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#73000000">
@@ -19,8 +20,8 @@
         android:layout_height="match_parent"
         android:layout_above="@id/idcard_bottom_fly"
         android:layout_below="@id/idcard_title_rlv"
-        app:civClipCircle="false"
         android:visibility="gone"
+        app:civClipCircle="false"
         app:civClipPadding="0dp"
         app:civHeight="5"
         app:civWidth="8" />
