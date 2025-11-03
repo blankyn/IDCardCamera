@@ -1,5 +1,7 @@
 package me.blankm.idcardlib.camera;
 
+import static me.blankm.idcardlib.camera.IDCardCameraSelect.PERMISSION_CODE_FIRST;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -99,10 +102,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean checkPermissionFirst = PermissionUtils.checkPermissionFirst(this, IDCardCameraSelect.PERMISSION_CODE_FIRST,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
+        boolean checkPermissionFirst = PermissionUtils.checkPermissionFirst(this, PERMISSION_CODE_FIRST);
         if (checkPermissionFirst) init();
     }
+
 
     /**
      * 处理请求权限的响应
@@ -668,6 +671,27 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
             isEnterSetting = false;
         }
+    }
+
+    /**
+     * 重写权限检查方法，支持 Android 11+ 的兼容性
+     */
+    @Override
+    public int checkSelfPermission(String permission) {
+        // Android 11+ 特殊处理存储权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission) ||
+                    Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission)) {
+                // 如果已授予 MANAGE_EXTERNAL_STORAGE，返回已授予
+                if (Environment.isExternalStorageManager()) {
+                    return PackageManager.PERMISSION_GRANTED;
+                }
+                // 对于 Android 11+，即使没有 MANAGE_EXTERNAL_STORAGE，
+                // 应用自己的私有目录也不需要权限，所以返回已授予
+                return PackageManager.PERMISSION_GRANTED;
+            }
+        }
+        return super.checkSelfPermission(permission);
     }
 
     @Override

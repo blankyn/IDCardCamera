@@ -1,10 +1,13 @@
 package me.blankm.idcardlib.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
@@ -24,8 +27,10 @@ public class PermissionChecker {
      * @return
      */
     public static boolean checkSelfPermission(Context ctx, String permission) {
-        return ContextCompat.checkSelfPermission(ctx.getApplicationContext(), permission) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(ctx.getApplicationContext(), permission)
+                == PackageManager.PERMISSION_GRANTED;
     }
+
 
 
     /**

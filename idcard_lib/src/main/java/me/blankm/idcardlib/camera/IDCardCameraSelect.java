@@ -76,11 +76,6 @@ public class IDCardCameraSelect {
      * @param IDCardDirection 身份证方向
      */
     public void takePhoto(int IDCardDirection) {
-//        Activity activity = this.mActivity.get();
-//        Intent intent = new Intent(activity, CameraXActivity.class);
-//        intent.putExtra(TAKE_TYPE, IDCardDirection);
-//        activity.startActivityForResult(intent, IDCardDirection);
-
         Activity activity = this.mActivity.get();
         Fragment fragment = this.mFragment.get();
         Intent intent = new Intent(activity, CameraXActivity.class);

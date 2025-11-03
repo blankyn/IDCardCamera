@@ -1,8 +1,31 @@
 package me.blankm.idcardlib.camera;
 
+import static me.blankm.idcardlib.camera.IDCardCameraSelect.PERMISSION_CODE_FIRST;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Surface;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraInfo;
 import androidx.camera.core.CameraInfoUnavailableException;
@@ -18,47 +41,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
-import me.blankm.idcardlib.R;
-
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.Surface;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-import me.blankm.idcardlib.dialog.IDCardDialog;
-import me.blankm.idcardlib.utils.ImageUtils;
-import me.blankm.idcardlib.utils.PermissionChecker;
-import me.blankm.idcardlib.utils.PermissionUtils;
-import me.blankm.idcardlib.utils.ScreenUtils;
-import me.blankm.idcardlib.utils.Tools;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import static me.blankm.idcardlib.utils.CameraConstant.RATIO_16_9_VALUE;
-import static me.blankm.idcardlib.utils.CameraConstant.RATIO_4_3_VALUE;
+import me.blankm.idcardlib.R;
+import me.blankm.idcardlib.dialog.IDCardDialog;
+import me.blankm.idcardlib.utils.PermissionChecker;
+import me.blankm.idcardlib.utils.PermissionUtils;
+import me.blankm.idcardlib.utils.ScreenUtils;
+import me.blankm.idcardlib.utils.Tools;
 
 public class CameraXActivity extends AppCompatActivity {
 
@@ -108,13 +103,16 @@ public class CameraXActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        boolean checkPermissionFirst = PermissionUtils.checkPermissionFirst(this, PERMISSION_CODE_FIRST);
+        if (checkPermissionFirst) init();
+    }
+
+    private void init() {
         setContentView(R.layout.activity_camera_x);
         mType = getIntent().getIntExtra(IDCardCameraSelect.TAKE_TYPE, 0);
         initView();
         initListener();
         initData();
-
-
     }
 
 
@@ -153,10 +151,6 @@ public class CameraXActivity extends AppCompatActivity {
         });
 
         img_picture_save.setOnClickListener(v -> {
-
-//            String newPath = getPictureTempPath();
-
-//            if (ImageUtils.save(bitmap, newPath, Bitmap.CompressFormat.JPEG)) {
             int[] outLocation = Tools.getViewLocal(viewMask);
             Rect rect = new Rect(outLocation[0], outLocation[1],
                     viewMask.getMeasuredWidth(), viewMask.getMeasuredHeight());
@@ -177,7 +171,7 @@ public class CameraXActivity extends AppCompatActivity {
             if (imageCapture == null)
                 return;
 
-             takePhotoPath = getPictureTempPath();
+            takePhotoPath = getPictureTempPath();
 
             Log.e("wld_____", "outPath:" + takePhotoPath);
 
@@ -522,5 +516,90 @@ public class CameraXActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         cameraProvider.unbindAll();
+    }
+
+    /**
+     * 处理请求权限的响应
+     *
+     * @param requestCode  请求码
+     * @param permissions  权限数组
+     * @param grantResults 请求权限结果数组
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        boolean isPermissions = true;
+        for (int i = 0; i < permissions.length; i++) {
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                isPermissions = false;
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i])) {
+                    //用户选择了"不再询问"
+                    if (isToast) {
+                        Toast.makeText(this, getString(R.string.permission_open_str), Toast.LENGTH_SHORT).show();
+                        isToast = false;
+                    }
+                }
+            }
+        }
+        isToast = true;
+        if (isPermissions) {
+            Log.e("onRequestPermission", "允许所有权限");
+            init();
+        } else {
+            Log.e("onRequestPermission", "有权限不允许");
+            showPermissionsDialog("未开启相关权限！");
+        }
+    }
+
+
+    private void showPermissionsDialog(String errorMsg) {
+        if (isFinishing()) {
+            return;
+        }
+        final IDCardDialog dialog = new IDCardDialog(this, R.layout.picture_wind_base_dialog);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
+        Button btn_commit = dialog.findViewById(R.id.btn_commit);
+        btn_commit.setText(getString(R.string.picture_go_setting));
+        TextView tvTitle = dialog.findViewById(R.id.tvTitle);
+        TextView tv_content = dialog.findViewById(R.id.tv_content);
+        tvTitle.setText(getString(R.string.picture_prompt));
+        tv_content.setText(errorMsg);
+        btn_cancel.setOnClickListener(v -> {
+            if (!isFinishing()) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        btn_commit.setOnClickListener(v -> {
+            if (!isFinishing()) {
+                dialog.dismiss();
+            }
+            PermissionChecker.launchAppDetailsSettings(this);
+            isEnterSetting = true;
+        });
+        dialog.show();
+    }
+
+    /**
+     * 重写权限检查方法，支持 Android 11+ 的兼容性
+     */
+    @Override
+    public int checkSelfPermission(String permission) {
+        // Android 11+ 特殊处理存储权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission) ||
+                    Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission)) {
+                // 如果已授予 MANAGE_EXTERNAL_STORAGE，返回已授予
+                if (Environment.isExternalStorageManager()) {
+                    return PackageManager.PERMISSION_GRANTED;
+                }
+                // 对于 Android 11+，即使没有 MANAGE_EXTERNAL_STORAGE，
+                // 应用自己的私有目录也不需要权限，所以返回已授予
+                return PackageManager.PERMISSION_GRANTED;
+            }
+        }
+        return super.checkSelfPermission(permission);
     }
 }
