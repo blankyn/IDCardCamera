@@ -1,6 +1,31 @@
+import java.util.regex.Pattern
+
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
+}
+
+apply from: '../idcard_lib/bintray.gradle'
+
+
+/**
+ * 获取maven版本，默认取工程属性字段maven_version,
+ * 若空，则选择项目配置的MAVEN_VERSION_NAME
+ * @return
+ */
+def getMavenVersion() {
+    if (rootProject.hasProperty("MAVEN_VERSION")
+            && MAVEN_VERSION != null && "" != MAVEN_VERSION) {
+        return String.valueOf(MAVEN_VERSION)
+    } else {
+        return '1.0.0'
+    }
+}
+
+def checkVersion(String version) {
+    Pattern versionPattern = Pattern.compile("^[0-9].[0-9](.[0-9])?(-SNAPSHOT)?")
+    if (!versionPattern.matcher(version).matches()) {
+        throw new Exception("${project.name}版本号验证错误${version}\nrelease版本规则：x.x.x(x)(.xx)\nsnapshot版本规则：x.x.x(x)(.xx)-SNAPSHOT")
+    }
 }
 
 android {
@@ -10,15 +35,22 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode rootProject.versionCode
-        versionName rootProject.versionName
-
+        versionName getMavenVersion()
+        checkVersion(versionName)
+        def vCode = versionName.replace(".", "").replace("-SNAPSHOT", "")
+        versionCode Integer.parseInt(vCode)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
 
+
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -49,40 +81,8 @@ dependencies {
     compileOnly "androidx.camera:camera-core:${camerax_version}"
     compileOnly "androidx.camera:camera-camera2:${camerax_version}"
     compileOnly "androidx.camera:camera-lifecycle:${camerax_version}"
-//    implementation "androidx.camera:camera-video:${camerax_version}"
-
 
     compileOnly "androidx.camera:camera-view:${camerax_version}"
     compileOnly "androidx.camera:camera-extensions:${camerax_version}"
 
-    //WindowManager
-//    compileOnly 'androidx.window:window:1.0.0-alpha09'
-
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            //这里release和debug的话，建议根据实际，每次只用一个，注掉另一个。
-            release(MavenPublication) {
-                // Applies the component for the release build variant.
-                from components.release
-
-                // You can then customize attributes of the publication as shown below.
-                groupId = 'me.blankm.idcard'
-                artifactId = 'base'
-                version = '2.0.0'
-            }
-            // Creates a Maven publication called “debug”.
-//            debug(MavenPublication) {
-//                // Applies the component for the debug build variant.
-//                from components.debug
-//
-//                groupId = 'com.example.MyLibrary'
-//                artifactId = 'final-debug'
-//                version = '1.0'
-//            }
-        }
-    }
 }

@@ -13,11 +13,28 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'blankm'
+            keyPassword '123456'
+            storeFile file('../buildscript/blankm.keystore')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+
     }
 
     compileOptions {
@@ -36,8 +53,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation project(path: ':idcard_lib')
-//    implementation 'com.github.blankyn:IDCardCamera:1.0.4'
+//    implementation project(path: ':idcard_lib')
+    implementation 'io.github.blankyn:idcard_lib:1.0.7'
 //    implementation 'androidx.core:core:1.6.0'
     def camerax_version = "1.1.0-beta01"
     implementation "androidx.camera:camera-core:${camerax_version}"

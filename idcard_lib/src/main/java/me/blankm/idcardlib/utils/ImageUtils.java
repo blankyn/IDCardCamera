@@ -1,6 +1,5 @@
 package me.blankm.idcardlib.utils;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,10 +11,8 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.net.Uri;
-import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,15 +20,21 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
-import androidx.annotation.RequiresApi;
 
 /**
- * 图片相关工具类
+ * Copyright (C), 1999-2023
+ * <p>
+ *
+ * @author qfmeng6@163.com
+ * @date 2025/11/8 22:10
+ * <p>
+ * @description: 图片相关工具类
+ * <p>
+ * @version:
+ * @revise:
  */
-
 public class ImageUtils {
 
     /**

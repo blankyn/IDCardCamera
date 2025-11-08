@@ -1,0 +1,142 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+//加载本地maven私服配置（在工程根目录中的local.properties文件中进行配置）
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def artifactory_user = properties.getProperty("artifactory_user")
+def artifactory_password = properties.getProperty("artifactory_password")
+//https://central.sonatype.com/
+def artifactory_snapshot_url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+def artifactory_release_url = 'https://s01.oss.sonatype.org/content/repositories/releases/'
+
+def artifact_group = 'io.github.blankyn'
+def artifact_id = 'idcard_lib'
+def debug_flag = true //true: 发布到本地maven仓库， false： 发布到maven私服
+
+/**
+ * 获取maven版本，默认取工程属性字段maven_version,
+ * 若空，则选择项目配置的 MAVEN_VERSION
+ * @return
+ */
+def getMavenVersion() {
+    if (rootProject.hasProperty("MAVEN_VERSION")
+            && MAVEN_VERSION != null && "" != MAVEN_VERSION) {
+        return String.valueOf(MAVEN_VERSION)
+    } else {
+        return '1.0.0'
+    }
+}
+
+def maven_version = getMavenVersion()
+
+
+// 配置生成源码包
+tasks.register('sourceJar', Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+//将源码打包 ，生成sources.jar
+tasks.register('androidSourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+
+    exclude "**/R.class"
+    exclude "**/BuildConfig.class"
+}
+
+publishing {
+    // 配置maven 仓库
+    repositories { RepositoryHandler handler ->
+//        handler.mavenLocal()  // 发布到默认的 本地maven 仓库 ，路径： USER_HOME/.m2/repository/
+        handler.maven {
+            name = artifact_id
+            // 禁止不安全协议
+//            allowInsecureProtocol = false
+            if (debug_flag) {
+                url "/Volumes/document/repo-local"
+            } else {
+                url = version.endsWith('SNAPSHOT') ? artifactory_snapshot_url : artifactory_release_url
+
+                credentials {
+                    username artifactory_user
+                    password artifactory_password
+                }
+            }
+        }
+    }
+    // 配置发布产物
+    publications { PublicationContainer publication ->
+        // 名称可以随便定义，这里定义成 maven，是因为我的 aar 包是发布到 maven 仓库的，所以这里为了见名知义，定义成了 maven
+        // 任务名称：maven
+
+        release(MavenPublication) {// 容器可配置的信息 MavenPublication
+
+            // 依赖 bundleReleaseAar 任务，并上传其产出的aar
+            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+            // 方式一：生成aar包
+            // artifact "$buildDir/outputs/aar/${project.name}-release.aar" // 方式二：指定生成的aar路径
+            // 增加上传源码的 task
+
+            groupId = artifact_group
+            artifactId = artifact_id
+            version = maven_version
+
+
+            //增加上传源码
+            artifact sourceJar
+
+
+            pom {
+                name = artifact_id
+                description = '身份证正反面连续拍摄、权限申请判断，支持单独拍摄正反类型、自动裁剪、放大、缩小、摄像头自动对焦、支持相册选择图片等功能，链式调用简洁操作'
+                //项目描述
+                url = 'https://github.com/blankyn/IDCardCamera' //项目github链接
+                licenses {
+                    license {
+                        //协议类型，一般默认Apache License2.0的话不用改：
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        // 修改自己对应的用户名、邮箱
+                        id = 'blankyn' //你的sonatype用户名
+                        name = 'blankyn' //你的sonatype用户名
+                        email = 'qfmeng6@163.com' //你的sonatype注册邮箱
+                    }
+                }
+                // Version control info, if you're using GitHub, follow the format as seen here
+                scm {
+                    //修改成你的Git地址：
+                    connection = 'scm:git@github.com:blankyn/IDCardCamera.git'
+                    developerConnection = 'scm:git@github.com:blankyn/IDCardCamera.git'
+                    //分支地址：
+                    url = 'https://github.com/blankyn/IDCardCamera/tree/master'
+                }
+
+                withXml {
+                    def dependenciesNode = asNode().appendNode("dependencies")
+                    configurations.implementation.allDependencies.forEach() {
+                        Dependency dependency ->
+                            if (dependency.version != "unspecified" && dependency.name != "unspecified") {
+                                def dependencyNode = dependenciesNode.appendNode('dependency')
+                                dependencyNode.appendNode('groupId', dependency.group)
+                                dependencyNode.appendNode('artifactId', dependency.name)
+                                dependencyNode.appendNode('version', dependency.version)
+                            }
+                    }
+                }
+            }
+        }
+    }
+    signing {
+        sign publishing.publications
+    }
+}
+
+
+
+
