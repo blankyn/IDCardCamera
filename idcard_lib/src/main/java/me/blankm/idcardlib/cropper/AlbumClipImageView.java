@@ -25,7 +25,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import me.blankm.idcardlib.R;
 
-public class AlbumClipImageView extends AppCompatImageView implements ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener {
+public class AlbumClipImageView extends AppCompatImageView
+        implements ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener {
     //画笔
     private final Paint mPaint;
     // 颜色

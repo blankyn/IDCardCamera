@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-sw600dp-v13/mtrl_layout_snackbar.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/res/layout-sw600dp-v13/mtrl_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    }
+]

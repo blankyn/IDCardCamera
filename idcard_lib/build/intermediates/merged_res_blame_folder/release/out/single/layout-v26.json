@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v26/abc_screen_toolbar.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/layout-v26/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v26/mtrl_calendar_month.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/res/layout-v26/mtrl_calendar_month.xml"
+    }
+]
