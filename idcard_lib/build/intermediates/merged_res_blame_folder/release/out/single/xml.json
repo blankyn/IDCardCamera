@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/file_paths.xml",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/xml/file_paths.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/standalone_badge_gravity_bottom_start.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/xml/standalone_badge_gravity_bottom_start.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/standalone_badge.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/xml/standalone_badge.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/standalone_badge_gravity_bottom_end.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/xml/standalone_badge_gravity_bottom_end.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/standalone_badge_offset.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/xml/standalone_badge_offset.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/xml/standalone_badge_gravity_top_start.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/xml/standalone_badge_gravity_top_start.xml"
+    }
+]

@@ -1,0 +1,4 @@
+#Sat Aug 22 11:40:15 CST 2026
+base.0=/Volumes/workspace/github/IDCardCamera/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

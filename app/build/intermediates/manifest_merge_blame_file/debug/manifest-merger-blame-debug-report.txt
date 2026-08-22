@@ -1,0 +1,146 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="me.blankm.idcardcamera"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:5:5-80
+12-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:5:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:6:5-81
+13-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:6:22-78
+14
+15    <!-- Declare features -->
+16    <uses-feature
+16-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:15:5-17:35
+17        android:name="android.hardware.camera"
+17-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:16:9-47
+18        android:required="true" /> <!-- Declare permissions -->
+18-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:17:9-32
+19    <uses-permission android:name="android.permission.CAMERA" />
+19-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:20:5-65
+19-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:20:22-62
+20    <uses-permission android:name="android.permission.FLASHLIGHT" />
+20-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:21:5-69
+20-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:21:22-66
+21
+22    <uses-feature
+22-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:25:5-27:35
+23        android:name="android.hardware.camera.autofocus"
+23-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:26:9-57
+24        android:required="true" />
+24-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:27:9-32
+25
+26    <queries>
+26-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:24:5-28:15
+27        <intent>
+27-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:25:9-27:18
+28            <action android:name="androidx.camera.extensions.action.VENDOR_ACTION" />
+28-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:26:13-86
+28-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:26:21-83
+29        </intent>
+30    </queries>
+31
+32    <application
+32-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:8:5-26:19
+33        android:name="me.blankm.idcardcamera.MainApplication"
+33-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:9:9-40
+34        android:allowBackup="true"
+34-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:10:9-35
+35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+35-->[androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/540dbfb90b248d7b59cd154497c15f99/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+36        android:debuggable="true"
+37        android:icon="@mipmap/ic_launcher"
+37-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:11:9-43
+38        android:label="@string/app_name"
+38-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:12:9-41
+39        android:requestLegacyExternalStorage="true"
+39-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:13:9-52
+40        android:roundIcon="@mipmap/ic_launcher_round"
+40-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:14:9-54
+41        android:supportsRtl="true"
+41-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:15:9-35
+42        android:theme="@style/AppTheme" >
+42-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:16:9-40
+43        <activity android:name="me.blankm.idcardcamera.MainActivity" >
+43-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:18:9-24:20
+43-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:18:19-69
+44            <intent-filter>
+44-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:19:13-23:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:20:17-69
+45-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:20:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:22:17-77
+47-->/Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:22:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:30:9-43:20
+51            android:name="me.blankm.idcardlib.camera.CameraXActivity"
+51-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:31:13-70
+52            android:configChanges="keyboardHidden|orientation|screenSize"
+52-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:32:13-74
+53            android:hardwareAccelerated="true"
+53-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:33:13-47
+54            android:resizeableActivity="true"
+54-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:34:13-46
+55            android:rotationAnimation="seamless"
+55-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:35:13-49
+56            android:screenOrientation="portrait"
+56-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:36:13-49
+57            android:theme="@style/IdCard_AppTheme" >
+57-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:37:13-51
+58
+59            <!-- Declare notch support  刘海屏 -->
+60            <!-- <meta-data -->
+61            <!-- android:name="android.notch_support" -->
+62            <!-- android:value="true" /> -->
+63        </activity>
+64        <activity
+64-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:44:9-48:66
+65            android:name="me.blankm.idcardlib.camera.CameraActivity"
+65-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:45:13-69
+66            android:configChanges="keyboardHidden|orientation|screenSize"
+66-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:46:13-74
+67            android:screenOrientation="portrait"
+67-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:47:13-49
+68            android:theme="@style/Theme.AppCompat.NoActionBar" />
+68-->[io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/704c98624c5bc60e358e6944c4bff33a/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:48:13-63
+69
+70        <uses-library
+70-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:31:9-33:40
+71            android:name="androidx.camera.extensions.impl"
+71-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:32:13-59
+72            android:required="false" />
+72-->[androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/7264491b19b9fcbc19eedcd7e81795a8/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:33:13-37
+73
+74        <service
+74-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:26:9-35:19
+75            android:name="androidx.camera.core.impl.MetadataHolderService"
+75-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:27:13-75
+76            android:enabled="false"
+76-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:28:13-36
+77            android:exported="false" >
+77-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:29:13-37
+78            <meta-data
+78-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:32:13-34:89
+79                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+79-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:33:17-103
+80                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+80-->[androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/59349925d684cf36afa2e840600c83f8/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:34:17-86
+81        </service>
+82    </application>
+83
+84</manifest>

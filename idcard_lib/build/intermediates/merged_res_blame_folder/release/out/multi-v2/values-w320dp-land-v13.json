@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,110",
+                        "endColumns": "54,61",
+                        "endOffsets": "105,167"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,110",
+                        "endColumns": "54,61",
+                        "endOffsets": "105,167"
+                    }
+                }
+            ]
+        }
+    ]
+}

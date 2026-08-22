@@ -1,0 +1,378 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_bar_colored_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_bar_colored_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_indicator_text_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_indicator_text_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_search_url_text.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/design_icon_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/design_icon_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_fab_bg_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_fab_bg_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_seek_thumb.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_text_btn_text_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_text_btn_text_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/test_mtrl_calendar_day_selected.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/test_mtrl_calendar_day_selected.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_choice_chip_background_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_choice_chip_background_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_tabs_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_tabs_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_surface_emphasis_medium.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_surface_emphasis_medium.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_chip_background_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_chip_background_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_choice_chip_text_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_choice_chip_text_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_tabs_colored_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_tabs_colored_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_chip_surface_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_chip_surface_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/checkbox_themeable_attribute_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/checkbox_themeable_attribute_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_text_btn_bg_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_text_btn_bg_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_secondary_text_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_text_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_text_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_tabs_icon_color_selector_colored.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_tabs_icon_color_selector_colored.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_spinner.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_on_primary_text_btn_text_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_on_primary_text_btn_text_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_fab_icon_text_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_fab_icon_text_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_surface_stroke.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_surface_stroke.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_hint_foreground_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_switch_track.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_filled_background_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_filled_background_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/design_box_stroke_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/design_box_stroke_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_surface_emphasis_high_type.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_surface_emphasis_high_type.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_edittext.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_btn_checkable.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_outlined_icon_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_outlined_icon_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_filled_icon_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_filled_icon_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_tint_default.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_calendar_item_stroke_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_calendar_item_stroke_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_outlined_stroke_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_outlined_stroke_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_primary_text_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_item_icon_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_item_icon_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_primary_text_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_cursor_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_cursor_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_popupmenu_overlay_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_popupmenu_overlay_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_item_background_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_item_background_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_bg_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_bg_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_timepicker_button_stroke.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_timepicker_button_stroke.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_filled_stroke_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_filled_stroke_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_primary_emphasis_high_type.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_primary_emphasis_high_type.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_timepicker_clock_text_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_timepicker_clock_text_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_background_emphasis_medium.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_background_emphasis_medium.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_secondary_text_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/design_error.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/design_error.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_on_surface_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_on_surface_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_hint_foreground_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_tabs_icon_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_tabs_icon_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_surface_disabled.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_surface_disabled.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_item_text_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_item_text_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_inactive_track_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_inactive_track_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_inactive_tick_marks_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_inactive_tick_marks_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/selector_button_text.xml",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/color/selector_button_text.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_choice_chip_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_choice_chip_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_bar_colored_item_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_bar_colored_item_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/switch_thumb_material_light.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/switch_thumb_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/test_mtrl_calendar_day.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/test_mtrl_calendar_day.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_error.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_error.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_active_track_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_active_track_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_card_view_ripple.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_card_view_ripple.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_text_btn_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_text_btn_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_tabs_legacy_text_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_tabs_legacy_text_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_chip_text_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_chip_text_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_background_emphasis_high_type.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_background_emphasis_high_type.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_card_view_foreground.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_card_view_foreground.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_timepicker_clockface.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_timepicker_clockface.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_btn_colored_text_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_thumb_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_thumb_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_calendar_selected_range.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_calendar_selected_range.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_fab_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_fab_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_active_tick_marks_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_active_tick_marks_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c6ae6879a32cbadd13bc2a75329a046f/transformed/appcompat-1.2.0/res/color/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_btn_stroke_color_selector.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_btn_stroke_color_selector.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/selector_ic.xml",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/color/selector_ic.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_chip_close_icon_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_chip_close_icon_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_primary_disabled.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_primary_disabled.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_background_disabled.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_background_disabled.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_bar_item_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_bar_item_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/mtrl_navigation_bar_ripple_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/mtrl_navigation_bar_ripple_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/radiobutton_themeable_attribute_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/radiobutton_themeable_attribute_color.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_on_primary_emphasis_medium.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_on_primary_emphasis_medium.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_timepicker_button_background.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_timepicker_button_background.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_timepicker_modebutton_tint.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_timepicker_modebutton_tint.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color/material_slider_halo_color.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/color/material_slider_halo_color.xml"
+    }
+]

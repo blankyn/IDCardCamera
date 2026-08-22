@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_title_refresh_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_title_refresh_icon.png"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_title_back_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_title_back_icon.png"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_sure_shooting_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_sure_shooting_icon.png"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_positive_bg_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_positive_bg_icon.png"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_reverse_bg_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_reverse_bg_icon.png"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/mipmap-hdpi-v4/idcard_lib_album_icon.png",
+        "source": "/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res/mipmap-hdpi/idcard_lib_album_icon.png"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-land/material_timepicker.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/layout-land/material_timepicker.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-land/mtrl_picker_header_dialog.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/layout-land/mtrl_picker_header_dialog.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-land/material_clock_period_toggle_land.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/c8d26e525e43f3fbecd18e8b3c71374d/transformed/material-1.4.0/res/layout-land/material_clock_period_toggle_land.xml"
+    }
+]

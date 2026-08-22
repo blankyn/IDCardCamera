@@ -7,10 +7,17 @@
 buildscript {
     ext.kotlin_version = '1.4.10'
     repositories {
+//        google()
+//        jcenter()
+//        mavenCentral()
+//        maven { url 'https://jitpack.io' }
+
+        maven { url 'https://maven.aliyun.com/repository/public'}
+        maven { url 'https://maven.aliyun.com/repository/releases'}
+        maven { url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/central'}
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
         google()
-        jcenter()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.2'
@@ -20,12 +27,37 @@ buildscript {
     }
 }
 
+// AGP 4.2.2 的 lint 使用 com.android.tools.external.com-intellij:kotlin-compiler:27.2.2，
+// 该 jar 把支持的元数据版本(1.4.x)硬编码在 JvmMetadataVersion 里，无法读取 AndroidX
+// (camera-core / annotation-experimental) 传递进来的 kotlin-stdlib 1.6.10，
+// 于是 lint 阶段输出 "Module was compiled with an incompatible version of Kotlin"。
+// 项目本身没有 Kotlin 源码，这里只把 lint 用的编译器 jar 换成支持 1.9 元数据的版本。
+//ext.lintKotlinCompilerVersion = '31.3.0'
+
 allprojects {
+//    configurations.configureEach {
+//        if (name == 'lintClassPath') {
+//            resolutionStrategy.eachDependency { details ->
+//                if (details.requested.group == 'com.android.tools.external.com-intellij'
+//                        && details.requested.name == 'kotlin-compiler') {
+//                    details.useVersion rootProject.ext.lintKotlinCompilerVersion
+//                }
+//            }
+//        }
+//    }
+
     repositories {
+//        google()
+//        jcenter()
+//        mavenCentral()
+//        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/public'}
+        maven{ url 'https://maven.aliyun.com/repository/spring/'}
+        maven { url 'https://maven.aliyun.com/repository/releases'}
+        maven { url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/central'}
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
         google()
-        jcenter()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
 }
 
