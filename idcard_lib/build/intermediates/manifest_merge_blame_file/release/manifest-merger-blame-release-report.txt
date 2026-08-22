@@ -1,0 +1,83 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:dist="http://schemas.android.com/apk/distribution"
+4    xmlns:tools="http://schemas.android.com/tools"
+5    package="me.blankm.idcardlib" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml
+10
+11    <!-- Enable instant app support -->
+12    <dist:module dist:instant="true" />
+12-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:8:5-40
+12-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:8:18-37
+13
+14    <!-- Declare features -->
+15    <uses-feature
+15-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:11:5-13:35
+16        android:name="android.hardware.camera"
+16-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:12:9-47
+17        android:required="true" />
+17-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:13:9-32
+18
+19    <!-- Declare permissions -->
+20    <uses-permission android:name="android.permission.CAMERA" />
+20-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:16:5-65
+20-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:16:22-62
+21    <uses-permission android:name="android.permission.FLASHLIGHT" />
+21-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:17:5-69
+21-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:17:22-66
+22    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+22-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:18:5-81
+22-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:18:22-78
+23    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+23-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:19:5-80
+23-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:19:22-77
+24
+25    <uses-feature
+25-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:25:5-27:35
+26        android:name="android.hardware.camera.autofocus"
+26-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:26:9-57
+27        android:required="true" />
+27-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:27:9-32
+28
+29    <application>
+29-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:30:5-50:19
+30        <activity
+30-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:31:9-43:20
+31            android:name="me.blankm.idcardlib.camera.CameraXActivity"
+31-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:32:13-51
+32            android:configChanges="keyboardHidden|orientation|screenSize"
+32-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:33:13-74
+33            android:hardwareAccelerated="true"
+33-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:34:13-47
+34            android:resizeableActivity="true"
+34-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:35:13-46
+35            android:rotationAnimation="seamless"
+35-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:36:13-49
+36            android:screenOrientation="portrait"
+36-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:37:13-49
+37            android:theme="@style/IdCard_AppTheme" >
+37-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:38:13-51
+38
+39            <!-- Declare notch support  刘海屏 -->
+40            <!-- <meta-data -->
+41            <!-- android:name="android.notch_support" -->
+42            <!-- android:value="true" /> -->
+43        </activity>
+44        <activity
+44-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:45:9-49:66
+45            android:name="me.blankm.idcardlib.camera.CameraActivity"
+45-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:46:13-50
+46            android:configChanges="keyboardHidden|orientation|screenSize"
+46-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:47:13-74
+47            android:screenOrientation="portrait"
+47-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:48:13-49
+48            android:theme="@style/Theme.AppCompat.NoActionBar" />
+48-->/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/AndroidManifest.xml:49:13-63
+49    </application>
+50
+51</manifest>

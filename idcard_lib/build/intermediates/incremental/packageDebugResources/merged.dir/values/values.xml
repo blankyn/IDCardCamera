@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_afff">#afff</color>
+    <color name="icActive">#FFFFFFFF</color>
+    <color name="icFocused">#DDFFFFFF</color>
+    <color name="icPressed">#AAFFFFFF</color>
+    <color name="lib_colorAccent">#D9000000</color>
+    <color name="lib_colorPrimary">#D9000000</color>
+    <color name="lib_colorPrimaryDark">#D9000000</color>
+    <color name="picture_color_529BeA">#529BeA</color>
+    <color name="picture_color_a83">#a8333333</color>
+    <color name="picture_color_e">#EEEEEE</color>
+    <color name="picture_color_eb">#ebebeb</color>
+    <color name="picture_color_ff572e">#ff572e</color>
+    <color name="picture_color_white">#FFFFFF</color>
+    <color name="preview_mock">#9a000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="capture_button_alt">Capture</string>
+    <string name="crop_fail">裁剪失败</string>
+    <string name="idcard_finish">完成</string>
+    <string name="idcard_net_step_str">下一步</string>
+    <string name="idcard_positive_reverse_tip_str">请尽量将身份证填满框内</string>
+    <string name="permission_open_str">请手动打开该应用需要的权限</string>
+    <string name="picture_camera">获取系统相机权限被拒绝</string>
+    <string name="picture_cancel">取消</string>
+    <string name="picture_confirm">确定</string>
+    <string name="picture_go_setting">去设置</string>
+    <string name="picture_jurisdiction">获取存储权限被拒绝</string>
+    <string name="picture_prompt">提示</string>
+    <string name="picture_prompt_content">是否保存图片至手机？</string>
+    <string name="type_idcard_back_str">身份证国徽面</string>
+    <string name="type_idcard_front_str">身份证人像面</string>
+    <style name="IdCard_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:immersive">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+    <style name="Picture.Theme.AlertDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/lib_colorPrimary</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <style name="Picture.Theme.Dialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@android:color/transparent</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+        <!-- 自己想要的背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="PictureThemeDialogWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/picture_anim_modal_in</item>
+        <item name="android:windowExitAnimation">@anim/picture_anim_modal_out</item>
+    </style>
+    <declare-styleable name="AlbumClipImageView">
+        <attr format="integer" name="civHeight"/>
+        <attr format="integer" name="civWidth"/>
+        <attr format="string" name="civTipText"/>
+        <attr format="dimension" name="civTipTextSize"/>
+        <attr format="color" name="civMaskColor"/>
+        <!--padding-->
+        <attr format="dimension" name="civClipPadding"/>
+        <!--设置裁剪图片圆角-->
+        <attr format="dimension|reference" name="civClipRoundCorner"/>
+        <!--设置裁剪成圆形-->
+        <attr format="boolean" name="civClipCircle"/>
+    </declare-styleable>
+</resources>

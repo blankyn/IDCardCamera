@@ -1,0 +1,2019 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lint Report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue-indigo.min.css" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+<style>
+section.section--center {
+    max-width: 860px;
+}
+.mdl-card__supporting-text + .mdl-card__actions {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+main > .mdl-layout__tab-panel {
+  padding: 8px;
+  padding-top: 48px;
+}
+
+.mdl-card__actions {
+    margin: 0;
+    padding: 4px 40px;
+    color: inherit;
+}
+.mdl-card > * {
+    height: auto;
+}
+.mdl-card__actions a {
+    color: #00BCD4;
+    margin: 0;
+}
+.error-icon {
+    color: #bb7777;
+    vertical-align: bottom;
+}
+.warning-icon {
+    vertical-align: bottom;
+}
+.mdl-layout__content section:not(:last-of-type) {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.mdl-card .mdl-card__supporting-text {
+  margin: 40px;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: calc(100% - 80px);
+}
+div.mdl-layout__drawer-button .material-icons {
+    line-height: 48px;
+}
+.mdl-card .mdl-card__supporting-text {
+    margin-top: 0px;
+}
+.chips {
+    float: right;
+    vertical-align: middle;
+}
+
+pre.errorlines {
+    background-color: white;
+    font-family: monospace;
+    border: 1px solid #e0e0e0;
+    line-height: 0.9rem;
+    font-size: 0.9rem;    padding: 1px 0px 1px; 1px;
+    overflow: scroll;
+}
+.prefix {
+    color: #660e7a;
+    font-weight: bold;
+}
+.attribute {
+    color: #0000ff;
+    font-weight: bold;
+}
+.value {
+    color: #008000;
+    font-weight: bold;
+}
+.tag {
+    color: #000080;
+    font-weight: bold;
+}
+.comment {
+    color: #808080;
+    font-style: italic;
+}
+.javadoc {
+    color: #808080;
+    font-style: italic;
+}
+.annotation {
+    color: #808000;
+}
+.string {
+    color: #008000;
+    font-weight: bold;
+}
+.number {
+    color: #0000ff;
+}
+.keyword {
+    color: #000080;
+    font-weight: bold;
+}
+.caretline {
+    background-color: #fffae3;
+}
+.lineno {
+    color: #999999;
+    background-color: #f0f0f0;
+}
+.error {
+    display: inline-block;
+    position:relative;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+}
+.warning {
+    text-decoration: none;
+    background-color: #f6ebbc;
+}
+.overview {
+    padding: 10pt;
+    width: 100%;
+    overflow: auto;
+    border-collapse:collapse;
+}
+.overview tr {
+    border-bottom: solid 1px #eeeeee;
+}
+.categoryColumn a {
+     text-decoration: none;
+     color: inherit;
+}
+.countColumn {
+    text-align: right;
+    padding-right: 20px;
+    width: 50px;
+}
+.issueColumn {
+   padding-left: 16px;
+}
+.categoryColumn {
+   position: relative;
+   left: -50px;
+   padding-top: 20px;
+   padding-bottom: 5px;
+}
+</style>
+<script language="javascript" type="text/javascript">
+<!--
+function reveal(id) {
+if (document.getElementById) {
+document.getElementById(id).style.display = 'block';
+document.getElementById(id+'Link').style.display = 'none';
+}
+}
+function hideid(id) {
+if (document.getElementById) {
+document.getElementById(id).style.display = 'none';
+}
+}
+//-->
+</script>
+</head>
+<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Lint Report: 3 errors and 43 warnings</span>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+Check performed at Sat Aug 22 12:00:04 CST 2026      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Issue Types</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
+      <a class="mdl-navigation__link" href="#ObsoleteLintCustomCheck"><i class="material-icons warning-icon">warning</i>Obsolete custom lint check (1)</a>
+      <a class="mdl-navigation__link" href="#ScopedStorage"><i class="material-icons warning-icon">warning</i>Affected by scoped storage (1)</a>
+      <a class="mdl-navigation__link" href="#ExifInterface"><i class="material-icons warning-icon">warning</i>Using <code>android.media.ExifInterface</code> (2)</a>
+      <a class="mdl-navigation__link" href="#Range"><i class="material-icons error-icon">error</i>Outside Range (3)</a>
+      <a class="mdl-navigation__link" href="#SimpleDateFormat"><i class="material-icons warning-icon">warning</i>Implied locale in date format (1)</a>
+      <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (2)</a>
+      <a class="mdl-navigation__link" href="#UnsupportedChromeOsCameraSystemFeature"><i class="material-icons warning-icon">warning</i>Looking for Rear Camera only feature (1)</a>
+      <a class="mdl-navigation__link" href="#Recycle"><i class="material-icons warning-icon">warning</i>Missing <code>recycle()</code> calls (2)</a>
+      <a class="mdl-navigation__link" href="#ObsoleteLayoutParam"><i class="material-icons warning-icon">warning</i>Obsolete layout params (1)</a>
+      <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (7)</a>
+      <a class="mdl-navigation__link" href="#StaticFieldLeak"><i class="material-icons warning-icon">warning</i>Static Field Leaks (1)</a>
+      <a class="mdl-navigation__link" href="#Overdraw"><i class="material-icons warning-icon">warning</i>Overdraw: Painting regions more than once (3)</a>
+      <a class="mdl-navigation__link" href="#IconDipSize"><i class="material-icons warning-icon">warning</i>Icon density-independent size validation (3)</a>
+      <a class="mdl-navigation__link" href="#IconMissingDensityFolder"><i class="material-icons warning-icon">warning</i>Missing density folder (1)</a>
+      <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (2)</a>
+      <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (6)</a>
+      <a class="mdl-navigation__link" href="#RelativeOverlap"><i class="material-icons warning-icon">warning</i>Overlapping items in RelativeLayout (1)</a>
+      <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (8)</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-layout__tab-panel is-active">
+<a name="overview"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="OverviewCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Overview</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<table class="overview">
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Lint">Lint</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ObsoleteLintCustomCheck">ObsoleteLintCustomCheck</a>: Obsolete custom lint check</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ScopedStorage">ScopedStorage</a>: Affected by scoped storage</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ExifInterface">ExifInterface</a>: Using <code>android.media.ExifInterface</code></td></tr>
+<tr>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<a href="#Range">Range</a>: Outside Range</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#SimpleDateFormat">SimpleDateFormat</a>: Implied locale in date format</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#UnsupportedChromeOsCameraSystemFeature">UnsupportedChromeOsCameraSystemFeature</a>: Looking for Rear Camera only feature</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
+</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#Recycle">Recycle</a>: Missing <code>recycle()</code> calls</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ObsoleteLayoutParam">ObsoleteLayoutParam</a>: Obsolete layout params</td></tr>
+<tr>
+<td class="countColumn">7</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ObsoleteSdkInt">ObsoleteSdkInt</a>: Obsolete SDK_INT Version Check</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#StaticFieldLeak">StaticFieldLeak</a>: Static Field Leaks</td></tr>
+<tr>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#Overdraw">Overdraw</a>: Overdraw: Painting regions more than once</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Usability:Icons">Usability:Icons</a>
+</td></tr>
+<tr>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#IconDipSize">IconDipSize</a>: Icon density-independent size validation</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#IconMissingDensityFolder">IconMissingDensityFolder</a>: Missing density folder</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
+</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ClickableViewAccessibility">ClickableViewAccessibility</a>: Accessibility in Custom Views</td></tr>
+<tr>
+<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ContentDescription">ContentDescription</a>: Image without <code>contentDescription</code></td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#RelativeOverlap">RelativeOverlap</a>: Overlapping items in RelativeLayout</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization:Bidirectional Text">Internationalization:Bidirectional Text</a>
+</td></tr>
+<tr>
+<td class="countColumn">8</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#RtlHardcoded">RtlHardcoded</a>: Using left/right instead of start/end attributes</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (38)</a>
+</td></tr></table>
+<br/>              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="OverviewCardLink" onclick="hideid('OverviewCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Lint"></a>
+<a name="ObsoleteLintCustomCheck"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ObsoleteLintCustomCheckCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete custom lint check</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../../../../../software/android-studio/.gradle/caches/transforms-3/fdf8cc674509049d39cd29fc0add24bd/transformed/jetified-annotation-experimental-1.0.0/jars/lint.jar">../../../../../../software/android-studio/.gradle/caches/transforms-3/fdf8cc674509049d39cd29fc0add24bd/transformed/jetified-annotation-experimental-1.0.0/jars/lint.jar</a></span>: <span class="message">Lint found an issue registry (<code>androidx.annotation.experimental.lint.ExperimentalIssueRegistry</code>) which did not specify the Lint API version it was compiled with.<br/>
+<br/>
+<b>This means that the lint checks are likely not compatible.</b><br/>
+<br/>
+If you are the author of this lint check, make your lint <code>IssueRegistry</code> class contain<br/>
+&nbsp;&nbsp;override val api: Int = com.android.tools.lint.detector.api.CURRENT_API<br/>
+or from Java,<br/>
+&nbsp;&nbsp;@Override public int getApi() { return com.android.tools.lint.detector.api.ApiKt.CURRENT_API; }<br/>
+<br/>
+If you are just using lint checks from a third party library you have no control over, you can disable these lint checks (if they misbehave) like this:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;android {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lintOptions {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disable "UnsafeExperimentalUsageError",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"UnsafeExperimentalUsageWarning"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+</span><br />
+
+Applies to variants: debug<br/>
+Does <b>not</b> apply to variants: release<br/>
+</div>
+<div class="metadata"><div class="explanation" id="explanationObsoleteLintCustomCheck" style="display: none;">
+Lint can be extended with "custom checks": additional checks implemented by developers and libraries to for example enforce specific API usages required by a library or a company coding style guideline.<br/>
+<br/>
+The Lint APIs are not yet stable, so these checks may either cause a performance degradation, or stop working, or provide wrong results.<br/>
+<br/>
+This warning flags custom lint checks that are found to be using obsolete APIs and will need to be updated to run in the current lint environment.<br/>
+<br/>
+It may also flag issues found to be using a <b>newer</b> version of the API, meaning that you need to use a newer version of lint (or Android Studio or Gradle plugin etc) to work with these checks.<br/>To suppress this error, use the issue id "ObsoleteLintCustomCheck" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ObsoleteLintCustomCheck</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 10/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationObsoleteLintCustomCheckLink" onclick="reveal('explanationObsoleteLintCustomCheck');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ObsoleteLintCustomCheckCardLink" onclick="hideid('ObsoleteLintCustomCheckCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Correctness"></a>
+<a name="ScopedStorage"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ScopedStorageCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Affected by scoped storage</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:18</span>: <span class="message">WRITE_EXTERNAL_STORAGE no longer provides write access when targeting Android 10, unless you use <code>requestLegacyExternalStorage</code></span><br /><pre class="errorlines">
+<span class="lineno"> 15 </span>    <span class="comment">&lt;!-- Declare permissions --></span>
+<span class="lineno"> 16 </span>    <span class="tag">&lt;uses-permission</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.permission.CAMERA"</span> />
+<span class="lineno"> 17 </span>    <span class="tag">&lt;uses-permission</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.permission.FLASHLIGHT"</span> />
+<span class="caretline"><span class="lineno"> 18 </span>    <span class="tag">&lt;uses-permission</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"</span><span class="warning"><span class="value">android.permission.WRITE_EXTERNAL_STORAGE</span></span><span class="value">"</span> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 19 </span>    <span class="tag">&lt;uses-permission</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.permission.READ_EXTERNAL_STORAGE"</span> />
+<span class="lineno"> 20 </span>
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationScopedStorage" style="display: none;">
+Scoped storage is enforced on Android 10+ (or Android 11+ if using <code>requestLegacyExternalStorage</code>). In particular, <code>WRITE_EXTERNAL_STORAGE</code> will no longer provide write access to all files; it will provide the equivalent of <code>READ_EXTERNAL_STORAGE</code> instead.<br/>
+<br/>
+The <code>MANAGE_EXTERNAL_STORAGE</code> permission can be used to manage all files, but it is rarely necessary and most apps on Google Play are not allowed to use it. Most apps should instead migrate to use scoped storage. To modify or delete files, apps should request write access from the user as described at <a href="https://developer.android.com/reference/android/provider/MediaStore#createWriteRequest">https://developer.android.com/reference/android/provider/MediaStore#createWriteRequest</a>.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/preview/privacy/storage#scoped-storage">https://developer.android.com/preview/privacy/storage#scoped-storage</a>
+</div>To suppress this error, use the issue id "ScopedStorage" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ScopedStorage</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 8/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationScopedStorageLink" onclick="reveal('explanationScopedStorage');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ScopedStorageCardLink" onclick="hideid('ScopedStorageCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="ExifInterface"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ExifInterfaceCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Using android.media.ExifInterface</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/Tools.java">../../src/main/java/me/blankm/idcardlib/utils/Tools.java</a>:10</span>: <span class="message">Avoid using <code>android.media.ExifInterface</code>; use <code>android.support.media.ExifInterface</code> from the support library instead</span><br /><pre class="errorlines">
+<span class="lineno">   7 </span><span class="keyword">import</span> android.graphics.BitmapFactory;
+<span class="lineno">   8 </span><span class="keyword">import</span> android.graphics.Matrix;
+<span class="lineno">   9 </span><span class="keyword">import</span> android.graphics.Rect;
+<span class="caretline"><span class="lineno">  10 </span><span class="keyword">import</span> <span class="warning">android.media.ExifInterface</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  11 </span><span class="keyword">import</span> android.os.Build;
+<span class="lineno">  12 </span><span class="keyword">import</span> android.os.Environment;
+<span class="lineno">  13 </span><span class="keyword">import</span> android.util.DisplayMetrics;
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java">../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java</a>:12</span>: <span class="message">Avoid using <code>android.media.ExifInterface</code>; use <code>android.support.media.ExifInterface</code> from the support library instead</span><br /><pre class="errorlines">
+<span class="lineno">   9 </span><span class="keyword">import</span> android.graphics.Bitmap;
+<span class="lineno">  10 </span><span class="keyword">import</span> android.graphics.BitmapFactory;
+<span class="lineno">  11 </span><span class="keyword">import</span> android.graphics.Matrix;
+<span class="caretline"><span class="lineno">  12 </span><span class="keyword">import</span> <span class="warning">android.media.ExifInterface</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  13 </span><span class="keyword">import</span> android.net.Uri;
+<span class="lineno">  14 </span><span class="keyword">import</span> android.os.Build;
+<span class="lineno">  15 </span><span class="keyword">import</span> android.os.Environment;
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationExifInterface" style="display: none;">
+The <code>android.media.ExifInterface</code> implementation has some known security bugs in older versions of Android. There is a new implementation available of this library in the support library, which is preferable.<br/>To suppress this error, use the issue id "ExifInterface" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ExifInterface</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationExifInterfaceLink" onclick="reveal('explanationExifInterface');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ExifInterfaceCardLink" onclick="hideid('ExifInterfaceCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="Range"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RangeCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Outside Range</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/ImageUtils.java">../../src/main/java/me/blankm/idcardlib/utils/ImageUtils.java</a>:173</span>: <span class="message">Value must be &#8805; 0</span><br /><pre class="errorlines">
+<span class="lineno"> 170 </span>          <span class="keyword">new</span> String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + <span class="string">"=? "</span>,
+<span class="lineno"> 171 </span>          <span class="keyword">new</span> String[]{path}, <span class="keyword">null</span>);
+<span class="lineno"> 172 </span>  <span class="keyword">if</span> (cursor != <span class="keyword">null</span> &amp;&amp; cursor.moveToFirst()) {
+<span class="caretline"><span class="lineno"> 173 </span>      <span class="keyword">int</span> id = cursor.getInt(<span class="error">cursor.getColumnIndex(MediaStore.MediaColumns._ID)</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 174 </span>      Uri baseUri = Uri.parse(<span class="string">"content://media/external/images/media"</span>);
+<span class="lineno"> 175 </span>      <span class="keyword">return</span> Uri.withAppendedPath(baseUri, <span class="string">""</span> + id);
+<span class="lineno"> 176 </span>  } <span class="keyword">else</span> {
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java">../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java</a>:58</span>: <span class="message">Value must be &#8805; 0</span><br /><pre class="errorlines">
+<span class="lineno">  55 </span>  ContentResolver contentResolver = context.getContentResolver();
+<span class="lineno">  56 </span>  Cursor cursor = contentResolver.query(uri, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);
+<span class="lineno">  57 </span>  <span class="keyword">if</span> (cursor.moveToFirst()) {
+<span class="caretline"><span class="lineno">  58 </span>      String displayName = cursor.getString(<span class="error">cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)</span>);</span>
+<span class="lineno">  59 </span>      <span class="keyword">try</span> {
+<span class="lineno">  60 </span>          InputStream is = contentResolver.openInputStream(uri);
+<span class="lineno">  61 </span>          File cache = <span class="keyword">new</span> File(context.getExternalCacheDir().getAbsolutePath(), Math.round((Math.random() + <span class="number">1</span>) * <span class="number">1000</span>) + displayName);
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java">../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java</a>:151</span>: <span class="message">Value must be &#8805; 0</span><br /><pre class="errorlines">
+<span class="lineno"> 148 </span>      Cursor cursor = cr.query(uri, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);<span class="comment">// 根据Uri从数据库中找</span>
+<span class="lineno"> 149 </span>      <span class="keyword">if</span> (cursor != <span class="keyword">null</span>) {
+<span class="lineno"> 150 </span>          cursor.moveToFirst();
+<span class="caretline"><span class="lineno"> 151 </span>          String filePath = cursor.getString(<span class="error">cursor.getColumnIndex(<span class="string">"_data"</span>)</span>);<span class="comment">// 获取图片路径</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 152 </span>          cursor.close();
+<span class="lineno"> 153 </span>          <span class="keyword">if</span> (filePath != <span class="keyword">null</span>) {
+<span class="lineno"> 154 </span>              <span class="keyword">return</span> <span class="keyword">new</span> File(filePath);
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationRange" style="display: none;">
+Some parameters are required to in a particular numerical range; this check makes sure that arguments passed fall within the range. For arrays, Strings and collections this refers to the size or length.<br/>To suppress this error, use the issue id "Range" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Range</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Error</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRangeLink" onclick="reveal('explanationRange');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RangeCardLink" onclick="hideid('RangeCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="SimpleDateFormat"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SimpleDateFormatCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Implied locale in date format</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/Tools.java">../../src/main/java/me/blankm/idcardlib/utils/Tools.java</a>:102</span>: <span class="message">To get local formatting use <code>getDateInstance()</code>, <code>getDateTimeInstance()</code>, or <code>getTimeInstance()</code>, or use <code>new SimpleDateFormat(String template, Locale locale)</code> with for example <code>Locale.US</code> for ASCII dates.</span><br /><pre class="errorlines">
+<span class="lineno">  99 </span>      <span class="keyword">if</span> (!cameraFolder.exists()) {
+<span class="lineno"> 100 </span>          cameraFolder.mkdirs();
+<span class="lineno"> 101 </span>      }
+<span class="caretline"><span class="lineno"> 102 </span>      SimpleDateFormat simpleDateFormat = <span class="warning"><span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd_HHmmss"</span>)</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 103 </span>      <span class="keyword">return</span> cameraFolder.getAbsolutePath() + File.separator + <span class="string">"IMG_"</span> + simpleDateFormat.format(<span class="keyword">new</span> Date()) + <span class="string">".jpg"</span>;
+<span class="lineno"> 104 </span>  }
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationSimpleDateFormat" style="display: none;">
+Almost all callers should use <code>getDateInstance()</code>, <code>getDateTimeInstance()</code>, or <code>getTimeInstance()</code> to get a ready-made instance of SimpleDateFormat suitable for the user's locale. The main reason you'd create an instance this class directly is because you need to format/parse a specific machine-readable format, in which case you almost certainly want to explicitly ask for US to ensure that you get ASCII digits (rather than, say, Arabic digits).<br/>
+<br/>
+Therefore, you should either use the form of the SimpleDateFormat constructor where you pass in an explicit locale, such as Locale.US, or use one of the get instance methods, or suppress this error if really know what you are doing.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/reference/java/text/SimpleDateFormat.html">https://developer.android.com/reference/java/text/SimpleDateFormat.html</a>
+</div>To suppress this error, use the issue id "SimpleDateFormat" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">SimpleDateFormat</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationSimpleDateFormatLink" onclick="reveal('explanationSimpleDateFormat');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SimpleDateFormatCardLink" onclick="hideid('SimpleDateFormatCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="UnusedAttribute"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnusedAttributeCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Attribute unused on older versions</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:35</span>: <span class="message">Attribute <code>resizeableActivity</code> is only used in API level 24 and higher (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 32 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">".camera.CameraXActivity"</span>
+<span class="lineno"> 33 </span>            <span class="prefix">android:</span><span class="attribute">configChanges</span>=<span class="value">"keyboardHidden|orientation|screenSize"</span>
+<span class="lineno"> 34 </span>            <span class="prefix">android:</span><span class="attribute">hardwareAccelerated</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 35 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">resizeableActivity</span>=<span class="value">"true"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 36 </span>            <span class="prefix">android:</span><span class="attribute">rotationAnimation</span>=<span class="value">"seamless"</span>
+<span class="lineno"> 37 </span>            <span class="prefix">android:</span><span class="attribute">screenOrientation</span>=<span class="value">"portrait"</span>
+<span class="lineno"> 38 </span>            <span class="prefix">android:</span><span class="attribute">theme</span>=<span class="value">"@style/IdCard_AppTheme"</span>>
+</pre>
+
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:36</span>: <span class="message">Attribute <code>rotationAnimation</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 33 </span>            <span class="prefix">android:</span><span class="attribute">configChanges</span>=<span class="value">"keyboardHidden|orientation|screenSize"</span>
+<span class="lineno"> 34 </span>            <span class="prefix">android:</span><span class="attribute">hardwareAccelerated</span>=<span class="value">"true"</span>
+<span class="lineno"> 35 </span>            <span class="prefix">android:</span><span class="attribute">resizeableActivity</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 36 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">rotationAnimation</span>=<span class="value">"seamless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 37 </span>            <span class="prefix">android:</span><span class="attribute">screenOrientation</span>=<span class="value">"portrait"</span>
+<span class="lineno"> 38 </span>            <span class="prefix">android:</span><span class="attribute">theme</span>=<span class="value">"@style/IdCard_AppTheme"</span>>
+<span class="lineno"> 39 </span>            <span class="comment">&lt;!-- Declare notch support  刘海屏--></span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationUnusedAttribute" style="display: none;">
+This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the <code>minSdkVersion</code> attribute).<br/>
+<br/>
+This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.<br/>
+<br/>
+Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new <code>&lt;tag></code> element in layouts introduced in API 21.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "UnusedAttribute" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">UnusedAttribute</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnusedAttributeLink" onclick="reveal('explanationUnusedAttribute');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnusedAttributeCardLink" onclick="hideid('UnusedAttributeCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="UnsupportedChromeOsCameraSystemFeature"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnsupportedChromeOsCameraSystemFeatureCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Looking for Rear Camera only feature</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/camera/CameraUtils.java">../../src/main/java/me/blankm/idcardlib/camera/CameraUtils.java</a>:21</span>: <span class="message">You should look for any camera available on the device, not just the rear</span><br /><pre class="errorlines">
+<span class="lineno"> 18 </span><span class="javadoc">     * @return
+</span><span class="lineno"> 19 </span><span class="javadoc">     */</span>
+<span class="lineno"> 20 </span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> hasCamera(Context context) {
+<span class="caretline"><span class="lineno"> 21 </span>        <span class="keyword">if</span> (<span class="warning">context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 22 </span>            <span class="comment">// this device has a camera</span>
+<span class="lineno"> 23 </span>            <span class="keyword">return</span> <span class="keyword">true</span>;
+<span class="lineno"> 24 </span>        } <span class="keyword">else</span> {
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationUnsupportedChromeOsCameraSystemFeature" style="display: none;">
+You should look for the <code>FEATURE_CAMERA_ANY</code> features to include all<br/>
+possible cameras that may be on the device. Looking for <code>FEATURE_CAMERA</code><br/>
+only looks for a rear facing camera, which certain tablets or Chrome OS<br/>
+devices don't have, as well as newer device configurations and modes may place the<br/>
+device in a state where the rear camera is not available. To fix the issue,<br/>
+look for <code>FEATURE_CAMERA_ANY</code> instead.<br/>To suppress this error, use the issue id "UnsupportedChromeOsCameraSystemFeature" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">UnsupportedChromeOsCameraSystemFeature</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnsupportedChromeOsCameraSystemFeatureLink" onclick="reveal('explanationUnsupportedChromeOsCameraSystemFeature');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnsupportedChromeOsCameraSystemFeatureCardLink" onclick="hideid('UnsupportedChromeOsCameraSystemFeatureCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Performance"></a>
+<a name="Recycle"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RecycleCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Missing recycle() calls</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/ImageUtils.java">../../src/main/java/me/blankm/idcardlib/utils/ImageUtils.java</a>:169</span>: <span class="message">This <code>Cursor</code> should be freed up after use with <code>#close()</code></span><br /><pre class="errorlines">
+<span class="lineno"> 166 </span>
+<span class="lineno"> 167 </span>  <span class="comment">//将图片地址转换成Uri</span>
+<span class="lineno"> 168 </span>  <span class="keyword">public</span> <span class="keyword">static</span> Uri getImageContentUri(Context context, String path) {
+<span class="caretline"><span class="lineno"> 169 </span>      Cursor cursor = context.getContentResolver().<span class="warning">query</span>(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,</span>
+<span class="lineno"> 170 </span>              <span class="keyword">new</span> String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + <span class="string">"=? "</span>,
+<span class="lineno"> 171 </span>              <span class="keyword">new</span> String[]{path}, <span class="keyword">null</span>);
+<span class="lineno"> 172 </span>      <span class="keyword">if</span> (cursor != <span class="keyword">null</span> &amp;&amp; cursor.moveToFirst()) {
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java">../../src/main/java/me/blankm/idcardlib/utils/UriUtils.java</a>:56</span>: <span class="message">This <code>Cursor</code> should be freed up after use with <code>#close()</code></span><br /><pre class="errorlines">
+<span class="lineno">  53 </span>  } <span class="keyword">else</span> <span class="keyword">if</span> (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+<span class="lineno">  54 </span>      <span class="comment">//把文件复制到沙盒目录</span>
+<span class="lineno">  55 </span>      ContentResolver contentResolver = context.getContentResolver();
+<span class="caretline"><span class="lineno">  56 </span>      Cursor cursor = contentResolver.<span class="warning">query</span>(uri, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  57 </span>      <span class="keyword">if</span> (cursor.moveToFirst()) {
+<span class="lineno">  58 </span>          String displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+<span class="lineno">  59 </span>          <span class="keyword">try</span> {
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationRecycle" style="display: none;">
+Many resources, such as TypedArrays, VelocityTrackers, etc., should be recycled (with a <code>recycle()</code> call) after use. This lint check looks for missing <code>recycle()</code> calls.<br/>To suppress this error, use the issue id "Recycle" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Recycle</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 7/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRecycleLink" onclick="reveal('explanationRecycle');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RecycleCardLink" onclick="hideid('RecycleCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="ObsoleteLayoutParam"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ObsoleteLayoutParamCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete layout params</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/idcard_positive_layout.xml">../../src/main/res/layout/idcard_positive_layout.xml</a>:44</span>: <span class="message">Invalid layout param in a <code>LinearLayout</code>: <code>layout_alignParentBottom</code></span><br /><pre class="errorlines">
+<span class="lineno"> 41 </span>    <span class="tag">&lt;FrameLayout</span><span class="attribute">
+</span><span class="lineno"> 42 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 43 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"125dp"</span>
+<span class="caretline"><span class="lineno"> 44 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignParentBottom</span>=<span class="value">"true"</span></span>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 45 </span>
+<span class="lineno"> 46 </span>        <span class="tag">&lt;ImageView</span><span class="attribute">
+</span><span class="lineno"> 47 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationObsoleteLayoutParam" style="display: none;">
+The given layout_param is not defined for the given layout, meaning it has no effect. This usually happens when you change the parent layout or move view code around without updating the layout params. This will cause useless attribute processing at runtime, and is misleading for others reading the layout so the parameter should be removed.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ObsoleteLayoutParam" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ObsoleteLayoutParam</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationObsoleteLayoutParamLink" onclick="reveal('explanationObsoleteLayoutParam');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ObsoleteLayoutParamCardLink" onclick="hideid('ObsoleteLayoutParamCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="ObsoleteSdkInt"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ObsoleteSdkIntCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete SDK_INT Version Check</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/camera/AutoFocusManager.java">../../src/main/java/me/blankm/idcardlib/camera/AutoFocusManager.java</a>:70</span>: <span class="message">Unnecessary; SDK_INT is always >= 21</span><br /><pre class="errorlines">
+<span class="lineno">  67 </span>        <span class="keyword">if</span> (!stopped &amp;&amp; outstandingTask == <span class="keyword">null</span>) {
+<span class="lineno">  68 </span>            AutoFocusTask newTask = <span class="keyword">new</span> AutoFocusTask();
+<span class="lineno">  69 </span>            <span class="keyword">try</span> {
+<span class="caretline"><span class="lineno">  70 </span>                <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= <span class="number">11</span></span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  71 </span>                    newTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+<span class="lineno">  72 </span>                } <span class="keyword">else</span> {
+<span class="lineno">  73 </span>                    newTask.execute();
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java">../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java</a>:86</span>: <span class="message">Unnecessary; SDK_INT is never &lt; 21</span><br /><pre class="errorlines">
+<span class="lineno">  83 </span><span class="javadoc">    * @param view The view.
+</span><span class="lineno">  84 </span><span class="javadoc">    */</span>
+<span class="lineno">  85 </span>   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> addMarginTopEqualStatusBarHeight(Context context, <span class="annotation">@NonNull</span> View view) {
+<span class="caretline"><span class="lineno">  86 </span>      <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT</span>) <span class="keyword">return</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  87 </span>      view.setTag(TAG_OFFSET);
+<span class="lineno">  88 </span>      Object haveSetOffset = view.getTag(KEY_OFFSET);
+<span class="lineno">  89 </span>      <span class="keyword">if</span> (haveSetOffset != <span class="keyword">null</span> &amp;&amp; (Boolean) haveSetOffset) <span class="keyword">return</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java">../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java</a>:104</span>: <span class="message">Unnecessary; SDK_INT is never &lt; 21</span><br /><pre class="errorlines">
+<span class="lineno"> 101 </span><span class="javadoc">   * @param view The view.
+</span><span class="lineno"> 102 </span><span class="javadoc">   */</span>
+<span class="lineno"> 103 </span>  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> subtractMarginTopEqualStatusBarHeight(Context context,<span class="annotation">@NonNull</span> View view) {
+<span class="caretline"><span class="lineno"> 104 </span>     <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT</span>) <span class="keyword">return</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 105 </span>     Object haveSetOffset = view.getTag(KEY_OFFSET);
+<span class="lineno"> 106 </span>     <span class="keyword">if</span> (haveSetOffset == <span class="keyword">null</span> || !(Boolean) haveSetOffset) <span class="keyword">return</span>;
+<span class="lineno"> 107 </span>     ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java">../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java</a>:118</span>: <span class="message">Unnecessary; SDK_INT is never &lt; 21</span><br /><pre class="errorlines">
+<span class="lineno"> 115 </span><span class="lineno"> 116 </span>
+<span class="lineno"> 117 </span>  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> addMarginTopEqualStatusBarHeight(Context context, <span class="annotation">@NonNull</span> <span class="keyword">final</span> Window window) {
+<span class="caretline"><span class="lineno"> 118 </span>     <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT</span>) <span class="keyword">return</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 119 </span>     View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
+<span class="lineno"> 120 </span>     <span class="keyword">if</span> (withTag == <span class="keyword">null</span>) <span class="keyword">return</span>;
+<span class="lineno"> 121 </span>     addMarginTopEqualStatusBarHeight(context,withTag);
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java">../../src/main/java/me/blankm/idcardlib/utils/BarUtils.java</a>:125</span>: <span class="message">Unnecessary; SDK_INT is never &lt; 21</span><br /><pre class="errorlines">
+<span class="lineno"> 122 </span>  }
+<span class="lineno"> 123 </span>
+<span class="lineno"> 124 </span>  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> subtractMarginTopEqualStatusBarHeight(Context context,<span class="annotation">@NonNull</span> <span class="keyword">final</span> Window window) {
+<span class="caretline"><span class="lineno"> 125 </span>     <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT</span>) <span class="keyword">return</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 126 </span>     View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
+<span class="lineno"> 127 </span>     <span class="keyword">if</span> (withTag == <span class="keyword">null</span>) <span class="keyword">return</span>;
+<span class="lineno"> 128 </span>     subtractMarginTopEqualStatusBarHeight(context,withTag);
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/PermissionUtils.java">../../src/main/java/me/blankm/idcardlib/utils/PermissionUtils.java</a>:119</span>: <span class="message">Unnecessary; SDK_INT is always >= 21</span><br /><pre class="errorlines">
+<span class="lineno"> 116 </span>    <span class="comment">/*跳转到应用详情，让用户去打开权限*/</span>
+<span class="lineno"> 117 </span>    Intent localIntent = <span class="keyword">new</span> Intent();
+<span class="lineno"> 118 </span>    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+<span class="caretline"><span class="lineno"> 119 </span>    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= <span class="number">9</span></span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 120 </span>        localIntent.setAction(<span class="string">"android.settings.APPLICATION_DETAILS_SETTINGS"</span>);
+<span class="lineno"> 121 </span>        localIntent.setData(Uri.fromParts(<span class="string">"package"</span>, context.getPackageName(), <span class="keyword">null</span>));
+<span class="lineno"> 122 </span>    } <span class="keyword">else</span> <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt;= <span class="number">8</span>) {
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/utils/PermissionUtils.java">../../src/main/java/me/blankm/idcardlib/utils/PermissionUtils.java</a>:122</span>: <span class="message">Unnecessary; SDK_INT is never &lt; 21</span><br /><pre class="errorlines">
+<span class="lineno"> 119 </span>  <span class="keyword">if</span> (Build.VERSION.SDK_INT >= <span class="number">9</span>) {
+<span class="lineno"> 120 </span>      localIntent.setAction(<span class="string">"android.settings.APPLICATION_DETAILS_SETTINGS"</span>);
+<span class="lineno"> 121 </span>      localIntent.setData(Uri.fromParts(<span class="string">"package"</span>, context.getPackageName(), <span class="keyword">null</span>));
+<span class="caretline"><span class="lineno"> 122 </span>  } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT &lt;= <span class="number">8</span></span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 123 </span>      localIntent.setAction(Intent.ACTION_VIEW);
+<span class="lineno"> 124 </span>      localIntent.setClassName(<span class="string">"com.android.settings"</span>, <span class="string">"com.android.settings.InstalledAppDetails"</span>);
+<span class="lineno"> 125 </span>      localIntent.putExtra(<span class="string">"com.android.settings.ApplicationPkgName"</span>, context.getPackageName());
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationObsoleteSdkInt" style="display: none;">
+This check flags version checks that are not necessary, because the <code>minSdkVersion</code> (or surrounding known API level) is already at least as high as the version checked for.<br/>
+<br/>
+Similarly, it also looks for resources in <code>-vNN</code> folders, such as <code>values-v14</code> where the version qualifier is less than or equal to the <code>minSdkVersion</code>, where the contents should be merged into the best folder.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ObsoleteSdkInt" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ObsoleteSdkInt</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationObsoleteSdkIntLink" onclick="reveal('explanationObsoleteSdkInt');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ObsoleteSdkIntCardLink" onclick="hideid('ObsoleteSdkIntCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="StaticFieldLeak"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="StaticFieldLeakCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Static Field Leaks</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/camera/AutoFocusManager.java">../../src/main/java/me/blankm/idcardlib/camera/AutoFocusManager.java</a>:125</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (me.blankm.idcardlib.camera.AutoFocusManager.AutoFocusTask)</span><br /><pre class="errorlines">
+<span class="lineno"> 122 </span>        }
+<span class="lineno"> 123 </span>    }
+<span class="lineno"> 124 </span>
+<span class="caretline"><span class="lineno"> 125 </span>    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="warning">AutoFocusTask</span> <span class="keyword">extends</span> AsyncTask&lt;Object, Object, Object> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 126 </span>        <span class="annotation">@Override</span>
+<span class="lineno"> 127 </span>        <span class="keyword">protected</span> Object doInBackground(Object... voids) {
+<span class="lineno"> 128 </span>            <span class="keyword">try</span> {
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationStaticFieldLeak" style="display: none;">
+A static field will leak contexts.<br/>
+<br/>
+Non-static inner classes have an implicit reference to their outer class. If that outer class is for example a <code>Fragment</code> or <code>Activity</code>, then this reference means that the long-running handler/loader/task will hold a reference to the activity which prevents it from getting garbage collected.<br/>
+<br/>
+Similarly, direct field references to activities and fragments from these longer running instances can cause leaks.<br/>
+<br/>
+ViewModel classes should never point to Views or non-application Contexts.<br/>To suppress this error, use the issue id "StaticFieldLeak" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">StaticFieldLeak</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationStaticFieldLeakLink" onclick="reveal('explanationStaticFieldLeak');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="StaticFieldLeakCardLink" onclick="hideid('StaticFieldLeakCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="Overdraw"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="OverdrawCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Overdraw: Painting regions more than once</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:8</span>: <span class="message">Possible overdraw: Root element paints background <code>@color/black</code> with a theme that also paints a background (inferred theme is <code>@style/IdCard_AppTheme</code>)</span><br /><pre class="errorlines">
+<span class="lineno">   5 </span>    <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/camera_container"</span>
+<span class="lineno">   6 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">   7 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno">   8 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@color/black"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   9 </span>    <span class="prefix">tools:</span><span class="attribute">context</span>=<span class="value">".camera.CameraXActivity"</span>>
+<span class="lineno">  10 </span>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_camera_view.xml">../../src/main/res/layout/idcard_camera_view.xml</a>:7</span>: <span class="message">Possible overdraw: Root element paints background <code>#73000000</code> with a theme that also paints a background (inferred theme is <code>@style/Theme_AppCompat_NoActionBar</code>)</span><br /><pre class="errorlines">
+<span class="lineno">   4 </span>    <span class="prefix">xmlns:</span><span class="attribute">tools</span>=<span class="value">"http://schemas.android.com/tools"</span>
+<span class="lineno">   5 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">   6 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno">   7 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"#73000000"</span></span>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   8 </span>
+<span class="lineno">   9 </span>    <span class="tag">&lt;me.blankm.idcardlib.camera.CameraPreview</span><span class="attribute">
+</span><span class="lineno">  10 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/camera_preview"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_lib_title_layout.xml">../../src/main/res/layout/idcard_lib_title_layout.xml</a>:6</span>: <span class="message">Possible overdraw: Root element paints background <code>@color/lib_colorPrimary</code> with a theme that also paints a background (inferred theme is <code>@android:style/Theme.Holo</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  3 </span>    <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/idcard_title_rlv"</span>
+<span class="lineno">  4 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  5 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"44dp"</span>
+<span class="caretline"><span class="lineno">  6 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@color/lib_colorPrimary"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  7 </span>    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
+<span class="lineno">  8 </span>
+<span class="lineno">  9 </span>    <span class="tag">&lt;ImageView</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationOverdraw" style="display: none;">
+If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called "overdraw".<br/>
+<br/>
+NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it's currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.<br/>
+<br/>
+If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.<br/>
+<br/>
+Of course it's possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead.<br/>To suppress this error, use the issue id "Overdraw" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Overdraw</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationOverdrawLink" onclick="reveal('explanationOverdraw');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="OverdrawCardLink" onclick="hideid('OverdrawCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Usability:Icons"></a>
+<a name="IconDipSize"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="IconDipSizeCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Icon density-independent size validation</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/mipmap-hdpi/idcard_lib_album_icon.png">../../src/main/res/mipmap-hdpi/idcard_lib_album_icon.png</a></span>: <span class="message">The image <code>idcard_lib_album_icon.png</code> varies significantly in its density-independent (dip) size across the various density versions: mipmap-hdpi/idcard_lib_album_icon.png: 40x40 dp (60x60 px), mipmap-mdpi/idcard_lib_album_icon.png: 90x90 dp (90x90 px), mipmap-xhdpi/idcard_lib_album_icon.png: 60x60 dp (120x120 px), mipmap-xxhdpi/idcard_lib_album_icon.png: 60x60 dp (180x180 px), mipmap-xxxhdpi/idcard_lib_album_icon.png: 60x60 dp (240x240 px)</span><br />
+<ul></ul><button id="Location1DivLink" onclick="reveal('Location1Div');" />+ 4 Additional Locations...</button>
+<div id="Location1Div" style="display: none">
+Additional locations: <ul>
+<li> <span class="location"><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_album_icon.png">../../src/main/res/mipmap-xhdpi/idcard_lib_album_icon.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_album_icon.png">../../src/main/res/mipmap-xxhdpi/idcard_lib_album_icon.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/mipmap-xxxhdpi/idcard_lib_album_icon.png">../../src/main/res/mipmap-xxxhdpi/idcard_lib_album_icon.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/mipmap-mdpi/idcard_lib_album_icon.png">../../src/main/res/mipmap-mdpi/idcard_lib_album_icon.png</a></span>
+</ul>
+</div><br/><br/>
+<table>
+<tr><td><a href="../../src/main/res/mipmap-mdpi/idcard_lib_album_icon.png"><img border="0" align="top" src="../../src/main/res/mipmap-mdpi/idcard_lib_album_icon.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-hdpi/idcard_lib_album_icon.png"><img border="0" align="top" src="../../src/main/res/mipmap-hdpi/idcard_lib_album_icon.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_album_icon.png"><img border="0" align="top" src="../../src/main/res/mipmap-xhdpi/idcard_lib_album_icon.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_album_icon.png"><img border="0" align="top" src="../../src/main/res/mipmap-xxhdpi/idcard_lib_album_icon.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-xxxhdpi/idcard_lib_album_icon.png"><img border="0" align="top" src="../../src/main/res/mipmap-xxxhdpi/idcard_lib_album_icon.png" /></a>
+</td></tr><tr><th></th><th></th><th></th><th></th><th></th></tr>
+</table>
+<span class="location"><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_failed.png">../../src/main/res/mipmap-xhdpi/idcard_lib_failed.png</a></span>: <span class="message">The image <code>idcard_lib_failed.png</code> varies significantly in its density-independent (dip) size across the various density versions: mipmap-xhdpi/idcard_lib_failed.png: 32x32 dp (64x64 px), mipmap-xxhdpi/idcard_lib_failed.png: 43x43 dp (128x128 px)</span><br />
+<ul></ul><button id="Location2DivLink" onclick="reveal('Location2Div');" />+ 1 Additional Locations...</button>
+<div id="Location2Div" style="display: none">
+Additional locations: <ul>
+<li> <span class="location"><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_failed.png">../../src/main/res/mipmap-xxhdpi/idcard_lib_failed.png</a></span>
+</ul>
+</div><br/><br/>
+<table>
+<tr><td><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_failed.png"><img border="0" align="top" src="../../src/main/res/mipmap-xhdpi/idcard_lib_failed.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_failed.png"><img border="0" align="top" src="../../src/main/res/mipmap-xxhdpi/idcard_lib_failed.png" /></a>
+</td></tr><tr><th></th><th></th></tr>
+</table>
+<span class="location"><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_success.png">../../src/main/res/mipmap-xhdpi/idcard_lib_success.png</a></span>: <span class="message">The image <code>idcard_lib_success.png</code> varies significantly in its density-independent (dip) size across the various density versions: mipmap-xhdpi/idcard_lib_success.png: 32x32 dp (64x64 px), mipmap-xxhdpi/idcard_lib_success.png: 43x43 dp (128x128 px)</span><br />
+<ul></ul><button id="Location3DivLink" onclick="reveal('Location3Div');" />+ 1 Additional Locations...</button>
+<div id="Location3Div" style="display: none">
+Additional locations: <ul>
+<li> <span class="location"><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_success.png">../../src/main/res/mipmap-xxhdpi/idcard_lib_success.png</a></span>
+</ul>
+</div><br/><br/>
+<table>
+<tr><td><a href="../../src/main/res/mipmap-xhdpi/idcard_lib_success.png"><img border="0" align="top" src="../../src/main/res/mipmap-xhdpi/idcard_lib_success.png" /></a>
+</td><td><a href="../../src/main/res/mipmap-xxhdpi/idcard_lib_success.png"><img border="0" align="top" src="../../src/main/res/mipmap-xxhdpi/idcard_lib_success.png" /></a>
+</td></tr><tr><th></th><th></th></tr>
+</table>
+</div>
+<div class="metadata"><div class="explanation" id="explanationIconDipSize" style="display: none;">
+Checks the all icons which are provided in multiple densities, all compute to roughly the same density-independent pixel (<code>dip</code>) size. This catches errors where images are either placed in the wrong folder, or icons are changed to new sizes but some folders are forgotten.<br/>To suppress this error, use the issue id "IconDipSize" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">IconDipSize</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Icons</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Usability</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationIconDipSizeLink" onclick="reveal('explanationIconDipSize');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="IconDipSizeCardLink" onclick="hideid('IconDipSizeCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="IconMissingDensityFolder"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="IconMissingDensityFolderCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Missing density folder</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res">../../src/main/res</a></span>: <span class="message">Missing density variation folders in <code>/Volumes/workspace/github/IDCardCamera/idcard_lib/src/main/res</code>: drawable-hdpi, drawable-mdpi, drawable-xxhdpi</span><br />
+</div>
+<div class="metadata"><div class="explanation" id="explanationIconMissingDensityFolder" style="display: none;">
+Icons will look best if a custom version is provided for each of the major screen density classes (low, medium, high, extra-high, extra-extra-high). This lint check identifies folders which are missing, such as <code>drawable-hdpi</code>.<br/>
+<br/>
+Low density is not really used much anymore, so this check ignores the ldpi density. To force lint to include it, set the environment variable <code>ANDROID_LINT_INCLUDE_LDPI=true</code>. For more information on current density usage, see <a href="https://developer.android.com/about/dashboards">https://developer.android.com/about/dashboards</a><br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/practices/screens_support.html">https://developer.android.com/guide/practices/screens_support.html</a>
+</div>To suppress this error, use the issue id "IconMissingDensityFolder" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">IconMissingDensityFolder</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Icons</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Usability</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationIconMissingDensityFolderLink" onclick="reveal('explanationIconMissingDensityFolder');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="IconMissingDensityFolderCardLink" onclick="hideid('IconMissingDensityFolderCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Accessibility"></a>
+<a name="ClickableViewAccessibility"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ClickableViewAccessibilityCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Accessibility in Custom Views</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/cropper/AlbumClipImageView.java">../../src/main/java/me/blankm/idcardlib/cropper/AlbumClipImageView.java</a>:107</span>: <span class="message">Custom view `<code>AlbumClipImageView</code>` has <code>setOnTouchListener</code> called on it but does not override <code>performClick</code></span><br /><pre class="errorlines">
+<span class="lineno"> 104 </span>                    }
+<span class="lineno"> 105 </span>                });
+<span class="lineno"> 106 </span>        mScaleGestureDetector = <span class="keyword">new</span> ScaleGestureDetector(context, <span class="keyword">this</span>);
+<span class="caretline"><span class="lineno"> 107 </span>        <span class="warning"><span class="keyword">this</span>.setOnTouchListener(<span class="keyword">this</span>)</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 108 </span>
+<span class="lineno"> 109 </span>        mPaint = <span class="keyword">new</span> Paint(Paint.ANTI_ALIAS_FLAG);
+<span class="lineno"> 110 </span>        mPaint.setColor(Color.WHITE);
+</pre>
+
+<span class="location"><a href="../../src/main/java/me/blankm/idcardlib/cropper/CropOverlayView.java">../../src/main/java/me/blankm/idcardlib/cropper/CropOverlayView.java</a>:207</span>: <span class="message">Custom view <code>CropOverlayView</code> overrides <code>onTouchEvent</code> but not <code>performClick</code></span><br /><pre class="errorlines">
+<span class="lineno"> 204 </span>    }
+<span class="lineno"> 205 </span>
+<span class="lineno"> 206 </span>    <span class="annotation">@Override</span>
+<span class="caretline"><span class="lineno"> 207 </span>    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="warning">onTouchEvent</span>(MotionEvent event) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 208 </span>        <span class="keyword">switch</span> (event.getAction()) {
+<span class="lineno"> 209 </span>            <span class="keyword">case</span> MotionEvent.ACTION_UP:
+<span class="lineno"> 210 </span>                getParent().requestDisallowInterceptTouchEvent(<span class="keyword">false</span>);
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationClickableViewAccessibility" style="display: none;">
+If a <code>View</code> that overrides <code>onTouchEvent</code> or uses an <code>OnTouchListener</code> does not also implement <code>performClick</code> and call it when clicks are detected, the <code>View</code> may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in <code>View#performClick</code> as some accessibility services invoke <code>performClick</code> when a click action should occur.<br/>To suppress this error, use the issue id "ClickableViewAccessibility" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ClickableViewAccessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Accessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationClickableViewAccessibilityLink" onclick="reveal('explanationClickableViewAccessibility');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ClickableViewAccessibilityCardLink" onclick="hideid('ClickableViewAccessibilityCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="ContentDescription"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ContentDescriptionCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Image without contentDescription</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:29</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  26 </span>        <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center"</span>
+<span class="lineno">  27 </span>        <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>>
+<span class="lineno">  28 </span>
+<span class="caretline"><span class="lineno">  29 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  30 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/img_picture"</span>
+<span class="lineno">  31 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  32 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:85</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  82 </span>    <span class="tag">&lt;/FrameLayout></span>
+<span class="lineno">  83 </span>
+<span class="lineno">  84 </span>
+<span class="caretline"><span class="lineno">  85 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  86 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/ib_back"</span>
+<span class="lineno">  87 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"64dp"</span>
+<span class="lineno">  88 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"64dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:122</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno"> 119 </span>        <span class="prefix">app:</span><span class="attribute">layout_constraintLeft_toLeftOf</span>=<span class="value">"parent"</span>
+<span class="lineno"> 120 </span>        <span class="prefix">app:</span><span class="attribute">layout_constraintRight_toRightOf</span>=<span class="value">"parent"</span>>
+<span class="lineno"> 121 </span>
+<span class="caretline"><span class="lineno"> 122 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 123 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/img_picture_cancel"</span>
+<span class="lineno"> 124 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 125 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"60dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:130</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno"> 127 </span>            <span class="prefix">android:</span><span class="attribute">layout_marginLeft</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 128 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_failed"</span> />
+<span class="lineno"> 129 </span>
+<span class="caretline"><span class="lineno"> 130 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 131 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/img_picture_save"</span>
+<span class="lineno"> 132 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 133 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"60dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_positive_layout.xml">../../src/main/res/layout/idcard_positive_layout.xml</a>:21</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center"</span>
+<span class="lineno"> 19 </span>            <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@drawable/idcard_bg_draw"</span> />
+<span class="lineno"> 20 </span>
+<span class="caretline"><span class="lineno"> 21 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 22 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 23 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"225dp"</span>
+<span class="lineno"> 24 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_positive_layout.xml">../../src/main/res/layout/idcard_positive_layout.xml</a>:46</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno"> 43 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"125dp"</span>
+<span class="lineno"> 44 </span>        <span class="prefix">android:</span><span class="attribute">layout_alignParentBottom</span>=<span class="value">"true"</span>>
+<span class="lineno"> 45 </span>
+<span class="caretline"><span class="lineno"> 46 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 47 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 48 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 49 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center_horizontal"</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationContentDescription" style="display: none;">
+Non-textual widgets like ImageViews and ImageButtons should use the <code>contentDescription</code> attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.<br/>
+<br/>
+Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, just suppress the lint warning with a tools:ignore="ContentDescription" attribute.<br/>
+<br/>
+Note that for text fields, you should not set both the <code>hint</code> and the <code>contentDescription</code> attributes since the hint will never be shown. Just set the <code>hint</code>.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases">https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ContentDescription" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ContentDescription</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Accessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationContentDescriptionLink" onclick="reveal('explanationContentDescription');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ContentDescriptionCardLink" onclick="hideid('ContentDescriptionCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Internationalization"></a>
+<a name="RelativeOverlap"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RelativeOverlapCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Overlapping items in RelativeLayout</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/idcard_lib_title_layout.xml">../../src/main/res/layout/idcard_lib_title_layout.xml</a>:18</span>: <span class="message"><code>@id/idcard_title_tv</code> can overlap <code>@id/idcard_title_refresh_iv</code> if @id/idcard_title_tv grows due to localized text expansion</span><br /><pre class="errorlines">
+<span class="lineno"> 15 </span>        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@null"</span>
+<span class="lineno"> 16 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_title_back_icon"</span> />
+<span class="lineno"> 17 </span>
+<span class="caretline"><span class="lineno"> 18 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">TextView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 19 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/idcard_title_tv"</span>
+<span class="lineno"> 20 </span>        <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center"</span>
+<span class="lineno"> 21 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationRelativeOverlap" style="display: none;">
+If relative layout has text or button items aligned to left and right sides they can overlap each other due to localized text expansion unless they have mutual constraints like <code>toEndOf</code>/<code>toStartOf</code>.<br/>To suppress this error, use the issue id "RelativeOverlap" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">RelativeOverlap</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Internationalization</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRelativeOverlapLink" onclick="reveal('explanationRelativeOverlap');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RelativeOverlapCardLink" onclick="hideid('RelativeOverlapCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Internationalization:Bidirectional Text"></a>
+<a name="RtlHardcoded"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RtlHardcodedCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Using left/right instead of start/end attributes</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:127</span>: <span class="message">Consider replacing <code>android:layout_marginLeft</code> with <code>android:layout_marginStart="60dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 124 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 125 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 126 </span>            <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 127 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginLeft</span></span>=<span class="value">"60dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 128 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_failed"</span> />
+<span class="lineno"> 129 </span>
+<span class="lineno"> 130 </span>        <span class="tag">&lt;ImageView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:134</span>: <span class="message">Consider replacing <code>android:layout_alignParentRight</code> with <code>android:layout_alignParentEnd="true"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 131 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/img_picture_save"</span>
+<span class="lineno"> 132 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 133 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"60dp"</span>
+<span class="caretline"><span class="lineno"> 134 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignParentRight</span></span>=<span class="value">"true"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 135 </span>            <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="lineno"> 136 </span>            <span class="prefix">android:</span><span class="attribute">layout_marginRight</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 137 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_success"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/activity_camera_x.xml">../../src/main/res/layout/activity_camera_x.xml</a>:136</span>: <span class="message">Consider replacing <code>android:layout_marginRight</code> with <code>android:layout_marginEnd="60dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 133 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"60dp"</span>
+<span class="lineno"> 134 </span>            <span class="prefix">android:</span><span class="attribute">layout_alignParentRight</span>=<span class="value">"true"</span>
+<span class="lineno"> 135 </span>            <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 136 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginRight</span></span>=<span class="value">"60dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 137 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_success"</span> />
+<span class="lineno"> 138 </span>    <span class="tag">&lt;/RelativeLayout></span>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_camera_view.xml">../../src/main/res/layout/idcard_camera_view.xml</a>:93</span>: <span class="message">Consider replacing <code>android:layout_marginLeft</code> with <code>android:layout_marginStart="30dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno">  90 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/iv_camera_album"</span>
+<span class="lineno">  91 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"45dp"</span>
+<span class="lineno">  92 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"45dp"</span>
+<span class="caretline"><span class="lineno">  93 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginLeft</span></span>=<span class="value">"30dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  94 </span>            <span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"20dp"</span>
+<span class="lineno">  95 </span>            <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@drawable/album_iv_bg"</span>
+<span class="lineno">  96 </span>            <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@null"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_lib_title_layout.xml">../../src/main/res/layout/idcard_lib_title_layout.xml</a>:14</span>: <span class="message">Consider replacing <code>android:layout_marginLeft</code> with <code>android:layout_marginStart="20dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 11 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"20dp"</span>
+<span class="lineno"> 12 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"20dp"</span>
+<span class="lineno"> 13 </span>        <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 14 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginLeft</span></span>=<span class="value">"20dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 15 </span>        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@null"</span>
+<span class="lineno"> 16 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_title_back_icon"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_lib_title_layout.xml">../../src/main/res/layout/idcard_lib_title_layout.xml</a>:31</span>: <span class="message">Consider replacing <code>android:layout_alignParentRight</code> with <code>android:layout_alignParentEnd="true"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 28 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/idcard_title_refresh_iv"</span>
+<span class="lineno"> 29 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 30 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="caretline"><span class="lineno"> 31 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignParentRight</span></span>=<span class="value">"true"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 32 </span>        <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="lineno"> 33 </span>        <span class="prefix">android:</span><span class="attribute">layout_marginRight</span>=<span class="value">"20dp"</span>
+<span class="lineno"> 34 </span>        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@null"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_lib_title_layout.xml">../../src/main/res/layout/idcard_lib_title_layout.xml</a>:33</span>: <span class="message">Consider replacing <code>android:layout_marginRight</code> with <code>android:layout_marginEnd="20dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 30 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 31 </span>        <span class="prefix">android:</span><span class="attribute">layout_alignParentRight</span>=<span class="value">"true"</span>
+<span class="lineno"> 32 </span>        <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 33 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginRight</span></span>=<span class="value">"20dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 34 </span>        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@null"</span>
+<span class="lineno"> 35 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@mipmap/idcard_lib_title_refresh_icon"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/idcard_positive_layout.xml">../../src/main/res/layout/idcard_positive_layout.xml</a>:34</span>: <span class="message">Consider replacing <code>android:layout_marginLeft</code> with <code>android:layout_marginStart="32dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno"> 31 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 32 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 33 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center_vertical"</span>
+<span class="caretline"><span class="lineno"> 34 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginLeft</span></span>=<span class="value">"32dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 35 </span>            <span class="prefix">android:</span><span class="attribute">text</span>=<span class="value">"@string/idcard_positive_reverse_tip_str"</span>
+<span class="lineno"> 36 </span>            <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"#73000000"</span>
+<span class="lineno"> 37 </span>            <span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"15sp"</span> />
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationRtlHardcoded" style="display: none;">
+Using <code>Gravity#LEFT</code> and <code>Gravity#RIGHT</code> can lead to problems when a layout is rendered in locales where text flows from right to left. Use <code>Gravity#START</code> and <code>Gravity#END</code> instead. Similarly, in XML <code>gravity</code> and <code>layout_gravity</code> attributes, use <code>start</code> rather than <code>left</code>.<br/>
+<br/>
+For XML attributes such as paddingLeft and <code>layout_marginLeft</code>, use <code>paddingStart</code> and <code>layout_marginStart</code>. <b>NOTE</b>: If your <code>minSdkVersion</code> is less than 17, you should add <b>both</b> the older left/right attributes <b>as well as</b> the new start/end attributes. On older platforms, where RTL is not supported and the start/end attributes are unknown and therefore ignored, you need the older left/right attributes. There is a separate lint check which catches that type of error.<br/>
+<br/>
+(Note: For <code>Gravity#LEFT</code> and <code>Gravity#START</code>, you can use these constants even when targeting older platforms, because the <code>start</code> bitmask is a superset of the <code>left</code> bitmask. Therefore, you can use <code>gravity="start"</code> rather than <code>gravity="left|start"</code>.)<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "RtlHardcoded" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">RtlHardcoded</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Bidirectional Text</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Internationalization</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRtlHardcodedLink" onclick="reveal('explanationRtlHardcoded');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RtlHardcodedCardLink" onclick="hideid('RtlHardcodedCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="MissingIssues"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="MissingIssuesCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Disabled Checks</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+One or more issues were not run by lint, either
+because the check is not enabled by default, or because
+it was disabled with a command line flag or via one or
+more <code>lint.xml</code> configuration files in the project directories.
+<div id="SuppressedIssues" style="display: none;"><br/><br/><div class="issue">
+<div class="id">AppLinksAutoVerifyError<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Ensures that app links are correctly set and associated with website.<br/><div class="moreinfo">More info: <a href="https://g.co/appindexing/applinks">https://g.co/appindexing/applinks</a>
+</div>To suppress this error, use the issue id "AppLinksAutoVerifyError" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">AppLinksAutoVerifyWarning<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Ensures that app links are correctly set and associated with website.<br/><div class="moreinfo">More info: <a href="https://g.co/appindexing/applinks">https://g.co/appindexing/applinks</a>
+</div>To suppress this error, use the issue id "AppLinksAutoVerifyWarning" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">Assert<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Assertions will never be turned on in Android. (It was possible to enable it in Dalvik with <code>adb shell setprop debug.assert 1</code>, but it is not implemented in ART, the runtime for Android 5.0 and later.)<br/>
+<br/>
+This means that the assertion will never catch mistakes, and you should not use assertions from Java or Kotlin for debug build checking.<br/>
+<br/>
+Instead, perform conditional checking inside <code>if (BuildConfig.DEBUG) { }</code> blocks. That constant is a static final boolean which will be true only in debug builds, and false in release builds, and the compiler will completely remove all code inside the <code>if</code>-body from the app.<br/>
+<br/>
+For example, you can replace
+<pre>
+    assert(speed > 0, { "Message" })    // Kotlin
+    assert speed > 0 : "Message"        // Java
+</pre>
+with
+<pre>
+    if (BuildConfig.DEBUG &amp;&amp; !(speed > 0)) {
+        throw new AssertionError("Message")
+    }
+</pre>
+(Note: This lint check does not flag assertions purely asserting nullness or non-nullness in Java code; these are typically more intended for tools usage than runtime checks.)<br/>To suppress this error, use the issue id "Assert" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">BackButton<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+According to the Android Design Guide,<br/>
+<br/>
+"Other platforms use an explicit back button with label to allow the user to navigate up the application's hierarchy. Instead, Android uses the main action bar's app icon for hierarchical navigation and the navigation bar's back button for temporal navigation."<br/>
+This check is not very sophisticated (it just looks for buttons with the label "Back"), so it is disabled by default to not trigger on common scenarios like pairs of Back/Next buttons to paginate through screens.<br/><div class="moreinfo">More info: <a href="https://material.io/design/">https://material.io/design/</a>
+</div>To suppress this error, use the issue id "BackButton" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ConvertToWebp<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The WebP format is typically more compact than PNG and JPEG. As of Android 4.2.1 it supports transparency and lossless conversion as well. Note that there is a quickfix in the IDE which lets you perform conversion.<br/>
+<br/>
+Launcher icons must be in the PNG format.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ConvertToWebp" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">DalvikOverride<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The Dalvik virtual machine will treat a package private method in one class as overriding a package private method in its super class, even if they are in separate packages.<br/>
+<br/>
+If you really did intend for this method to override the other, make the method <code>protected</code> instead.<br/>
+<br/>
+If you did <b>not</b> intend the override, consider making the method private, or changing its name or signature.<br/>
+<br/>
+Note that this check is disabled be default, because ART (the successor to Dalvik) no longer has this behavior.<br/>To suppress this error, use the issue id "DalvikOverride" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">DuplicateStrings<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Duplicate strings can make applications larger unnecessarily.<br/>
+<br/>
+This lint check looks for duplicate strings, including differences for strings where the only difference is in capitalization. Title casing and all uppercase can all be adjusted in the layout or in code.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType">https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType</a>
+</div>To suppress this error, use the issue id "DuplicateStrings" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">EasterEgg<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+An "easter egg" is code deliberately hidden in the code, both from potential users and even from other developers. This lint check looks for code which looks like it may be hidden from sight.<br/>To suppress this error, use the issue id "EasterEgg" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ExpensiveAssertion<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+In Kotlin, assertions are not handled the same way as from the Java programming language. In particular, they're just implemented as a library call, and inside the library call the error is only thrown if assertions are enabled.<br/>
+<br/>
+This means that the arguments to the <code>assert</code> call will <b>always</b> be evaluated. If you're doing any computation in the expression being asserted, that computation will unconditionally be performed whether or not assertions are turned on. This typically turns into wasted work in release builds.<br/>
+<br/>
+This check looks for cases where the assertion condition is nontrivial, e.g. it is performing method calls or doing more work than simple comparisons on local variables or fields.<br/>
+<br/>
+You can work around this by writing your own inline assert method instead:<br/>
+
+<pre>
+@Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+inline fun assert(condition: () -> Boolean) {
+    if (_Assertions.ENABLED &amp;&amp; !condition()) {
+        throw AssertionError()
+    }
+}
+</pre>
+<br/>
+In Android, because assertions are not enforced at runtime, instead use this:<br/>
+
+<pre>
+inline fun assert(condition: () -> Boolean) {
+    if (BuildConfig.DEBUG &amp;&amp; !condition()) {
+        throw AssertionError()
+    }
+}
+</pre>
+<br/>To suppress this error, use the issue id "ExpensiveAssertion" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">FieldGetter<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Accessing a field within the class that defines a getter for that field is at least 3 times faster than calling the getter. For simple getters that do nothing other than return the field, you might want to just reference the local field directly instead.<br/>
+<br/>
+<b>NOTE</b>: As of Android 2.3 (Gingerbread), this optimization is performed automatically by Dalvik, so there is no need to change your code; this is only relevant if you are targeting older versions of Android.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/training/articles/perf-tips#internal_get_set">https://developer.android.com/training/articles/perf-tips#internal_get_set</a>
+</div>To suppress this error, use the issue id "FieldGetter" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">GoogleAppIndexingApiWarning<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Adds URLs to get your app into the Google index, to get installs and traffic to your app from Google Search.<br/><div class="moreinfo">More info: <a href="https://g.co/AppIndexing/AndroidStudio">https://g.co/AppIndexing/AndroidStudio</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "GoogleAppIndexingApiWarning" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">GoogleAppIndexingWarning<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Adds URLs to get your app into the Google index, to get installs and traffic to your app from Google Search.<br/><div class="moreinfo">More info: <a href="https://g.co/AppIndexing/AndroidStudio">https://g.co/AppIndexing/AndroidStudio</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "GoogleAppIndexingWarning" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">IconExpectedSize<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+There are predefined sizes (for each density) for launcher icons. You should follow these conventions to make sure your icons fit in with the overall look of the platform.<br/><div class="moreinfo">More info: <a href="https://material.io/design/iconography/">https://material.io/design/iconography/</a>
+</div>To suppress this error, use the issue id "IconExpectedSize" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ImplicitSamInstance<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Kotlin's support for SAM (single accessor method) interfaces lets you pass a lambda to the interface. This will create a new instance on the fly even though there is no explicit constructor call. If you pass one of these lambdas or method references into a method which (for example) stores or compares the object identity, unexpected results may happen.<br/>To suppress this error, use the issue id "ImplicitSamInstance" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">InvalidPackage<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This check scans through libraries looking for calls to APIs that are not included in Android.<br/>
+<br/>
+When you create Android projects, the classpath is set up such that you can only access classes in the API packages that are included in Android. However, if you add other projects to your libs/ folder, there is no guarantee that those .jar files were built with an Android specific classpath, and in particular, they could be accessing unsupported APIs such as java.applet.<br/>
+<br/>
+This check scans through library jars and looks for references to API packages that are not included in Android and flags these. This is only an error if your code calls one of the library classes which wind up referencing the unsupported package.<br/>To suppress this error, use the issue id "InvalidPackage" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">KotlinPropertyAccess<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+For a method to be represented as a property in Kotlin, strict &#8220;bean&#8221;-style prefixing must be used.<br/>
+<br/>
+Accessor methods require a &#8216;get&#8217; prefix or for boolean-returning methods an &#8216;is&#8217; prefix can be used.<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#property-prefixes">https://android.github.io/kotlin-guides/interop.html#property-prefixes</a>
+</div>To suppress this error, use the issue id "KotlinPropertyAccess" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LambdaLast<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+To improve calling this code from Kotlin,<br/>
+parameter types eligible for SAM conversion should be last.<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#lambda-parameters-last">https://android.github.io/kotlin-guides/interop.html#lambda-parameters-last</a>
+</div>To suppress this error, use the issue id "LambdaLast" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LintImplPsiEquals<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+You should never compare two PSI elements for equality with <code>equals</code>;<br/>
+use <code>isEquivalentTo(PsiElement)</code> instead.<br/>To suppress this error, use the issue id "LintImplPsiEquals" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LintImplUnexpectedDomain<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This checks flags URLs to domains that have not been explicitly allowed for use as a documentation source.<br/>To suppress this error, use the issue id "LintImplUnexpectedDomain" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LogConditional<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The <code>BuildConfig</code> class provides a constant, <code>DEBUG</code>, which indicates whether the code is being built in release mode or in debug mode. In release mode, you typically want to strip out all the logging calls. Since the compiler will automatically remove all code which is inside a <code>if (false)</code> check, surrounding your logging calls with a check for <code>BuildConfig.DEBUG</code> is a good idea.<br/>
+<br/>
+If you <b>really</b> intend for the logging to be present in release mode, you can suppress this warning with a <code>@SuppressLint</code> annotation for the intentional logging calls.<br/>To suppress this error, use the issue id "LogConditional" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">MangledCRLF<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+On Windows, line endings are typically recorded as carriage return plus newline: \r\n.<br/>
+<br/>
+This detector looks for invalid line endings with repeated carriage return characters (without newlines). Previous versions of the ADT plugin could accidentally introduce these into the file, and when editing the file, the editor could produce confusing visual artifacts.<br/><div class="moreinfo">More info: <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=375421">https://bugs.eclipse.org/bugs/show_bug.cgi?id=375421</a>
+</div>To suppress this error, use the issue id "MangledCRLF" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">MinSdkTooLow<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The value of the <code>minSdkVersion</code> property is too low and can be incremented without noticeably reducing the number of supported devices.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "MinSdkTooLow" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NegativeMargin<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Margin values should be positive. Negative values are generally a sign that you are making assumptions about views surrounding the current one, or may be tempted to turn off child clipping to allow a view to escape its parent. Turning off child clipping to do this not only leads to poor graphical performance, it also results in wrong touch event handling since touch events are based strictly on a chain of parent-rect hit tests. Finally, making assumptions about the size of strings can lead to localization problems.<br/>To suppress this error, use the issue id "NegativeMargin" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NewerVersionAvailable<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the <code>GradleDependency</code> check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also <b>much</b> slower.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "NewerVersionAvailable" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NoHardKeywords<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Do not use Kotlin&#8217;s hard keywords as the name of methods or fields.<br/>
+These require the use of backticks to escape when calling from Kotlin.<br/>
+Soft keywords, modifier keywords, and special identifiers are allowed.<br/>
+<br/>
+For example, Mockito&#8217;s <code>when</code> function requires backticks when used from Kotlin:<br/>
+<br/>
+    val callable = Mockito.mock(Callable::class.java)<br/>
+    Mockito.`when`(callable.call()).thenReturn(/* &#8230; */)<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#no-hard-keywords">https://android.github.io/kotlin-guides/interop.html#no-hard-keywords</a>
+</div>To suppress this error, use the issue id "NoHardKeywords" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">PermissionImpliesUnsupportedChromeOsHardware<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The <code>&lt;uses-permission></code> element should not require a permission that implies an unsupported Chrome OS hardware feature. Google Play assumes that certain hardware related permissions indicate that the underlying hardware features are required by default. To fix the issue, consider declaring the corresponding uses-feature element with <code>required="false"</code> attribute.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/topic/arc/manifest.html#implied-features">https://developer.android.com/topic/arc/manifest.html#implied-features</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "PermissionImpliesUnsupportedChromeOsHardware" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">Registered<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Activities, services and content providers should be registered in the <code>AndroidManifest.xml</code> file using <code>&lt;activity></code>, <code>&lt;service></code> and <code>&lt;provider></code> tags.<br/>
+<br/>
+If your activity is simply a parent class intended to be subclassed by other "real" activities, make it an abstract class.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/topics/manifest/manifest-intro.html">https://developer.android.com/guide/topics/manifest/manifest-intro.html</a>
+</div>To suppress this error, use the issue id "Registered" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">RequiredSize<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+All views must specify an explicit <code>layout_width</code> and <code>layout_height</code> attribute. There is a runtime check for this, so if you fail to specify a size, an exception is thrown at runtime.<br/>
+<br/>
+It's possible to specify these widths via styles as well. GridLayout, as a special case, does not require you to specify a size.<br/>To suppress this error, use the issue id "RequiredSize" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">SelectableText<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+If a <code>&lt;TextView></code> is used to display data, the user might want to copy that data and paste it elsewhere. To allow this, the <code>&lt;TextView></code> should specify <code>android:textIsSelectable="true"</code>.<br/>
+<br/>
+This lint check looks for TextViews which are likely to be displaying data: views whose text is set dynamically. This value will be ignored on platforms older than API 11, so it is okay to set it regardless of your <code>minSdkVersion</code>.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "SelectableText" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">StopShip<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Using the comment <code>// STOPSHIP</code> can be used to flag code that is incomplete but checked in. This comment marker can be used to indicate that the code should not be shipped until the issue is addressed, and lint will look for these. In Gradle projects, this is only checked for non-debug (release) builds.<br/>
+<br/>
+In Kotlin, the <code>TODO()</code> method is also treated as a stop ship marker; you can use it to make incomplete code compile, but it will throw an exception at runtime and therefore should be fixed before shipping releases.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "StopShip" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">SyntheticAccessor<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+A private inner class which is accessed from the outer class will force the compiler to insert a synthetic accessor; this means that you are causing extra overhead. This is not important in small projects, but is important for large apps running up against the 64K method handle limit, and especially for <b>libraries</b> where you want to make sure your library is as small as possible for the cases where your library is used in an app running up against the 64K limit.<br/>To suppress this error, use the issue id "SyntheticAccessor" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">TypographyQuotes<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Straight single quotes and double quotes, when used as a pair, can be replaced by "curvy quotes" (or directional quotes). This can make the text more readable.<br/>
+<br/>
+Note that you should never use grave accents and apostrophes to quote, `like this'.<br/>
+<br/>
+(Also note that you should not use curvy quotes for code fragments.)<br/><div class="moreinfo">More info: <a href="https://en.wikipedia.org/wiki/Quotation_mark">https://en.wikipedia.org/wiki/Quotation_mark</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "TypographyQuotes" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnknownNullness<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+To improve referencing this code from Kotlin, consider adding<br/>
+explicit nullness information here with either <code>@NonNull</code> or <code>@Nullable</code>.<br/>
+<br/>
+You can set the environment variable<br/>
+    <code>ANDROID_LINT_NULLNESS_IGNORE_DEPRECATED=true</code><br/>
+if you want lint to ignore classes and members that have been annotated with<br/>
+<code>@Deprecated</code>.<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#nullability-annotations">https://android.github.io/kotlin-guides/interop.html#nullability-annotations</a>
+</div>To suppress this error, use the issue id "UnknownNullness" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnpackedNativeCode<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This app loads native libraries using <code>System.loadLibrary()</code>.<br/>
+<br/>
+Consider adding <code>android:extractNativeLibs="false"</code> to the <code>&lt;application></code> tag in AndroidManifest.xml. Starting with Android 6.0, this will make installation faster, the app will take up less space on the device and updates will have smaller download sizes.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "UnpackedNativeCode" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnsupportedChromeOsHardware<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The <code>&lt;uses-feature></code> element should not require this unsupported Chrome OS hardware feature. Any uses-feature not explicitly marked with <code>required="false"</code> is necessary on the device to be installed on. Ensure that any features that might prevent it from being installed on a Chrome OS device are reviewed and marked as not required in the manifest.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/topic/arc/manifest.html#incompat-entries">https://developer.android.com/topic/arc/manifest.html#incompat-entries</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "UnsupportedChromeOsHardware" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnusedIds<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This resource id definition appears not to be needed since it is not referenced from anywhere. Having id definitions, even if unused, is not necessarily a bad idea since they make working on layouts and menus easier, so there is not a strong reason to delete these.<br/>
+<br/>
+The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.<br/>
+<br/>
+You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests=true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests=true.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "UnusedIds" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ValidActionsXml<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Ensures that an actions XML file is properly formed<br/>To suppress this error, use the issue id "ValidActionsXml" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">WrongThreadInterprocedural<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Searches for interprocedural call paths that violate thread annotations in the program. Tracks the flow of instantiated types and lambda expressions to increase accuracy across method boundaries.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
+</div>To suppress this error, use the issue id "WrongThreadInterprocedural" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+</div>              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SuppressedIssuesLink" onclick="reveal('SuppressedIssues');">
+List Missing Issues</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="MissingIssuesCardLink" onclick="hideid('MissingIssuesCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="SuppressInfo"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SuppressCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Suppressing Warnings and Errors</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+Lint errors can be suppressed in a variety of ways:<br/>
+<br/>
+1. With a <code>@SuppressLint</code> annotation in the Java code<br/>
+2. With a <code>tools:ignore</code> attribute in the XML file<br/>
+3. With a //noinspection comment in the source code<br/>
+4. With ignore flags specified in the <code>build.gradle</code> file, as explained below<br/>
+5. With a <code>lint.xml</code> configuration file in the project<br/>
+6. With a <code>lint.xml</code> configuration file passed to lint via the --config flag<br/>
+7. With the --ignore flag passed to lint.<br/>
+<br/>
+To suppress a lint warning with an annotation, add a <code>@SuppressLint("id")</code> annotation on the class, method or variable declaration closest to the warning instance you want to disable. The id can be one or more issue id's, such as <code>"UnusedResources"</code> or <code>{"UnusedResources","UnusedIds"}</code>, or it can be <code>"all"</code> to suppress all lint warnings in the given scope.<br/>
+<br/>
+To suppress a lint warning with a comment, add a <code>//noinspection id</code> comment on the line before the statement with the error.<br/>
+<br/>
+To suppress a lint warning in an XML file, add a <code>tools:ignore="id"</code> attribute on the element containing the error, or one of its surrounding elements. You also need to define the namespace for the tools prefix on the root element in your document, next to the <code>xmlns:android</code> declaration:<br/>
+<code>xmlns:tools="http://schemas.android.com/tools"</code><br/>
+<br/>
+To suppress a lint warning in a <code>build.gradle</code> file, add a section like this:<br/>
+
+<pre>
+android {
+    lintOptions {
+        disable 'TypographyFractions','TypographyQuotes'
+    }
+}
+</pre>
+<br/>
+Here we specify a comma separated list of issue id's after the disable command. You can also use <code>warning</code> or <code>error</code> instead of <code>disable</code> to change the severity of issues.<br/>
+<br/>
+To suppress lint warnings with a configuration XML file, create a file named <code>lint.xml</code> and place it at the root directory of the module in which it applies.<br/>
+<br/>
+The format of the <code>lint.xml</code> file is something like the following:<br/>
+
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;lint>
+    &lt;!-- Ignore everything in the test source set -->
+    &lt;issue id="all">
+        &lt;ignore path="\*/test/\*" />
+    &lt;/issue>
+
+    &lt;!-- Disable this given check in this project -->
+    &lt;issue id="IconMissingDensityFolder" severity="ignore" />
+
+    &lt;!-- Ignore the ObsoleteLayoutParam issue in the given files -->
+    &lt;issue id="ObsoleteLayoutParam">
+        &lt;ignore path="res/layout/activation.xml" />
+        &lt;ignore path="res/layout-xlarge/activation.xml" />
+        &lt;ignore regexp="(foo|bar)\.java" />
+    &lt;/issue>
+
+    &lt;!-- Ignore the UselessLeaf issue in the given file -->
+    &lt;issue id="UselessLeaf">
+        &lt;ignore path="res/layout/main.xml" />
+    &lt;/issue>
+
+    &lt;!-- Change the severity of hardcoded strings to "error" -->
+    &lt;issue id="HardcodedText" severity="error" />
+&lt;/lint>
+</pre>
+<br/>
+To suppress lint checks from the command line, pass the --ignore flag with a comma separated list of ids to be suppressed, such as:<br/>
+<code>$ lint --ignore UnusedResources,UselessLeaf /my/project/path</code><br/>
+<br/>
+For more information, see <a href="https://developer.android.com/studio/write/lint.html#config">https://developer.android.com/studio/write/lint.html#config</a><br/>
+
+            </div>
+            </div>
+          </section>    </div>
+  </main>
+</div>
+</body>
+</html>

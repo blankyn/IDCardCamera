@@ -1,0 +1,303 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+MERGED from [androidx.camera:camera-view:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/a327801c722ed727b3a2c7540e7d0080/transformed/jetified-camera-view-1.1.0-beta01/AndroidManifest.xml:17:1-24:12
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:2:1-51:12
+MERGED from [com.google.android.material:material:1.4.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] /Volumes/software/android-studio/.gradle/caches/transforms-3/41eadb817624612340aa48f7dc7396ff/transformed/constraintlayout-2.1.3/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:17:1-38:12
+MERGED from [androidx.camera:camera-lifecycle:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/25e7f744075a65d331191c0c804c480f/transformed/jetified-camera-lifecycle-1.1.0-beta01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:17:1-38:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5b451de80019439e7c671f7a52d21ce2/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/cf2489d54d34ec65d4901fbe7e194626/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5cb25a52db104a0b11d8783a72c93bf8/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/8043c2d3bbc5adedd0f277a6e87e84ac/transformed/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/f045306b396afeda5a5715c1fb07ba3c/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Volumes/software/android-studio/.gradle/caches/transforms-3/78bb78879702098a8bd630fb78dc2def/transformed/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/9ed22f48f8622d72e37deec8897cd2ac/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/1eb33dbad3510ac360fc70c9066b13cb/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/31dfdcc980353056b87c899dd475ffc1/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/07f124ef8663a1194dd2585efabfb889/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/db5e25ccb60eed10d25f9b4d0aef44fe/transformed/lifecycle-livedata-core-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/b10f24839a110655d1decff652c046e3/transformed/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/377c3c4206089e141493220a7195d869/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/ceff88a02a227f3700b40df70ec7f86f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2156231f87b3d46fefa88ad4ffcd27a4/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/642c245e919dfcf95139ec861d510b42/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c2edac836dc842cdc3944e564ddc2057/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/444301230f08b74afcc25917f4ecb204/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/13fae23a183a05d6bb5c69f1720cc9f2/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/aaf06627e0a19d69eabe526c490ad375/transformed/lifecycle-runtime-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/52730f40d5ed17d33c45c54a578a062b/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd00e1860d5e3a6878ba8d8d2154ec31/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/3295e81cf78996a1a404cf338fab3e96/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/6a4f0a2bdbea80ee89a33fda603f789b/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/d8791aa002df0fb1efd81a34aa7fae27/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/537bd3f6d87df40414fb2fc58b8f50d1/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/82e16155142dc9e4ecd023d5ddb75975/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c5a853643faab81b00b80da8acee714b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/dc1275e34cff6af71bc7dedc2d70b316/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/820a645239990b8600a0403d6a7ff141/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+	package
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:2:5-37
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:1-28:12
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:5:5-80
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:23:5-80
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:23:5-80
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:5:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:6:5-81
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:22:5-81
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:6:22-78
+application
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:8:5-26:19
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:29:5-49:19
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:29:5-49:19
+MERGED from [com.google.android.material:material:1.4.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.4.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] /Volumes/software/android-studio/.gradle/caches/transforms-3/41eadb817624612340aa48f7dc7396ff/transformed/constraintlayout-2.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] /Volumes/software/android-studio/.gradle/caches/transforms-3/41eadb817624612340aa48f7dc7396ff/transformed/constraintlayout-2.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:30:5-34:19
+MERGED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:30:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd00e1860d5e3a6878ba8d8d2154ec31/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd00e1860d5e3a6878ba8d8d2154ec31/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:requestLegacyExternalStorage
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:13:9-52
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:15:9-35
+	android:label
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:12:9-41
+	android:roundIcon
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:14:9-54
+	android:icon
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:11:9-43
+	android:allowBackup
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:10:9-35
+	android:theme
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:16:9-40
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:9:9-40
+activity#me.blankm.idcardcamera.MainActivity
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:18:9-24:20
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:18:19-69
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:19:13-23:29
+action#android.intent.action.MAIN
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:22:17-77
+	android:name
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml:22:27-74
+uses-sdk
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+MERGED from [androidx.camera:camera-view:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/a327801c722ed727b3a2c7540e7d0080/transformed/jetified-camera-view-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-view:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/a327801c722ed727b3a2c7540e7d0080/transformed/jetified-camera-view-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:7:5-9:41
+MERGED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.4.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.4.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2297b4935725b7f1ba05e51beb9fccf8/transformed/material-1.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] /Volumes/software/android-studio/.gradle/caches/transforms-3/41eadb817624612340aa48f7dc7396ff/transformed/constraintlayout-2.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] /Volumes/software/android-studio/.gradle/caches/transforms-3/41eadb817624612340aa48f7dc7396ff/transformed/constraintlayout-2.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-lifecycle:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/25e7f744075a65d331191c0c804c480f/transformed/jetified-camera-lifecycle-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-lifecycle:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/25e7f744075a65d331191c0c804c480f/transformed/jetified-camera-lifecycle-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5b451de80019439e7c671f7a52d21ce2/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5b451de80019439e7c671f7a52d21ce2/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/cf2489d54d34ec65d4901fbe7e194626/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/cf2489d54d34ec65d4901fbe7e194626/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5cb25a52db104a0b11d8783a72c93bf8/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/5cb25a52db104a0b11d8783a72c93bf8/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/8043c2d3bbc5adedd0f277a6e87e84ac/transformed/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/8043c2d3bbc5adedd0f277a6e87e84ac/transformed/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/f045306b396afeda5a5715c1fb07ba3c/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/f045306b396afeda5a5715c1fb07ba3c/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Volumes/software/android-studio/.gradle/caches/transforms-3/78bb78879702098a8bd630fb78dc2def/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Volumes/software/android-studio/.gradle/caches/transforms-3/78bb78879702098a8bd630fb78dc2def/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/9ed22f48f8622d72e37deec8897cd2ac/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/9ed22f48f8622d72e37deec8897cd2ac/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/1eb33dbad3510ac360fc70c9066b13cb/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/1eb33dbad3510ac360fc70c9066b13cb/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/31dfdcc980353056b87c899dd475ffc1/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/31dfdcc980353056b87c899dd475ffc1/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/07f124ef8663a1194dd2585efabfb889/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/07f124ef8663a1194dd2585efabfb889/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/db5e25ccb60eed10d25f9b4d0aef44fe/transformed/lifecycle-livedata-core-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/db5e25ccb60eed10d25f9b4d0aef44fe/transformed/lifecycle-livedata-core-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/b10f24839a110655d1decff652c046e3/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/b10f24839a110655d1decff652c046e3/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/377c3c4206089e141493220a7195d869/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/377c3c4206089e141493220a7195d869/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/ceff88a02a227f3700b40df70ec7f86f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/ceff88a02a227f3700b40df70ec7f86f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2156231f87b3d46fefa88ad4ffcd27a4/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/2156231f87b3d46fefa88ad4ffcd27a4/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/642c245e919dfcf95139ec861d510b42/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/642c245e919dfcf95139ec861d510b42/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c2edac836dc842cdc3944e564ddc2057/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c2edac836dc842cdc3944e564ddc2057/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/444301230f08b74afcc25917f4ecb204/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/444301230f08b74afcc25917f4ecb204/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/13fae23a183a05d6bb5c69f1720cc9f2/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/13fae23a183a05d6bb5c69f1720cc9f2/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.5.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/aaf06627e0a19d69eabe526c490ad375/transformed/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/aaf06627e0a19d69eabe526c490ad375/transformed/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/52730f40d5ed17d33c45c54a578a062b/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/52730f40d5ed17d33c45c54a578a062b/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd00e1860d5e3a6878ba8d8d2154ec31/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd00e1860d5e3a6878ba8d8d2154ec31/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/3295e81cf78996a1a404cf338fab3e96/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/3295e81cf78996a1a404cf338fab3e96/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/6a4f0a2bdbea80ee89a33fda603f789b/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/6a4f0a2bdbea80ee89a33fda603f789b/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/d8791aa002df0fb1efd81a34aa7fae27/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/d8791aa002df0fb1efd81a34aa7fae27/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/537bd3f6d87df40414fb2fc58b8f50d1/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/537bd3f6d87df40414fb2fc58b8f50d1/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/82e16155142dc9e4ecd023d5ddb75975/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/82e16155142dc9e4ecd023d5ddb75975/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c5a853643faab81b00b80da8acee714b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/c5a853643faab81b00b80da8acee714b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/dc1275e34cff6af71bc7dedc2d70b316/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/dc1275e34cff6af71bc7dedc2d70b316/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/820a645239990b8600a0403d6a7ff141/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Volumes/software/android-studio/.gradle/caches/transforms-3/820a645239990b8600a0403d6a7ff141/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/workspace/github/IDCardCamera/app/src/main/AndroidManifest.xml
+uses-feature#android.hardware.camera
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:15:5-17:35
+	android:required
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:17:9-32
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:16:9-47
+uses-permission#android.permission.CAMERA
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:20:5-65
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:20:22-62
+uses-permission#android.permission.FLASHLIGHT
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:21:5-69
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:21:22-66
+uses-feature#android.hardware.camera.autofocus
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:25:5-27:35
+	android:required
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:27:9-32
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:26:9-57
+activity#me.blankm.idcardlib.camera.CameraXActivity
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:30:9-43:20
+	android:screenOrientation
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:36:13-49
+	android:hardwareAccelerated
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:33:13-47
+	android:resizeableActivity
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:34:13-46
+	android:rotationAnimation
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:35:13-49
+	android:configChanges
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:32:13-74
+	android:theme
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:37:13-51
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:31:13-70
+activity#me.blankm.idcardlib.camera.CameraActivity
+ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:44:9-48:66
+	android:screenOrientation
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:47:13-49
+	android:configChanges
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:46:13-74
+	android:theme
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:48:13-63
+	android:name
+		ADDED from [io.github.blankyn:idcard_lib:1.0.7] /Volumes/software/android-studio/.gradle/caches/transforms-3/363fc7b6130afc33baa00e975194a884/transformed/jetified-idcard_lib-1.0.7/AndroidManifest.xml:45:13-69
+queries
+ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:24:5-28:15
+intent#action:name:androidx.camera.extensions.action.VENDOR_ACTION
+ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:25:9-27:18
+action#androidx.camera.extensions.action.VENDOR_ACTION
+ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:26:13-86
+	android:name
+		ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:26:21-83
+uses-library#androidx.camera.extensions.impl
+ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:31:9-33:40
+	android:required
+		ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:33:13-37
+	android:name
+		ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/bd562a7c3dd8b726ec19ecc2c891ea43/transformed/jetified-camera-extensions-1.1.0-beta01/AndroidManifest.xml:32:13-59
+service#androidx.camera.core.impl.MetadataHolderService
+ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:26:9-35:19
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:31:9-35:45
+MERGED from [androidx.camera:camera-core:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/6d323ac13034c56d071531f1843dfe3d/transformed/jetified-camera-core-1.1.0-beta01/AndroidManifest.xml:31:9-35:45
+	tools:node
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:31:13-31
+	android:enabled
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:28:13-36
+	android:exported
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:29:13-37
+	tools:ignore
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:30:13-42
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:27:13-75
+meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
+ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:32:13-34:89
+	android:value
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:34:17-86
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.1.0-beta01] /Volumes/software/android-studio/.gradle/caches/transforms-3/c8d8b5f9b6f43afb61c75dcee0519866/transformed/jetified-camera-camera2-1.1.0-beta01/AndroidManifest.xml:33:17-103
