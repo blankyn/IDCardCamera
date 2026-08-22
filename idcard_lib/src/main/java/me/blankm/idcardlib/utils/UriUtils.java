@@ -65,7 +65,7 @@ public class UriUtils {
                     fos.close();
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LogUtils.e("UriUtils", "复制文件到沙盒失败: " + e);
                 }
             }
         }
@@ -186,7 +186,7 @@ public class UriUtils {
                     break;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.e("UriUtils", "读取图片失败: " + e);
         }
         return degree;
     }
