@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    }
+]

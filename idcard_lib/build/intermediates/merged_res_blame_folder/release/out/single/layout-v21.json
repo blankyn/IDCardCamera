@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/84fc9689966bdc93a576112dab871b9a/transformed/core-1.5.0/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

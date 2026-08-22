@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Volumes/workspace/github/IDCardCamera/idcard_lib/build/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Volumes/software/android-studio/.gradle/caches/transforms-3/47fba192c517c827397b7e8899ff1c10/transformed/appcompat-1.2.0/res/color-v23/abc_tint_seek_thumb.xml"
+    }
+]
