@@ -3,7 +3,6 @@ package me.blankm.idcardlib.camera;
 import static me.blankm.idcardlib.camera.IDCardCameraSelect.PERMISSION_CODE_FIRST;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -14,13 +13,12 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.Camera;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -41,8 +39,10 @@ import me.blankm.idcardlib.dialog.IDCardDialog;
 import me.blankm.idcardlib.utils.CommonUtils;
 import me.blankm.idcardlib.utils.FileUtils;
 import me.blankm.idcardlib.utils.ImageUtils;
+import me.blankm.idcardlib.utils.LogUtils;
 import me.blankm.idcardlib.utils.PermissionChecker;
 import me.blankm.idcardlib.utils.PermissionUtils;
+import me.blankm.idcardlib.utils.ProgressDialogHelper;
 
 import me.blankm.idcardlib.R;
 
@@ -55,12 +55,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
  * 拍照Camera 界面
  */
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "CameraActivity";
+
+    /**
+     * 相册图片解码的边长上限。
+     * 不用屏幕尺寸：裁剪后的身份证区域仍需保留足够分辨率用于后续识别。
+     */
+    private static final int MAX_ALBUM_IMAGE_SIZE = 2048;
 
     private CameraPreview mCameraPreview;
     private CropImageView mCropImageView;
@@ -98,6 +108,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     //相册选择图片裁剪后的输出路径
     private String mOutputPath;
     private String mInputPath;
+    //后台线程处理图片解码/裁剪/写盘，避免阻塞主线程
+    private final ExecutorService mIoExecutor = Executors.newSingleThreadExecutor();
+    private final Handler mMainHandler = new Handler(Looper.getMainLooper());
+
+    //进度提示辅助类
+    private ProgressDialogHelper mProgressHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +148,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
         isToast = true;
         if (isPermissions) {
-            Log.e("onRequestPermission", "允许所有权限");
+            LogUtils.d(TAG, "允许所有权限");
             init();
         } else {
-            Log.e("onRequestPermission", "有权限不允许");
-            showPermissionsDialog("未开启相关权限！");
+            LogUtils.d(TAG, "有权限不允许");
+            showPermissionsDialog(getString(R.string.permission_not_granted));
         }
     }
 
@@ -149,6 +165,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
+        mProgressHelper = new ProgressDialogHelper(this);
         mCameraPreview = findViewById(R.id.camera_preview);
         mIvCameraCrop = findViewById(R.id.iv_camera_crop);
         mCropImageView = findViewById(R.id.crop_image_view);
@@ -202,7 +219,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
         //增加0.5秒过渡界面，解决个别手机首次申请权限导致预览界面启动慢的问题
-        new Handler().postDelayed(() -> runOnUiThread(() -> mCameraPreview.setVisibility(View.VISIBLE)), 500);
+        //复用统一的主线程 Handler，onDestroy 中会移除未执行的回调
+        mMainHandler.postDelayed(() -> {
+            if (isFinishing() || isDestroyed()) return;
+            mCameraPreview.setVisibility(View.VISIBLE);
+        }, 500);
     }
 
     private void initListener() {
@@ -257,53 +278,70 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == IDCardCameraSelect.REQUEST_ALBUM_CODE && data != null) {
-                //拿到相册选择的图片show 到裁剪UI
-                Uri uri = data.getData();
-                if (uri != null) {
-                    String path = "";
-                    Bitmap mSourceBitmap = null;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        //适配AndroidQ
-                        File file = UriUtils.uriToFileApiQ(this, uri);
-                        path = file.getPath();
-                        System.out.println("path=00=>" + file.getPath());
-                        mSourceBitmap = BitmapFactory.decodeFile(path);
-                    } else {
-                        File file = UriUtils.getFileFromMediaUri(this, uri);
-                        if (file != null) {
-                            path = file.getAbsolutePath();
-                            Bitmap photoBmp = null;
-                            try {
-                                photoBmp = UriUtils.getBitmapFormUri(this, Uri.fromFile(file));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            int degree = UriUtils.getBitmapDegree(file.getAbsolutePath());
-                            /**
-                             * 把图片旋转为正的方向
-                             */
-                            mSourceBitmap = UriUtils.rotateBitmapByDegree(photoBmp, degree);
-                        }
+        if (resultCode != RESULT_OK) return;
+        if (requestCode != IDCardCameraSelect.REQUEST_ALBUM_CODE || data == null) return;
+        //拿到相册选择的图片show 到裁剪UI
+        final Uri uri = data.getData();
+        if (uri == null) return;
+        //显示加载提示
+        mProgressHelper.show(R.string.loading_processing);
+        //文件复制与图片解码都是耗时操作，放到后台线程
+        mIoExecutor.execute(() -> {
+            String path = "";
+            Bitmap sourceBitmap = null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                //适配AndroidQ
+                File file = UriUtils.uriToFileApiQ(this, uri);
+                if (file != null) {
+                    path = file.getPath();
+                    //采样解码，避免大图整图解码导致OOM。
+                    //上限取 2048 而非屏幕尺寸：裁剪后的身份证区域仍需保留足够分辨率用于识别
+                    sourceBitmap = ImageUtils.decodeSampledBitmap(path,
+                            MAX_ALBUM_IMAGE_SIZE, MAX_ALBUM_IMAGE_SIZE);
+                }
+            } else {
+                File file = UriUtils.getFileFromMediaUri(this, uri);
+                if (file != null) {
+                    path = file.getAbsolutePath();
+                    Bitmap photoBmp = null;
+                    try {
+                        photoBmp = UriUtils.getBitmapFormUri(this, Uri.fromFile(file));
+                    } catch (IOException e) {
+                        LogUtils.e(TAG, "相册图片解码失败", e);
                     }
-                    if (mSourceBitmap != null) {
-                        mInputPath = path;
-                        if (curIDCardCamera == 0) curIDCardCamera = 2;
-                        if (curIDCardCamera == 1) curIDCardCamera = 3;
-                        mCameraPreview.setEnabled(false);
-                        mCameraPreview.onStop();
-                        mIdCardCameraRl.setVisibility(View.GONE);
-                        mAlbumClipIv.setVisibility(View.VISIBLE);
-                        setCropLayout();
-                        Bitmap finalMSourceBitmap = mSourceBitmap;
-                        mAlbumClipIv.post(() -> {
-                            mAlbumClipIv.setImageBitmap(finalMSourceBitmap);
-                        });
-                    }
+                    int degree = UriUtils.getBitmapDegree(file.getAbsolutePath());
+                    //把图片旋转为正的方向
+                    sourceBitmap = UriUtils.rotateBitmapByDegree(photoBmp, degree);
                 }
             }
-        }
+            final String finalPath = path;
+            final Bitmap finalBitmap = sourceBitmap;
+            mMainHandler.post(() -> {
+                mProgressHelper.dismiss();
+                if (isFinishing() || isDestroyed()) return;
+                if (finalBitmap == null) {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.error_image_decode_failed), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                showAlbumClipView(finalPath, finalBitmap);
+            });
+        });
+    }
+
+    /**
+     * 展示相册图片的手动裁剪界面
+     */
+    private void showAlbumClipView(String path, Bitmap sourceBitmap) {
+        mInputPath = path;
+        if (curIDCardCamera == 0) curIDCardCamera = 2;
+        if (curIDCardCamera == 1) curIDCardCamera = 3;
+        mCameraPreview.setEnabled(false);
+        mCameraPreview.onStop();
+        mIdCardCameraRl.setVisibility(View.GONE);
+        mAlbumClipIv.setVisibility(View.VISIBLE);
+        setCropLayout();
+        mAlbumClipIv.post(() -> mAlbumClipIv.setImageBitmap(sourceBitmap));
     }
 
 
@@ -318,18 +356,16 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 //获取预览大小
                 final Camera.Size size = camera.getParameters().getPreviewSize();
                 camera.stopPreview();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final int w = size.width;
-                        final int h = size.height;
-                        Log.e("Tag", "w " + w + " h " + h);
-                        Bitmap bitmap = ImageUtils.getBitmapFromByte(bytes, w, h);
-                        if (bitmap != null) {
-                            cropImage(ImageUtils.roteBitmap(bitmap));
-                        }
+                //复用统一的后台线程，随页面销毁一起结束
+                mIoExecutor.execute(() -> {
+                    final int w = size.width;
+                    final int h = size.height;
+                    LogUtils.d(TAG, "preview size " + w + "x" + h);
+                    Bitmap bitmap = ImageUtils.getBitmapFromByte(bytes, w, h);
+                    if (bitmap != null) {
+                        cropImage(ImageUtils.roteBitmap(bitmap));
                     }
-                }).start();
+                });
             }
         });
     }
@@ -410,20 +446,33 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private void NextConfirm() {
         if (curIDCardCamera < 2) {
             //拍照后裁剪确定的图片
+            mProgressHelper.show(R.string.loading_cropping);
             mCropImageView.crop(new CropListener() {
                 @Override
                 public void onFinish(Bitmap bitmap) {
                     if (bitmap == null) {
-                        Toast.makeText(getApplicationContext(), getString(R.string.crop_fail), Toast.LENGTH_SHORT).show();
+                        mProgressHelper.dismiss();
+                        Toast.makeText(getApplicationContext(), getString(R.string.error_image_decode_failed), Toast.LENGTH_SHORT).show();
                         finish();
+                        return;
                     }
-                    //保存图片到sdcard并返回图片路径
-                    String imagePath = FileUtils.getImageCacheDir(CameraActivity.this)
+                    //保存图片到sdcard并返回图片路径，压缩写盘放到后台线程
+                    final String imagePath = FileUtils.getImageCacheDir(CameraActivity.this)
                             + File.separator + System.currentTimeMillis() + ".jpg";
-                    if (ImageUtils.save(bitmap, imagePath, Bitmap.CompressFormat.JPEG)) {
-                        mIDCardResult.add(imagePath);
-                        cameraCropNext();
-                    }
+                    mIoExecutor.execute(() -> {
+                        final boolean saved = ImageUtils.save(bitmap, imagePath, Bitmap.CompressFormat.JPEG);
+                        mMainHandler.post(() -> {
+                            mProgressHelper.dismiss();
+                            if (isFinishing() || isDestroyed()) return;
+                            if (saved) {
+                                mIDCardResult.add(imagePath);
+                                cameraCropNext();
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        getString(R.string.error_image_save_failed), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    });
                 }
             }, true);
         } else {
@@ -444,17 +493,24 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                     setTakePhotoLayout();
                 }
             } else if (curIDCardCamera == 1) {
-                Intent intent = new Intent();
-                intent.putStringArrayListExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
-                setResult(IDCardCameraSelect.RESULT_CODE, intent);
-                finish();
+                setResultAndFinish();
             }
         } else {
-            Intent intent = new Intent();
-            intent.putExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
-            setResult(IDCardCameraSelect.RESULT_CODE, intent);
-            finish();
+            setResultAndFinish();
         }
+    }
+
+    /**
+     * 回传图片路径并结束页面
+     * <p>
+     * 必须用 putStringArrayListExtra，读取侧 {@link IDCardCameraSelect#getImagePath} 用的是
+     * getStringArrayListExtra，写成 putExtra(String, Serializable) 取不到值。
+     */
+    private void setResultAndFinish() {
+        Intent intent = new Intent();
+        intent.putStringArrayListExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
+        setResult(IDCardCameraSelect.RESULT_CODE, intent);
+        finish();
     }
 
     private void albumCropNext() {
@@ -469,70 +525,56 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                     setTakePhotoLayout();
                 }
             } else if (curIDCardCamera == 3) {
-                Intent intent = new Intent();
-                intent.putStringArrayListExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
-                setResult(IDCardCameraSelect.RESULT_CODE, intent);
-                finish();
+                setResultAndFinish();
             }
         } else {
-            Intent intent = new Intent();
-            intent.putExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
-            setResult(IDCardCameraSelect.RESULT_CODE, intent);
-            finish();
+            setResultAndFinish();
         }
     }
 
 
-    @SuppressLint("StaticFieldLeak")
     private void clipImage() {
 
         mOutputPath = new File(getExternalCacheDir(), System.currentTimeMillis() + "_album.jpg").getPath();
 
-
-        if (!TextUtils.isEmpty(mOutputPath)) {
-            AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                    //接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
-                    FileOutputStream fos = null;
-                    try {
-                        fos = new FileOutputStream(mOutputPath);
-                        //裁剪返回bitmap
-                        Bitmap bitmap = createClippedBitmap();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                        if (!bitmap.isRecycled()) {
-                            bitmap.recycle();
-                        }
-                    } catch (Exception e) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getApplicationContext(), R.string.crop_fail, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } finally {
-                        if (fos != null) {
-                            try {
-                                fos.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    mIDCardResult.add(mOutputPath);
-                    albumCropNext();
-                }
-            };
-            task.execute();
-        } else {
+        if (TextUtils.isEmpty(mOutputPath)) {
             finish();
+            return;
         }
+
+        mProgressHelper.show(R.string.loading_cropping);
+        final String outputPath = mOutputPath;
+        mIoExecutor.execute(() -> {
+            boolean success = false;
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(outputPath);
+                //裁剪返回bitmap
+                Bitmap bitmap = createClippedBitmap();
+                if (bitmap != null) {
+                    success = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    if (!bitmap.isRecycled()) {
+                        bitmap.recycle();
+                    }
+                }
+            } catch (Exception e) {
+                LogUtils.e(TAG, "相册图片裁剪失败", e);
+            } finally {
+                FileUtils.closeIO(fos);
+            }
+            final boolean saved = success;
+            mMainHandler.post(() -> {
+                mProgressHelper.dismiss();
+                if (isFinishing() || isDestroyed()) return;
+                if (saved) {
+                    //仅在写盘成功后才记录路径，避免回传不存在的文件
+                    mIDCardResult.add(outputPath);
+                    albumCropNext();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.error_image_save_failed, Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 
     //裁剪
@@ -707,6 +749,18 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         super.onStop();
         if (mCameraPreview != null) {
             mCameraPreview.onStop();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //移除未执行的回调并停止后台线程，避免页面销毁后仍持有 Activity 引用
+        mMainHandler.removeCallbacksAndMessages(null);
+        mIoExecutor.shutdownNow();
+        //关闭可能未关闭的进度对话框，避免窗口泄漏
+        if (mProgressHelper != null) {
+            mProgressHelper.dismiss();
         }
     }
 }
