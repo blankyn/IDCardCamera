@@ -3,8 +3,11 @@ package me.blankm.idcardcamera;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +25,8 @@ import me.blankm.idcardlib.utils.FileUtils;
 import me.blankm.idcardlib.utils.ScreenUtils;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -31,10 +36,17 @@ import java.util.List;
  * @desc
  */
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
     private ImageView mIv;
     private TextView mShowPathTv;
 
     private int type = IDCardCameraSelect.TYPE_IDCARD_FRONT;
+
+    //后台解码图片，避免阻塞主线程
+    private final ExecutorService mIoExecutor = Executors.newSingleThreadExecutor();
+    private final Handler mMainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +56,12 @@ public class MainActivity extends AppCompatActivity {
         mShowPathTv = findViewById(R.id.show_path_tv);
 
 
-        System.out.println("w:" + ScreenUtils.getScreenWidth(this)
-                + "\nh:" + ScreenUtils.getScreenHeight(this)
-                + "\nbh:" + ScreenUtils.getStatusBarHeight(this)
-                + "\nnh:" + ScreenUtils.getNavBarHeight(this));
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "screen w:" + ScreenUtils.getScreenWidth(this)
+                    + " h:" + ScreenUtils.getScreenHeight(this)
+                    + " statusBar:" + ScreenUtils.getStatusBarHeight(this)
+                    + " navBar:" + ScreenUtils.getNavBarHeight(this));
+        }
     }
 
     public void shootingClick(View view) {
@@ -103,19 +117,53 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == IDCardCameraSelect.RESULT_CODE) {
-            List<String> path = IDCardCameraSelect.getImagePath(data);
-            if (path != null && path.size() > 0) {
-                if (path.size() > 1) {
-                    mShowPathTv.setText(("1、" + path.get(0) + "\n" + "2、" + path.get(1)));
-                } else {
-                    mShowPathTv.setText(("1、" + path.get(0)));
+        if (resultCode != IDCardCameraSelect.RESULT_CODE) return;
+        List<String> path = IDCardCameraSelect.getImagePath(data);
+        if (path == null || path.isEmpty()) {
+            Log.w(TAG, "未取到图片路径");
+            return;
+        }
+        if (path.size() > 1) {
+            mShowPathTv.setText(("1、" + path.get(0) + "\n" + "2、" + path.get(1)));
+        } else {
+            mShowPathTv.setText(("1、" + path.get(0)));
+        }
+        //解码放到后台线程，避免大图在主线程解码造成卡顿/OOM
+        final String imagePath = path.get(0);
+        mIoExecutor.execute(() -> {
+            final Bitmap bitmap = decodeSampled(imagePath, mIv.getWidth(), mIv.getHeight());
+            mMainHandler.post(() -> {
+                if (isFinishing() || isDestroyed()) return;
+                if (bitmap != null) {
+                    mIv.setImageBitmap(bitmap);
                 }
-                mIv.setImageBitmap(BitmapFactory.decodeFile(path.get(0)));
-                Log.e("wld_____", "======== size:" + path.size());
-            } else {
-                Log.e("wld_____", "path" + (path == null ? "null" : "notNull") + "======== size" + (path == null ? "0" : path.size()));
+            });
+        });
+    }
+
+    /**
+     * 按控件尺寸采样解码，避免整图加载
+     */
+    private static Bitmap decodeSampled(String filePath, int reqWidth, int reqHeight) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+        if (options.outWidth <= 0 || options.outHeight <= 0) return null;
+
+        int sampleSize = 1;
+        if (reqWidth > 0 && reqHeight > 0) {
+            while (options.outHeight / sampleSize > reqHeight
+                    || options.outWidth / sampleSize > reqWidth) {
+                sampleSize *= 2;
             }
+        }
+        options.inSampleSize = sampleSize;
+        options.inJustDecodeBounds = false;
+        try {
+            return BitmapFactory.decodeFile(filePath, options);
+        } catch (OutOfMemoryError e) {
+            Log.e(TAG, "解码图片内存不足: " + filePath);
+            return null;
         }
     }
 
@@ -123,6 +171,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //移除未执行的回调并停止后台线程，避免页面销毁后仍持有 Activity 引用
+        mMainHandler.removeCallbacksAndMessages(null);
+        mIoExecutor.shutdownNow();
         FileUtils.clearCache(getApplicationContext());
     }
 
