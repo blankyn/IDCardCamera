@@ -38,6 +38,51 @@ import java.io.OutputStream;
 public class ImageUtils {
 
     /**
+     * 按目标尺寸采样解码图片，避免大图整图解码导致 OOM
+     *
+     * @param filePath  图片路径
+     * @param reqWidth  目标宽度
+     * @param reqHeight 目标高度
+     * @return 解码后的位图，失败返回 null
+     */
+    public static Bitmap decodeSampledBitmap(String filePath, int reqWidth, int reqHeight) {
+        if (filePath == null || filePath.length() == 0) {
+            return null;
+        }
+        //先只读边界，不真正分配内存
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+        if (options.outWidth <= 0 || options.outHeight <= 0) {
+            return null;
+        }
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        options.inJustDecodeBounds = false;
+        try {
+            return BitmapFactory.decodeFile(filePath, options);
+        } catch (OutOfMemoryError e) {
+            LogUtils.e("ImageUtils", "解码图片内存不足: " + filePath);
+            return null;
+        }
+    }
+
+    /**
+     * 计算采样率，取不小于目标尺寸的最大 2 的幂
+     */
+    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (reqWidth <= 0 || reqHeight <= 0) {
+            return inSampleSize;
+        }
+        while (height / inSampleSize > reqHeight || width / inSampleSize > reqWidth) {
+            inSampleSize *= 2;
+        }
+        return inSampleSize;
+    }
+
+    /**
      * 保存图片
      *
      * @param src      源图片
@@ -87,7 +132,7 @@ public class ImageUtils {
         if (isEmptyBitmap(src) || !FileUtils.createOrExistsFile(file)) {
             return false;
         }
-        System.out.println(src.getWidth() + ", " + src.getHeight());
+        LogUtils.d("ImageUtils", "save " + src.getWidth() + "x" + src.getHeight());
         OutputStream os = null;
         boolean ret = false;
         try {
@@ -97,7 +142,7 @@ public class ImageUtils {
                 src.recycle();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.e("ImageUtils", "保存图片失败: " + e);
         } finally {
             FileUtils.closeIO(os);
         }
@@ -159,7 +204,7 @@ public class ImageUtils {
             parcelFileDescriptor.close();
             return image;
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.e("ImageUtils", "通过Uri加载图片失败: " + e);
         }
         return null;
     }

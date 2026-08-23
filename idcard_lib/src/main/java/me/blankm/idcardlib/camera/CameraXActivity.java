@@ -10,7 +10,8 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Surface;
 import android.view.View;
 import android.view.Window;
@@ -47,11 +48,15 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import me.blankm.idcardlib.R;
 import me.blankm.idcardlib.dialog.IDCardDialog;
+import me.blankm.idcardlib.utils.LogUtils;
 import me.blankm.idcardlib.utils.PermissionChecker;
 import me.blankm.idcardlib.utils.PermissionUtils;
+import me.blankm.idcardlib.utils.ProgressDialogHelper;
 import me.blankm.idcardlib.utils.ScreenUtils;
 import me.blankm.idcardlib.utils.Tools;
 
@@ -92,11 +97,13 @@ public class CameraXActivity extends AppCompatActivity {
     private FrameLayout.LayoutParams tipParams;
     private String takePhotoPath;
 
-    /**
-     * Blocking camera operations are performed using this executor
-     */
-//    private ExecutorService cameraExecutor;
-//    private androidx.window.WindowManager windowManager;
+    //后台线程处理图片解码/裁剪/写盘，避免阻塞主线程
+    private final ExecutorService mIoExecutor = Executors.newSingleThreadExecutor();
+    private final Handler mMainHandler = new Handler(Looper.getMainLooper());
+
+    //进度提示辅助类
+    private ProgressDialogHelper mProgressHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +127,7 @@ public class CameraXActivity extends AppCompatActivity {
      * 初始化UI
      */
     private void initView() {
+        mProgressHelper = new ProgressDialogHelper(this);
         viewFinder = findViewById(R.id.view_finder);
         cameraContainer = findViewById(R.id.camera_container);
         ivCameraCrop = findViewById(R.id.iv_camera_crop);
@@ -151,19 +159,34 @@ public class CameraXActivity extends AppCompatActivity {
         });
 
         img_picture_save.setOnClickListener(v -> {
+            //视图坐标必须在主线程读取
             int[] outLocation = Tools.getViewLocal(viewMask);
-            Rect rect = new Rect(outLocation[0], outLocation[1],
+            final Rect rect = new Rect(outLocation[0], outLocation[1],
                     viewMask.getMeasuredWidth(), viewMask.getMeasuredHeight());
-            String savePath = getPictureTempPath();
-            if (Tools.saveBitmap(CameraXActivity.this, takePhotoPath, savePath, rect, false)) {
-                Tools.deletTempFile(takePhotoPath);
-                mIDCardResult.add(savePath);
-                Intent intent = new Intent();
-                intent.putExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
-                setResult(IDCardCameraSelect.RESULT_CODE, intent);
-                finish();
-            }
-//            }
+            final String savePath = getPictureTempPath();
+            final String originPath = takePhotoPath;
+            //显示保存提示
+            mProgressHelper.show(R.string.loading_saving);
+            //解码+裁剪+写盘放到后台线程
+            mIoExecutor.execute(() -> {
+                final boolean saved = Tools.saveBitmap(CameraXActivity.this, originPath, savePath, rect, false);
+                mMainHandler.post(() -> {
+                    mProgressHelper.dismiss();
+                    if (isFinishing() || isDestroyed()) return;
+                    if (saved) {
+                        Tools.deletTempFile(originPath);
+                        mIDCardResult.add(savePath);
+                        //必须用 putStringArrayListExtra，读取侧用的是 getStringArrayListExtra
+                        Intent intent = new Intent();
+                        intent.putStringArrayListExtra(IDCardCameraSelect.IMAGE_PATH, mIDCardResult);
+                        setResult(IDCardCameraSelect.RESULT_CODE, intent);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                getString(R.string.error_image_save_failed), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            });
         });
 
         cameraCaptureButton.setOnClickListener(v -> {
@@ -173,7 +196,7 @@ public class CameraXActivity extends AppCompatActivity {
 
             takePhotoPath = getPictureTempPath();
 
-            Log.e("wld_____", "outPath:" + takePhotoPath);
+            LogUtils.d(TAG, "拍照输出路径: " + takePhotoPath);
 
 
             ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(new File(takePhotoPath)).build();
@@ -189,15 +212,33 @@ public class CameraXActivity extends AppCompatActivity {
                             cameraCaptureButton.setVisibility(View.GONE);
                             rl_result_picture.setVisibility(View.VISIBLE);
                             ll_picture_parent.setVisibility(View.VISIBLE);
-                            Bitmap bitmap = Tools.bitmapClip(CameraXActivity.this, takePhotoPath, false);
-                            imgPicture.setImageBitmap(bitmap);
-
-
+                            //显示处理提示
+                            mProgressHelper.show(R.string.loading_processing);
+                            //本回调运行在主线程，解码与裁剪需切到后台线程
+                            final String photoPath = takePhotoPath;
+                            mIoExecutor.execute(() -> {
+                                final Bitmap bitmap =
+                                        Tools.bitmapClip(CameraXActivity.this, photoPath, false);
+                                mMainHandler.post(() -> {
+                                    mProgressHelper.dismiss();
+                                    if (isFinishing() || isDestroyed()) return;
+                                    if (bitmap != null) {
+                                        imgPicture.setImageBitmap(bitmap);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(),
+                                                getString(R.string.error_image_decode_failed), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            });
                         }
 
                         @Override
                         public void onError(@NonNull ImageCaptureException exception) {
-                            Log.e("wld_____", "Photo capture failed: ${exc.message}", exception);
+                            LogUtils.e(TAG, "拍照失败", exception);
+                            if (!isFinishing()) {
+                                Toast.makeText(getApplicationContext(),
+                                        getString(R.string.error_camera_unavailable), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
         });
@@ -290,9 +331,20 @@ public class CameraXActivity extends AppCompatActivity {
                 try {
                     cameraProvider = cameraProviderFuture.get();
                 } catch (ExecutionException e) {
-                    e.printStackTrace();
+                    LogUtils.e(TAG, "获取 CameraProvider 失败", e);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LogUtils.e(TAG, "获取 CameraProvider 被中断", e);
+                    Thread.currentThread().interrupt();
+                }
+
+                //取不到 provider 时后续 hasCamera / bindToLifecycle 必然 NPE，直接提示并退出
+                if (cameraProvider == null) {
+                    if (!isFinishing()) {
+                        Toast.makeText(getApplicationContext(),
+                                getString(R.string.picture_camera), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    return;
                 }
 
                 // Select lensFacing depending on the available cameras
@@ -315,10 +367,10 @@ public class CameraXActivity extends AppCompatActivity {
     private void bindCameraUseCases() {
         // Get screen metrics used to setup camera for full screen resolution
         int screenAspectRatio = Tools.aspectRatio(this);
-        Log.d(TAG, "Preview aspect ratio: " + screenAspectRatio);
+        LogUtils.d(TAG, "Preview aspect ratio: " + screenAspectRatio);
         int rotation = viewFinder.getDisplay() == null ? Surface.ROTATION_0 : viewFinder.getDisplay().getRotation();
         if (cameraProvider == null) {
-            Log.e(TAG, "============> 1");
+            LogUtils.w(TAG, "cameraProvider 为空，跳过用例绑定");
             return;
         }
         // Preview
@@ -368,7 +420,7 @@ public class CameraXActivity extends AppCompatActivity {
             preview.setSurfaceProvider(viewFinder.getSurfaceProvider());
             observeCameraState(camera.getCameraInfo());
         } catch (Exception exc) {
-            Log.e(TAG, "Use case binding failed", exc);
+            LogUtils.e(TAG, "相机用例绑定失败", exc);
         }
 
     }
@@ -493,7 +545,7 @@ public class CameraXActivity extends AppCompatActivity {
         try {
             return cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
         } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "查询摄像头可用性失败: " + e);
         }
         return false;
     }
@@ -505,7 +557,7 @@ public class CameraXActivity extends AppCompatActivity {
         try {
             return cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA);
         } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "查询摄像头可用性失败: " + e);
         }
         return false;
 
@@ -515,7 +567,17 @@ public class CameraXActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        cameraProvider.unbindAll();
+        //移除未执行的回调并停止后台线程，避免页面销毁后仍持有 Activity 引用
+        mMainHandler.removeCallbacksAndMessages(null);
+        mIoExecutor.shutdownNow();
+        //关闭可能未关闭的进度对话框，避免窗口泄漏
+        if (mProgressHelper != null) {
+            mProgressHelper.dismiss();
+        }
+        //拒绝权限或预览尚未就绪时 cameraProvider 仍为 null，此处必须判空
+        if (cameraProvider != null) {
+            cameraProvider.unbindAll();
+        }
     }
 
     /**
@@ -543,11 +605,11 @@ public class CameraXActivity extends AppCompatActivity {
         }
         isToast = true;
         if (isPermissions) {
-            Log.e("onRequestPermission", "允许所有权限");
+            LogUtils.d(TAG, "允许所有权限");
             init();
         } else {
-            Log.e("onRequestPermission", "有权限不允许");
-            showPermissionsDialog("未开启相关权限！");
+            LogUtils.d(TAG, "有权限不允许");
+            showPermissionsDialog(getString(R.string.permission_not_granted));
         }
     }
 
