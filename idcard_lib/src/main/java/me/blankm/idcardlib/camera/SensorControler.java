@@ -6,7 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
+import me.blankm.idcardlib.utils.LogUtils;
 
 import java.util.Calendar;
 
@@ -159,7 +159,7 @@ public class SensorControler implements SensorEventListener {
     public void lockFocus() {
         isFocusing = true;
         foucsing--;
-        Log.i(TAG, "lockFocus");
+        LogUtils.d(TAG, "lockFocus");
     }
 
     /**
@@ -168,7 +168,7 @@ public class SensorControler implements SensorEventListener {
     public void unlockFocus() {
         isFocusing = false;
         foucsing++;
-        Log.i(TAG, "unlockFocus");
+        LogUtils.d(TAG, "unlockFocus");
     }
 
     public void restFoucs() {

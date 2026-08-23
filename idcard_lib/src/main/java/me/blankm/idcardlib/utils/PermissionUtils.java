@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
@@ -20,6 +19,8 @@ import java.util.List;
  */
 
 public class PermissionUtils {
+
+    private static final String TAG = "PermissionUtils";
 
     /**
      * 第一次检查权限，用在打开应用的时候请求应用需要的所有权限
@@ -69,7 +70,7 @@ public class PermissionUtils {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // Android 11-12 检查 MANAGE_EXTERNAL_STORAGE
             if (!Environment.isExternalStorageManager()) {
-                Log.e("checkAndRequest", "需要所有文件访问权限");
+                LogUtils.w(TAG, "需要所有文件访问权限");
                 // 注意：MANAGE_EXTERNAL_STORAGE 不能通过 requestPermissions 申请
                 // 需要跳转到设置页面，这里先跳过
             }
@@ -85,7 +86,7 @@ public class PermissionUtils {
             }
         }
         if (!permissions.isEmpty()) {
-            Log.e("onRequestPermission", "申请权限: " + permissions);
+            LogUtils.d(TAG, "申请权限: " + permissions);
             //permissions.toArray(new String[permissions.size()]
             ActivityCompat.requestPermissions((Activity) context, permissions.toArray(new String[permissions.size()]), requestCode);
             return false;
