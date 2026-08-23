@@ -65,7 +65,7 @@ public class UriUtils {
                     fos.close();
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LogUtils.e("UriUtils", "复制文件到沙盒失败: " + e);
                 }
             }
         }
@@ -148,7 +148,7 @@ public class UriUtils {
             Cursor cursor = cr.query(uri, null, null, null, null);// 根据Uri从数据库中找
             if (cursor != null) {
                 cursor.moveToFirst();
-                String filePath = cursor.getString(cursor.getColumnIndex("_data"));// 获取图片路径
+                @SuppressLint("Range") String filePath = cursor.getString(cursor.getColumnIndex("_data"));// 获取图片路径
                 cursor.close();
                 if (filePath != null) {
                     return new File(filePath);
@@ -186,7 +186,7 @@ public class UriUtils {
                     break;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.e("UriUtils", "读取图片失败: " + e);
         }
         return degree;
     }
