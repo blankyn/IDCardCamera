@@ -3,15 +3,11 @@ package me.blankm.idcardlib.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Point;
-import android.os.Build;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 /**
@@ -83,7 +79,6 @@ public class BarUtils {
     * @param view The view.
     */
    public static void addMarginTopEqualStatusBarHeight(Context context, @NonNull View view) {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
       view.setTag(TAG_OFFSET);
       Object haveSetOffset = view.getTag(KEY_OFFSET);
       if (haveSetOffset != null && (Boolean) haveSetOffset) return;
@@ -101,7 +96,6 @@ public class BarUtils {
     * @param view The view.
     */
    public static void subtractMarginTopEqualStatusBarHeight(Context context,@NonNull View view) {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
       Object haveSetOffset = view.getTag(KEY_OFFSET);
       if (haveSetOffset == null || !(Boolean) haveSetOffset) return;
       ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
@@ -115,14 +109,12 @@ public class BarUtils {
 
 
    private static void addMarginTopEqualStatusBarHeight(Context context, @NonNull final Window window) {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
       View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
       if (withTag == null) return;
       addMarginTopEqualStatusBarHeight(context,withTag);
    }
 
    private static void subtractMarginTopEqualStatusBarHeight(Context context,@NonNull final Window window) {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
       View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
       if (withTag == null) return;
       subtractMarginTopEqualStatusBarHeight(context,withTag);

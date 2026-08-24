@@ -1,12 +1,10 @@
 package me.blankm.idcardlib.camera;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Camera;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
+import me.blankm.idcardlib.utils.LogUtils;
 import android.view.SurfaceHolder;
 
 import me.blankm.idcardlib.utils.ScreenUtils;
@@ -41,7 +39,7 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
         init(context);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    //minSdk 21 已满足该构造器要求，无需 @TargetApi
     public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
@@ -82,10 +80,10 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
 
 
                 focus();//首次对焦
-                Log.e(TAG, "camera preview: width " + this.getWidth());
-                Log.e(TAG, "camera preview: height " + this.getHeight());
+                LogUtils.d(TAG, "camera preview: width " + this.getWidth());
+                LogUtils.d(TAG, "camera preview: height " + this.getHeight());
             } catch (Exception e) {
-                Log.d(TAG, "Error setting camera preview: " + e.getMessage());
+                LogUtils.w(TAG, "相机预览设置失败: " + e.getMessage());
                 try {
                     Camera.Parameters parameters = camera.getParameters();
                     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -101,7 +99,7 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
                     focus();//首次对焦
                     //mAutoFocusManager = new AutoFocusManager(camera);//定时对焦
                 } catch (Exception e1) {
-                    e.printStackTrace();
+                    LogUtils.e(TAG, "相机预览重试失败", e);
                     camera = null;
                 }
             }
@@ -188,7 +186,7 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
             try {
                 camera.autoFocus(null);
             } catch (Exception e) {
-                Log.d(TAG, "takePhoto " + e);
+                LogUtils.w(TAG, "对焦失败: " + e);
             }
         }
     }
@@ -224,7 +222,7 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
             try {
                 camera.takePicture(null, null, pictureCallback);
             } catch (Exception e) {
-                Log.d(TAG, "takePhoto " + e);
+                LogUtils.w(TAG, "拍照失败: " + e);
             }
         }
     }

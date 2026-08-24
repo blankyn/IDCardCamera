@@ -7,21 +7,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 import android.os.Build;
 import android.os.Environment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraInfoUnavailableException;
@@ -31,6 +30,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 public final class Tools {
+
+    private static final String TAG = "Tools";
 
     private Tools() {
         throw new AssertionError();
@@ -53,7 +54,7 @@ public final class Tools {
         try {
             return cameraProvider == null ? false : cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
         } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "查询后置摄像头失败: " + e);
         }
         return false;
     }
@@ -62,7 +63,7 @@ public final class Tools {
         try {
             return cameraProvider == null ? false : cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA);
         } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "查询前置摄像头失败: " + e);
         }
         return false;
     }
@@ -99,7 +100,8 @@ public final class Tools {
         if (!cameraFolder.exists()) {
             cameraFolder.mkdirs();
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        //必须指定 Locale.US，否则在阿拉伯语等区域会生成非 ASCII 数字的文件名
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
         return cameraFolder.getAbsolutePath() + File.separator + "IMG_" + simpleDateFormat.format(new Date()) + ".jpg";
     }
 
@@ -109,7 +111,7 @@ public final class Tools {
         try {
             exif = new ExifInterface(imgPath);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "读取图片EXIF失败: " + e);
         }
         if (exif == null)
             return matrix;
@@ -135,9 +137,18 @@ public final class Tools {
         return matrix;
     }
 
+    /**
+     * 按屏幕比例裁剪图片
+     *
+     * @return 裁剪后的位图，解码失败返回 null
+     */
     public static Bitmap bitmapClip(Context mContext, String imgPath, boolean front) {
         Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
-        Log.d("wld__________bitmap", "width:" + bitmap.getWidth() + "--->height:" + bitmap.getHeight());
+        if (bitmap == null) {
+            LogUtils.e(TAG, "图片解码失败: " + imgPath);
+            return null;
+        }
+        LogUtils.d(TAG, "bitmap width:" + bitmap.getWidth() + " height:" + bitmap.getHeight());
         Matrix matrix = pictureDegree(imgPath, front);
         double bitmapRatio = bitmap.getHeight() * 1. / bitmap.getWidth();//基本上都是16/9
         int width = getScreenwidth(mContext);
@@ -155,6 +166,10 @@ public final class Tools {
     public static boolean saveBitmap(Context mContext, String originPath, String savePath, Rect rect, boolean front) {
         Matrix matrix = pictureDegree(originPath, front);
         Bitmap clipBitmap = BitmapFactory.decodeFile(originPath);
+        if (clipBitmap == null) {
+            LogUtils.e(TAG, "图片解码失败: " + originPath);
+            return false;
+        }
         clipBitmap = Bitmap.createBitmap(clipBitmap, 0, 0, clipBitmap.getWidth(), clipBitmap.getHeight(), matrix, true);
 
 
@@ -164,12 +179,12 @@ public final class Tools {
             int height = getScreenHeight(mContext);
             double screenRatio = height * 1. / width;
             if (bitmapRatio > screenRatio) {//胖的手机
-                Log.e("wld_____", "胖的手机" );
+                LogUtils.d(TAG, "宽屏比例手机");
                 int clipHeight = (int) (clipBitmap.getWidth() * screenRatio);
                 clipBitmap = Bitmap.createBitmap(clipBitmap, 0, (clipBitmap.getHeight() - clipHeight) >> 1, clipBitmap.getWidth(), clipHeight, null, true);
                 scalRect(rect, clipBitmap.getWidth() * 1. / getScreenwidth(mContext));
             } else {//瘦长的手机
-                Log.e("wld_____", "瘦长的手机" );
+                LogUtils.d(TAG, "窄长比例手机");
                 int marginTop = (int) ((height - width * bitmapRatio) / 2);
                 rect.top = rect.top - marginTop;
                 scalRect(rect, clipBitmap.getWidth() * 1. / getScreenwidth(mContext));
@@ -180,21 +195,24 @@ public final class Tools {
     }
 
     private static boolean saveBitmap(Bitmap bitmap, String savePath) {
+        if (bitmap == null) return false;
+        FileOutputStream fos = null;
         try {
             File file = new File(savePath);
             File parent = file.getParentFile();
-            if (!parent.exists()) {
+            if (parent != null && !parent.exists()) {
                 parent.mkdirs();
             }
-            FileOutputStream fos = new FileOutputStream(file);
-            boolean b = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos = new FileOutputStream(file);
+            //身份证照片用 90 质量，平衡识别率和文件大小
+            boolean b = bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
             fos.flush();
-            fos.close();
             return b;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            //原实现异常时直接返回，未关闭流，这里统一在 finally 中关闭
+            LogUtils.e(TAG, "保存图片失败: " + savePath, e);
+        } finally {
+            FileUtils.closeIO(fos);
         }
         return false;
     }
@@ -235,7 +253,7 @@ public final class Tools {
                 dimensionRatio.set(layoutParams, "h,9:16");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "反射设置预览宽高比失败: " + e);
             layoutParams.width = Tools.getScreenwidth(view.getContext()) - 2 * Tools.dp2px(view.getContext(), layoutParams.leftMargin);
             if (ratio == AspectRatio.RATIO_4_3) {
                 layoutParams.height = (int) (layoutParams.width * 4 / 3);
@@ -262,7 +280,7 @@ public final class Tools {
             dimensionRatio.setAccessible(true);
             dimensionRatio.set(layoutParams, "h," + w + ":" + h);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.w(TAG, "反射设置遮罩宽高比失败: " + e);
             layoutParams.width = Tools.getScreenwidth(view.getContext()) - 2 * Tools.dp2px(view.getContext(), layoutParams.leftMargin);
             layoutParams.height = (int) (layoutParams.width * h / w);
         }
