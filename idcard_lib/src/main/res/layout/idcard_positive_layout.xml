@@ -24,6 +24,7 @@
             android:layout_gravity="center"
             android:layout_margin="8dp"
             android:background="@drawable/idcard_bg_stroke_draw"
+            android:contentDescription="@null"
             android:scaleType="fitXY"
             android:src="@mipmap/idcard_lib_positive_bg_icon" />
 
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
+            android:contentDescription="@null"
             android:src="@mipmap/idcard_lib_sure_shooting_icon" />
 
     </FrameLayout>
