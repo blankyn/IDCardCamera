@@ -20,6 +20,9 @@ public final class FileUtils {
     /**
      * 得到SD卡根目录，SD卡不可用则获取内部存储的根目录
      */
+    /**
+     * 获取外部存储根目录（{@code Environment.getExternalStorageDirectory()}）。
+     */
     public static File getRootPath() {
         File path = null;
         if (sdCardIsAvailable()) {
@@ -32,6 +35,9 @@ public final class FileUtils {
 
     /**
      * SD卡是否可用
+     */
+    /**
+     * 检查 SD 卡是否已挂载且可写。
      */
     public static boolean sdCardIsAvailable() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

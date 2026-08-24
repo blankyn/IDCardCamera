@@ -25,6 +25,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import me.blankm.idcardlib.R;
 
+/**
+ * 相册选图的手动裁剪视图（缩放拖动 + 矩形裁剪框）。
+ * <p>用户可以双指缩放、单指拖动图片，通过叠加的 {@link CropOverlayView} 调整裁剪区域。
+ * 主要用于 {@link me.blankm.idcardlib.camera.CameraActivity} 的相册选图路径。
+ */
 public class AlbumClipImageView extends AppCompatImageView
         implements ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener {
     //画笔
@@ -77,6 +82,9 @@ public class AlbumClipImageView extends AppCompatImageView
     private boolean mDrawCircleFlag;
     private float mRoundCorner;
 
+    /**
+     * 单参数构造。
+     */
     public AlbumClipImageView(Context context) {
         this(context, null);
     }
@@ -217,6 +225,9 @@ public class AlbumClipImageView extends AppCompatImageView
      *
      * @return
      */
+    /**
+     * 获取图片在当前缩放/平移变换下的可见区域矩形。
+     */
     private RectF getMatrixRectF() {
         Matrix matrix = mScaleMatrix;
         RectF rect = new RectF();
@@ -329,6 +340,9 @@ public class AlbumClipImageView extends AppCompatImageView
         updateBorder();
     }
 
+    /**
+     * 更新裁剪边界，防止图片拖动超出裁剪框范围（自动回弹）。
+     */
     private void updateBorder() {
         final int width = getWidth();
         final int height = getHeight();
@@ -345,28 +359,43 @@ public class AlbumClipImageView extends AppCompatImageView
         }
     }
 
+    /**
+     * 设置裁剪框的宽高比。
+     */
     public void setAspect(int aspectX, int aspectY) {
         mAspectX = aspectX;
         mAspectY = aspectY;
     }
 
+    /**
+     * 设置裁剪界面顶部的提示文字。
+     */
     public void setTip(String tip) {
         mTipText = tip;
     }
 
     @Override
+    /**
+     * 设置待裁剪图片（Drawable）。
+     */
     public void setImageDrawable(Drawable drawable) {
         super.setImageDrawable(drawable);
         postResetImageMatrix();
     }
 
     @Override
+    /**
+     * 设置待裁剪图片（资源 ID）。
+     */
     public void setImageResource(int resId) {
         super.setImageResource(resId);
         postResetImageMatrix();
     }
 
     @Override
+    /**
+     * 设置待裁剪图片（URI）。
+     */
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
         postResetImageMatrix();
@@ -374,6 +403,9 @@ public class AlbumClipImageView extends AppCompatImageView
 
     /**
      * 这里没有使用post方式,因为图片会有明显的从初始位置移动到需要缩放的位置
+     */
+    /**
+     * 在下一帧重置图片变换矩阵，使图片居中并缩放到裁剪框尺寸。
      */
     private void postResetImageMatrix() {
         if (getWidth() != 0) {

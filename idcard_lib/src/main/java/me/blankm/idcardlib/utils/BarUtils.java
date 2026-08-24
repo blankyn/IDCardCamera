@@ -24,6 +24,7 @@ public class BarUtils {
    private static final String TAG_OFFSET     = "TAG_OFFSET";
    private static final int    KEY_OFFSET     = -123;
 
+   /** 工具类，禁止实例化 */
    private BarUtils() {
       throw new UnsupportedOperationException("u can't instantiate me...");
    }
@@ -108,6 +109,9 @@ public class BarUtils {
 
 
 
+   /**
+    * 为 Window decorView 中标记的 View 增加状态栏高度 margin（内部方法）。
+    */
    private static void addMarginTopEqualStatusBarHeight(Context context, @NonNull final Window window) {
       View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
       if (withTag == null) return;

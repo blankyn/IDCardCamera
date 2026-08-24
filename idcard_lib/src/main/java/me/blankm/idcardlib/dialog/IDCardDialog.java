@@ -10,6 +10,10 @@ import android.view.WindowManager;
 import me.blankm.idcardlib.R;
 
 
+/**
+ * 简单的提示对话框封装类。
+ * <p>用于权限说明、错误提示等场景，提供标题、正文、双按钮的标准布局。
+ */
 public class IDCardDialog extends Dialog {
 
     public IDCardDialog(Context context, int layout) {
