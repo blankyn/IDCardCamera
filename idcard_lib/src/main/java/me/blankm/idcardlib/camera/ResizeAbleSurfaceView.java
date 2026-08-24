@@ -1,11 +1,9 @@
 package me.blankm.idcardlib.camera;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
-import androidx.annotation.RequiresApi;
 
 /**
  * SurfaceView预览变形完美解决
@@ -27,7 +25,7 @@ public class ResizeAbleSurfaceView extends SurfaceView {
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    //minSdk 21 已满足该构造器要求，无需 @RequiresApi
     public ResizeAbleSurfaceView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }

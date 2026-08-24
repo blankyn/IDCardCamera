@@ -53,20 +53,32 @@ public class UriUtils {
         } else if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
             //把文件复制到沙盒目录
             ContentResolver contentResolver = context.getContentResolver();
+            //query 可能返回 null，且 Cursor 必须关闭，否则泄漏
             Cursor cursor = contentResolver.query(uri, null, null, null, null);
-            if (cursor.moveToFirst()) {
-                String displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                try {
-                    InputStream is = contentResolver.openInputStream(uri);
-                    File cache = new File(context.getExternalCacheDir().getAbsolutePath(), Math.round((Math.random() + 1) * 1000) + displayName);
-                    FileOutputStream fos = new FileOutputStream(cache);
-                    android.os.FileUtils.copy(is, fos);
-                    file = cache;
-                    fos.close();
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if (cursor == null) {
+                LogUtils.e("UriUtils", "查询 Uri 失败: " + uri);
+                return null;
+            }
+            try {
+                if (cursor.moveToFirst()) {
+                    String displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                    InputStream is = null;
+                    FileOutputStream fos = null;
+                    try {
+                        is = contentResolver.openInputStream(uri);
+                        File cache = new File(context.getExternalCacheDir().getAbsolutePath(), Math.round((Math.random() + 1) * 1000) + displayName);
+                        fos = new FileOutputStream(cache);
+                        android.os.FileUtils.copy(is, fos);
+                        file = cache;
+                    } catch (IOException e) {
+                        LogUtils.e("UriUtils", "复制文件到沙盒失败: " + e);
+                    } finally {
+                        //原实现在异常时不关闭流，这里统一关闭
+                        FileUtils.closeIO(fos, is);
+                    }
                 }
+            } finally {
+                cursor.close();
             }
         }
         return file;
@@ -115,22 +127,25 @@ public class UriUtils {
 
     /**
      * 质量压缩方法
+     * 目标：压缩到 100KB 以下，适用于相册选图后的二次压缩
      *
-     * @param image
-     * @return
+     * @param image 源图片
+     * @return 压缩后的图片
      */
     public static Bitmap compressImage(Bitmap image) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) { //循环判断如果压缩后图片是否大于100kb,大于继续压缩
-            baos.reset();//重置baos即清空baos
-            //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差 ，第三个参数：保存压缩后的数据的流
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+        //身份证场景从 90 质量开始，而非 100（肉眼无差且文件更小）
+        int options = 90;
+        image.compress(Bitmap.CompressFormat.JPEG, options, baos);
+
+        //循环判断如果压缩后图片是否大于 100kb，大于则继续压缩
+        while (baos.toByteArray().length / 1024 > 100 && options > 10) {
+            baos.reset();//重置 baos 即清空 baos
             options -= 10;//每次都减少10
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
         }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
-        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
         return bitmap;
     }
 
@@ -148,7 +163,7 @@ public class UriUtils {
             Cursor cursor = cr.query(uri, null, null, null, null);// 根据Uri从数据库中找
             if (cursor != null) {
                 cursor.moveToFirst();
-                String filePath = cursor.getString(cursor.getColumnIndex("_data"));// 获取图片路径
+                @SuppressLint("Range") String filePath = cursor.getString(cursor.getColumnIndex("_data"));// 获取图片路径
                 cursor.close();
                 if (filePath != null) {
                     return new File(filePath);
@@ -186,7 +201,7 @@ public class UriUtils {
                     break;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.e("UriUtils", "读取图片失败: " + e);
         }
         return degree;
     }
