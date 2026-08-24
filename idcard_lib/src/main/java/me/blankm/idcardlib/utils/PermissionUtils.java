@@ -8,7 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
+import android.provider.Settings;
 
 import androidx.core.app.ActivityCompat;
 
@@ -20,6 +20,8 @@ import java.util.List;
  */
 
 public class PermissionUtils {
+
+    private static final String TAG = "PermissionUtils";
 
     /**
      * 第一次检查权限，用在打开应用的时候请求应用需要的所有权限
@@ -69,7 +71,7 @@ public class PermissionUtils {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // Android 11-12 检查 MANAGE_EXTERNAL_STORAGE
             if (!Environment.isExternalStorageManager()) {
-                Log.e("checkAndRequest", "需要所有文件访问权限");
+                LogUtils.w(TAG, "需要所有文件访问权限");
                 // 注意：MANAGE_EXTERNAL_STORAGE 不能通过 requestPermissions 申请
                 // 需要跳转到设置页面，这里先跳过
             }
@@ -85,7 +87,7 @@ public class PermissionUtils {
             }
         }
         if (!permissions.isEmpty()) {
-            Log.e("onRequestPermission", "申请权限: " + permissions);
+            LogUtils.d(TAG, "申请权限: " + permissions);
             //permissions.toArray(new String[permissions.size()]
             ActivityCompat.requestPermissions((Activity) context, permissions.toArray(new String[permissions.size()]), requestCode);
             return false;
@@ -114,16 +116,10 @@ public class PermissionUtils {
             ActivityCompat.requestPermissions((Activity) context, permissions.toArray(new String[permissions.size()]), requestCode);
 
             /*跳转到应用详情，让用户去打开权限*/
-            Intent localIntent = new Intent();
+            //minSdk 为 21，原先的 SDK_INT <= 8 兜底分支不可能执行，已移除
+            Intent localIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (Build.VERSION.SDK_INT >= 9) {
-                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                localIntent.setData(Uri.fromParts("package", context.getPackageName(), null));
-            } else if (Build.VERSION.SDK_INT <= 8) {
-                localIntent.setAction(Intent.ACTION_VIEW);
-                localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-                localIntent.putExtra("com.android.settings.ApplicationPkgName", context.getPackageName());
-            }
+            localIntent.setData(Uri.fromParts("package", context.getPackageName(), null));
             context.startActivity(localIntent);
             return false;
         } else {

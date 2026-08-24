@@ -89,7 +89,7 @@ public final class FileUtils {
         try {
             return file.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.e("FileUtils", "创建文件失败: " + e);
             return false;
         }
     }
@@ -136,7 +136,7 @@ public final class FileUtils {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.w("FileUtils", "关闭IO失败: " + e);
         }
     }
 

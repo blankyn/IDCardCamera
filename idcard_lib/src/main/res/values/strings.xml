@@ -16,7 +16,23 @@
     <string name="type_idcard_front_str">身份证人像面</string>
     <string name="type_idcard_back_str">身份证国徽面</string>
     <string name="permission_open_str">请手动打开该应用需要的权限</string>
+    <string name="permission_not_granted">未开启相关权限！</string>
 
+    <!-- 错误提示 -->
+    <string name="error_image_decode_failed">图片加载失败，请重试</string>
+    <string name="error_image_save_failed">保存图片失败，请检查存储空间</string>
+    <string name="error_camera_unavailable">相机不可用，请稍后重试</string>
+
+    <!-- 进度提示 -->
+    <string name="loading_processing">处理中…</string>
+    <string name="loading_saving">保存中…</string>
+    <string name="loading_cropping">裁剪中…</string>
+
+    <!-- 无障碍描述（TalkBack 朗读） -->
+    <string name="desc_back">返回</string>
+    <string name="desc_preview_photo">照片预览</string>
+    <string name="desc_retake">重拍</string>
+    <string name="desc_confirm_photo">使用这张照片</string>
 
     <string name="capture_button_alt">Capture</string>
 </resources>
