@@ -12,17 +12,29 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import me.blankm.idcardlib.utils.LogUtils;
+
 /**
  * 裁剪区域布局
  */
 public class CropOverlayView extends View {
+
+    private static final String TAG = "CropOverlayView";
+
+    //裁剪是一次性的短任务，全局共享单线程即可，避免每个 View 各自持有线程池
+    private static final ExecutorService CROP_EXECUTOR = Executors.newSingleThreadExecutor();
+    private static final Handler MAIN_HANDLER = new Handler(Looper.getMainLooper());
 
     private int defaultMargin = 100;
     private int minDistance = 100;
@@ -63,7 +75,6 @@ public class CropOverlayView extends View {
             currentHeight = getHeight();
             resetPoints();
         }
-        Log.e("stk", "canvasSize=" + getWidth() + "x" + getHeight());
 
         drawBackground(canvas);
         //drawVertex(canvas);
@@ -72,7 +83,7 @@ public class CropOverlayView extends View {
     }
 
     private void resetPoints() {
-        Log.e("stk", "resetPoints, bitmap=" + bitmap);
+        LogUtils.d(TAG, "resetPoints, bitmap=" + bitmap);
         // 1. calculate bitmap size in new canvas
         float scaleX = bitmap.getWidth() * 1.0f / getWidth();
         float scaleY = bitmap.getHeight() * 1.0f / getHeight();
@@ -106,8 +117,7 @@ public class CropOverlayView extends View {
         defaultMargin = 0;
 
 
-        Log.e("stk", "maxX - minX=" + (maxX - minX));
-        Log.e("stk", "maxY - minY=" + (maxY - minY));
+        LogUtils.d(TAG, "cropArea=" + (maxX - minX) + "x" + (maxY - minY));
 
         topLeft = new Point(minX + defaultMargin, minY + defaultMargin);
         topRight = new Point(maxX - defaultMargin, minY + defaultMargin);
@@ -146,8 +156,6 @@ public class CropOverlayView extends View {
         canvas.drawCircle(topRight.x, topRight.y, vertexSize, paint);
         canvas.drawCircle(bottomLeft.x, bottomLeft.y, vertexSize, paint);
         canvas.drawCircle(bottomRight.x, bottomRight.y, vertexSize, paint);
-        Log.e("stk", "vertextPoints=" + topLeft.toString() + " " + topRight.toString() + " " + bottomRight.toString() + " " + bottomLeft.toString());
-
     }
 
     private void drawEdge(Canvas canvas) {
@@ -319,28 +327,48 @@ public class CropOverlayView extends View {
         bottomRight.set(newX, newY);
     }
 
+    /**
+     * 裁剪
+     * <p>
+     * 顶点坐标读取和整图 Bitmap 运算分开：坐标必须在主线程读，位图运算放到后台线程，
+     * 回调统一切回主线程。
+     */
     public void crop(CropListener cropListener, boolean needStretch) {
-        if (topLeft == null) return;
+        if (topLeft == null || bitmap == null) {
+            if (cropListener != null) cropListener.onFinish(null);
+            return;
+        }
 
         // calculate bitmap size in new canvas
         float scaleX = bitmap.getWidth() * 1.0f / getWidth();
         float scaleY = bitmap.getHeight() * 1.0f / getHeight();
-        float maxScale = Math.max(scaleX, scaleY);
+        final float maxScale = Math.max(scaleX, scaleY);
 
-        // re-calculate coordinate in original bitmap
-        Log.e("stk", "maxScale=" + maxScale);
+        // re-calculate coordinate in original bitmap，主线程读取顶点，避免与触摸事件竞态
+        final Point bitmapTopLeft = new Point((int) ((topLeft.x - minX) * maxScale), (int) ((topLeft.y - minY) * maxScale));
+        final Point bitmapTopRight = new Point((int) ((topRight.x - minX) * maxScale), (int) ((topRight.y - minY) * maxScale));
+        final Point bitmapBottomLeft = new Point((int) ((bottomLeft.x - minX) * maxScale), (int) ((bottomLeft.y - minY) * maxScale));
+        final Point bitmapBottomRight = new Point((int) ((bottomRight.x - minX) * maxScale), (int) ((bottomRight.y - minY) * maxScale));
 
-        Point bitmapTopLeft = new Point((int) ((topLeft.x - minX) * maxScale), (int) ((topLeft.y - minY) * maxScale));
-        Point bitmapTopRight = new Point((int) ((topRight.x - minX) * maxScale), (int) ((topRight.y - minY) * maxScale));
-        Point bitmapBottomLeft = new Point((int) ((bottomLeft.x - minX) * maxScale), (int) ((bottomLeft.y - minY) * maxScale));
-        Point bitmapBottomRight = new Point((int) ((bottomRight.x - minX) * maxScale), (int) ((bottomRight.y - minY) * maxScale));
+        final Bitmap source = bitmap;
+        CROP_EXECUTOR.execute(() -> {
+            Bitmap result = null;
+            try {
+                result = doCrop(source, bitmapTopLeft, bitmapTopRight,
+                        bitmapBottomLeft, bitmapBottomRight, needStretch);
+            } catch (Exception | OutOfMemoryError e) {
+                LogUtils.e(TAG, "裁剪失败: " + e);
+            }
+            final Bitmap finalResult = result;
+            MAIN_HANDLER.post(() -> cropListener.onFinish(finalResult));
+        });
+    }
 
-        Log.e("stk", "bitmapPoints="
-                + bitmapTopLeft.toString() + " "
-                + bitmapTopRight.toString() + " "
-                + bitmapBottomRight.toString() + " "
-                + bitmapBottomLeft.toString() + " ");
-
+    /**
+     * 实际的位图裁剪运算，运行在后台线程
+     */
+    private Bitmap doCrop(Bitmap bitmap, Point bitmapTopLeft, Point bitmapTopRight,
+                          Point bitmapBottomLeft, Point bitmapBottomRight, boolean needStretch) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth() + 1, bitmap.getHeight() + 1, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
@@ -366,8 +394,7 @@ public class CropOverlayView extends View {
                 Math.max(bitmapBottomRight.y, bitmapBottomLeft.y));
 
         if (cropRect.width() <= 0 || cropRect.height() <= 0) { //用户裁剪的宽或高为0
-            cropListener.onFinish(null);
-            return;
+            return null;
         }
         Bitmap cut = Bitmap.createBitmap(
                 output,
@@ -378,7 +405,7 @@ public class CropOverlayView extends View {
         );
 
         if (!needStretch) {
-            cropListener.onFinish(cut);
+            return cut;
         } else {
             // 4. re-calculate coordinate in cropRect
             Point cutTopLeft = new Point();
@@ -398,14 +425,6 @@ public class CropOverlayView extends View {
             cutBottomRight.x = bitmapTopRight.x > bitmapBottomRight.x ? cropRect.width() - Math.abs(bitmapBottomRight.x - bitmapTopRight.x) : cropRect.width();
             cutBottomRight.y = bitmapBottomLeft.y > bitmapBottomRight.y ? cropRect.height() - Math.abs(bitmapBottomRight.y - bitmapBottomLeft.y) : cropRect.height();
 
-            Log.e("stk", cut.getWidth() + "x" + cut.getHeight());
-
-            Log.e("stk", "cutPoints="
-                    + cutTopLeft.toString() + " "
-                    + cutTopRight.toString() + " "
-                    + cutBottomRight.toString() + " "
-                    + cutBottomLeft.toString() + " ");
-
             float width = cut.getWidth();
             float height = cut.getHeight();
 
@@ -421,7 +440,7 @@ public class CropOverlayView extends View {
             stretchCanvas.concat(matrix);
             stretchCanvas.drawBitmapMesh(cut, WIDTH_BLOCK, HEIGHT_BLOCK, generateVertices(cut.getWidth(), cut.getHeight()), 0, null, 0, null);
 
-            cropListener.onFinish(stretch);
+            return stretch;
         }
     }
 
