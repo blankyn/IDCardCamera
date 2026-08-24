@@ -11,6 +11,11 @@ import java.util.List;
 /**
  * 身份证拍摄入口
  */
+/**
+ * 身份证拍照功能的统一入口类。
+ * <p>提供三种模式：单拍正面（{@code TYPE_IDCARD_FRONT}）、单拍反面（{@code TYPE_IDCARD_BACK}）、连拍双面（{@code TYPE_IDCARD_All}）。
+ * <p>根据 CameraX 可用性自动选择实现：优先 {@link CameraXActivity}，降级到 {@link CameraActivity}。
+ */
 public class IDCardCameraSelect {
 
     //身份证正面

@@ -40,6 +40,9 @@ public class CropImageView extends FrameLayout {
         super.onDraw(canvas);
     }
 
+    /**
+     * 设置待裁剪的原始图片，并将其传递给 {@link CropOverlayView}。
+     */
     public void setImageBitmap(Bitmap bitmap) {
         mImageView.setImageBitmap(bitmap);
         mCropOverlayView.setBitmap(bitmap);

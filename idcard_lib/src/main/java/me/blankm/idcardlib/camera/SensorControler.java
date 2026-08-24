@@ -13,6 +13,10 @@ import java.util.Calendar;
 /**
  * 加速度控制器，用来控制对焦
  */
+/**
+ * 传感器控制器，监听设备倾斜状态，在稳定后自动触发对焦。
+ * <p>通过加速度传感器判断设备是否静止，静止超过 1.5 秒后回调 {@link CameraFocusListener#onFocus()}。
+ */
 public class SensorControler implements SensorEventListener {
     public static final String TAG = "SensorControler";
     private SensorManager mSensorManager;
@@ -45,6 +49,9 @@ public class SensorControler implements SensorEventListener {
         return mInstance;
     }
 
+    /**
+     * 注册传感器监听（Activity onStart 时调用）。
+     */
     public void onStart() {
         restParams();
         canFocus = true;
@@ -52,6 +59,9 @@ public class SensorControler implements SensorEventListener {
                 SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    /**
+     * 反注册传感器监听（Activity onStop 时调用）。
+     */
     public void onStop() {
         mCameraFocusListener = null;
         mSensorManager.unregisterListener(this, mSensor);
@@ -182,6 +192,9 @@ public class SensorControler implements SensorEventListener {
         void onFocus();
     }
 
+    /**
+     * 设置对焦回调监听器。
+     */
     public void setCameraFocusListener(CameraFocusListener mCameraFocusListener) {
         this.mCameraFocusListener = mCameraFocusListener;
     }

@@ -31,10 +31,12 @@ public class BitmapPool {
         static final BitmapPool INSTANCE = new BitmapPool();
     }
 
+    /** 获取全局单例 */
     public static BitmapPool get() {
         return Holder.INSTANCE;
     }
 
+    /** 单例，禁止外部实例化 */
     private BitmapPool() {
     }
 

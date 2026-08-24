@@ -48,6 +48,9 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
     private       boolean            focusing;
     private AsyncTask<?, ?, ?> outstandingTask;
 
+    /**
+     * 构造函数，初始化相机引用（实际从未被调用）。
+     */
     public AutoFocusManager(Camera camera) {
         this.camera = camera;
         String currentFocusMode = camera.getParameters().getFocusMode();
@@ -63,6 +66,9 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
     }
 
     @SuppressLint("NewApi")
+    /**
+     * 延迟重新对焦（实际不可达）。
+     */
     private synchronized void autoFocusAgainLater() {
         if (!stopped && outstandingTask == null) {
             AutoFocusTask newTask = new AutoFocusTask();
@@ -79,6 +85,9 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
         }
     }
 
+    /**
+     * 启动自动对焦（实际不可达）。
+     */
     public synchronized void start() {
         if (useAutoFocus) {
             outstandingTask = null;
@@ -98,6 +107,9 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
         }
     }
 
+    /**
+     * 取消未完成的对焦任务（实际不可达）。
+     */
     private synchronized void cancelOutstandingTask() {
         if (outstandingTask != null) {
             if (outstandingTask.getStatus() != AsyncTask.Status.FINISHED) {
@@ -107,6 +119,9 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
         }
     }
 
+    /**
+     * 停止自动对焦（实际不可达）。
+     */
     public synchronized void stop() {
         stopped = true;
         if (useAutoFocus) {

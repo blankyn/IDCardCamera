@@ -90,6 +90,10 @@ public class ImageUtils {
     /**
      * 计算采样率，取不小于目标尺寸的最大 2 的幂
      */
+    /**
+     * 计算图片采样率（{@code inSampleSize}），使解码后的尺寸不超过目标尺寸。
+     * @return 2 的幂次（1, 2, 4, 8...），值越大图片越小
+     */
     private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;
         final int width = options.outWidth;

@@ -10,12 +10,17 @@ import me.blankm.idcardlib.BuildConfig;
  * 库内统一日志出口，默认跟随 {@link BuildConfig#DEBUG}：发布成 release aar 后默认不打印任何日志。
  * 接入方需要排查问题时可调用 {@link #setDebug(boolean)} 手动打开。
  */
+/**
+ * 日志工具类，统一管理输出门控。
+ * <p>debug/warning 日志受 {@code BuildConfig.DEBUG} 控制，仅调试包输出；error 日志始终输出。
+ */
 public final class LogUtils {
 
     private static final String TAG = "IDCardCamera";
 
     private static boolean sDebug = BuildConfig.DEBUG;
 
+    /** 工具类，禁止实例化 */
     private LogUtils() {
     }
 
