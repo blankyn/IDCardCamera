@@ -71,6 +71,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    // ExifInterface 的 androidx 版本修复了原版在旧设备上的方向解析 bug
+    api 'androidx.exifinterface:exifinterface:1.3.6'
     compileOnly 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
