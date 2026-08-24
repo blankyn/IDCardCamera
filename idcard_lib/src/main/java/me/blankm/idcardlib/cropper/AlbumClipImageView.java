@@ -298,9 +298,18 @@ public class AlbumClipImageView extends AppCompatImageView
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 lastPointerCount = 0;
+                //无障碍服务要求：设置了 OnTouchListener 必须在适当时机调用 performClick
+                performClick();
                 break;
         }
 
+        return true;
+    }
+
+    @Override
+    public boolean performClick() {
+        //无障碍框架通过此方法触发点击，即使这里没有实际点击逻辑也必须实现
+        super.performClick();
         return true;
     }
 
