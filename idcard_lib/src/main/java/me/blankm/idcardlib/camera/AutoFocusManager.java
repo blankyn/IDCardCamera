@@ -20,7 +20,7 @@ import android.annotation.SuppressLint;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
+import me.blankm.idcardlib.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -74,7 +74,7 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
                 }
                 outstandingTask = newTask;
             } catch (RejectedExecutionException ree) {
-                Log.w(TAG, "Could not request auto focus", ree);
+                LogUtils.w(TAG, "请求自动对焦失败: " + ree);
             }
         }
     }
@@ -85,12 +85,12 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
             if (!stopped && !focusing) {
                 try {
                     camera.autoFocus(this);
-                    Log.w(TAG, "自动对焦");
+                    LogUtils.d(TAG, "自动对焦");
                     focusing = true;
                 } catch (RuntimeException re) {
                     // Have heard RuntimeException reported in Android 4.0.x+;
                     // continue?
-                    Log.w(TAG, "Unexpected exception while focusing", re);
+                    LogUtils.w(TAG, "对焦异常: " + re);
                     // Try again later to keep cycle going
                     autoFocusAgainLater();
                 }
@@ -117,7 +117,7 @@ public class AutoFocusManager implements Camera.AutoFocusCallback {
             } catch (RuntimeException re) {
                 // Have heard RuntimeException reported in Android 4.0.x+;
                 // continue?
-                Log.w(TAG, "Unexpected exception while cancelling focusing", re);
+                LogUtils.w(TAG, "取消对焦异常: " + re);
             }
         }
     }
