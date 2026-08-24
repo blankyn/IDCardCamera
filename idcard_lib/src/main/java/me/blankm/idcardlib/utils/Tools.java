@@ -29,27 +29,38 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+/**
+ * 相机与图片处理的工具类，提供屏幕尺寸查询、相机能力检测、图片裁剪压缩、权限检查等静态方法。
+ */
 public final class Tools {
 
     private static final String TAG = "Tools";
 
+    /** 工具类，禁止实例化 */
     private Tools() {
         throw new AssertionError();
     }
 
 
+    /** 获取屏幕显示度量 */
     private static DisplayMetrics getDisplayMetrics(Context mContext) {
         return mContext.getResources().getDisplayMetrics();
     }
 
+    /** 获取屏幕宽度（像素） */
     public static int getScreenwidth(Context mContext) {
         return getDisplayMetrics(mContext).widthPixels;
     }
 
+    /** 获取屏幕高度（像素） */
     public static int getScreenHeight(Context mContext) {
         return getDisplayMetrics(mContext).heightPixels;
     }
 
+    /**
+     * 检查设备是否有后置摄像头（CameraX）。
+     * @return 有后置摄像头返回 true；查询异常或不支持时返回 false
+     */
     public static boolean hasBackCamera(ProcessCameraProvider cameraProvider) {
         try {
             return cameraProvider == null ? false : cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
@@ -59,6 +70,10 @@ public final class Tools {
         return false;
     }
 
+    /**
+     * 检查设备是否有前置摄像头（CameraX）。
+     * @return 有前置摄像头返回 true；查询异常或不支持时返回 false
+     */
     public static boolean hasFrontCamera(ProcessCameraProvider cameraProvider) {
         try {
             return cameraProvider == null ? false : cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA);
@@ -68,6 +83,9 @@ public final class Tools {
         return false;
     }
 
+    /**
+     * 根据屏幕宽高比返回最接近的相机预览比例（{@link AspectRatio#RATIO_4_3} 或 {@link AspectRatio#RATIO_16_9}）。
+     */
     public static int aspectRatio(Context mContext) {
         int width = getScreenwidth(mContext);
         int height = getScreenHeight(mContext);
@@ -78,10 +96,19 @@ public final class Tools {
         return AspectRatio.RATIO_16_9;
     }
 
+    /**
+     * 检查外部存储是否挂载且可写。
+     * @return SD 卡已挂载返回 true，否则返回 false
+     */
     public static boolean checkSD() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
+    /**
+     * 获取拍照输出路径，格式为 {@code <外部缓存目录>/Camera/IMG_yyyyMMdd_HHmmss.jpg}。
+     * <p>目录不存在时会自动创建。
+     * @return 拍照文件的绝对路径
+     */
     public static String getPicturePath(Context context) {
 //        String cameraPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "DCIM" + File.separator + "Camera";
 
@@ -105,6 +132,13 @@ public final class Tools {
         return cameraFolder.getAbsolutePath() + File.separator + "IMG_" + simpleDateFormat.format(new Date()) + ".jpg";
     }
 
+    /**
+     * 根据 EXIF 信息和前后置标志构建图片旋转矩阵。
+     * <p>前置摄像头需要额外水平翻转。
+     * @param imgPath 图片路径
+     * @param front 是否为前置摄像头拍摄
+     * @return 旋转/翻转矩阵
+     */
     private static Matrix pictureDegree(String imgPath, boolean front) {
         Matrix matrix = new Matrix();
         ExifInterface exif = null;
@@ -142,6 +176,11 @@ public final class Tools {
      *
      * @return 裁剪后的位图，解码失败返回 null
      */
+    /**
+     * 解码并旋转矫正图片，返回 Bitmap（用于显示预览）。
+     * <p>根据屏幕尺寸自动采样，避免 OOM。
+     * @return 矫正后的 Bitmap，解码失败返回 null
+     */
     public static Bitmap bitmapClip(Context mContext, String imgPath, boolean front) {
         Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
         if (bitmap == null) {
@@ -163,6 +202,12 @@ public final class Tools {
         return bitmap;
     }
 
+    /**
+     * 裁剪指定区域并保存到目标路径（质量 90）。
+     * <p>裁剪区域 {@code rect} 在显示坐标系中，内部会根据原图与显示尺寸的缩放比还原到原图坐标系。
+     * @param rect 裁剪矩形（显示坐标系），为 null 时保存全图
+     * @return 保存成功返回 true
+     */
     public static boolean saveBitmap(Context mContext, String originPath, String savePath, Rect rect, boolean front) {
         Matrix matrix = pictureDegree(originPath, front);
         Bitmap clipBitmap = BitmapFactory.decodeFile(originPath);
@@ -194,6 +239,10 @@ public final class Tools {
         return saveBitmap(clipBitmap, savePath);
     }
 
+    /**
+     * 将 Bitmap 压缩为 JPEG 保存（质量 90）。
+     * @return 保存成功返回 true
+     */
     private static boolean saveBitmap(Bitmap bitmap, String savePath) {
         if (bitmap == null) return false;
         FileOutputStream fos = null;
@@ -217,6 +266,9 @@ public final class Tools {
         return false;
     }
 
+    /**
+     * 将矩形按缩放比例调整（就地修改）。
+     */
     private static void scalRect(Rect rect, double scale) {
         rect.left = (int) (rect.left * scale);
         rect.top = (int) (rect.top * scale);
@@ -224,11 +276,20 @@ public final class Tools {
         rect.bottom = (int) (rect.bottom * scale);
     }
 
+    /**
+     * 将 dp 转换为 px。
+     */
     public static int dp2px(Context mContext, float dipValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, getDisplayMetrics(mContext));
     }
 
 
+    /**
+     * 通过反射设置 CameraX PreviewView 的宽高比。
+     * <p>修改 {@code androidx.camera.view.PreviewView} 的私有字段 {@code mImplementationMode}。
+     * @param view PreviewView 实例
+     * @param ratio {@link AspectRatio#RATIO_4_3} 或 {@link AspectRatio#RATIO_16_9}
+     */
     public static void reflectPreviewRatio(View view, @AspectRatio.Ratio int ratio) {
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) view.getLayoutParams();
         Class cls = layoutParams.getClass();
@@ -264,6 +325,13 @@ public final class Tools {
         view.setLayoutParams(layoutParams);
     }
 
+    /**
+     * 通过反射设置扫描框蒙层的宽高。
+     * <p>修改 ConstraintLayout 子 View 的 {@code layout_width} 和 {@code layout_height} 字段。
+     * @param view 蒙层 View
+     * @param w 目标宽度（px）
+     * @param h 目标高度（px）
+     */
     public static void reflectMaskRatio(View view, int w, int h) {
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) view.getLayoutParams();
         Class cls = layoutParams.getClass();
@@ -287,17 +355,27 @@ public final class Tools {
         view.setLayoutParams(layoutParams);
     }
 
+    /**
+     * 删除临时文件（拍照后用户取消时清理）。
+     */
     public static void deletTempFile(String tempPath) {
         File file = new File(tempPath);
         file.delete();
     }
 
+    /**
+     * 获取 View 在屏幕中的绝对坐标 [x, y]。
+     */
     public static int[] getViewLocal(View view) {
         int[] outLocation = new int[2];
         view.getLocationInWindow(outLocation);
         return outLocation;
     }
 
+    /**
+     * 检查相机和存储权限是否全部已授予。
+     * @return 全部已授予返回 true
+     */
     public static boolean checkPermission(Context context) {
         String[] permissions = cameraPermission();
         for (int i = 0; i < permissions.length; i++) {
@@ -307,6 +385,10 @@ public final class Tools {
         return true;
     }
 
+    /**
+     * 返回相机功能所需的权限列表（相机 + 存储）。
+     * <p>Android 11+ 不再需要 {@code WRITE_EXTERNAL_STORAGE}。
+     */
     private static String[] cameraPermission() {
         return new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -315,6 +397,9 @@ public final class Tools {
         };
     }
 
+    /**
+     * 检查单个权限是否已授予。
+     */
     private static boolean isGranted(Context context, String permission) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
             return true;

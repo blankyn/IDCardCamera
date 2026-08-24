@@ -61,7 +61,26 @@ import java.util.concurrent.Executors;
 
 
 /**
- * 拍照Camera 界面
+ * 身份证拍照界面（传统 Camera API 实现）
+ *
+ * <p>入口：通过 {@link IDCardCameraSelect#openCamera(int)} 启动，支持三种模式：
+ * 单拍正面（{@code TYPE_IDCARD_FRONT}）、单拍反面（{@code TYPE_IDCARD_BACK}）、
+ * 连拍双面（{@code TYPE_IDCARD_All}）。
+ *
+ * <p>拍摄完成后以 {@link IDCardCameraSelect#RESULT_CODE} 回传，
+ * 用 {@link IDCardCameraSelect#getImagePath(android.content.Intent)} 取图片路径列表。
+ *
+ * <p>内部状态机由 {@code curIDCardCamera} 驱动：
+ * <ul>
+ *   <li>0 — 相机拍正面</li>
+ *   <li>1 — 相机拍反面</li>
+ *   <li>2 — 相册选正面</li>
+ *   <li>3 — 相册选反面</li>
+ * </ul>
+ *
+ * <p>与 {@link CameraXActivity} 的主要区别：
+ * 本类使用 {@code android.hardware.Camera}（legacy API），自带手动四点裁剪框（{@code CropOverlayView}）；
+ * CameraXActivity 使用 CameraX，裁剪逻辑完全独立，两者不共享代码路径。
  */
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -157,6 +176,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 权限校验通过后的初始化入口，设置布局、读取拍摄类型参数、依次初始化控件和监听器。
+     */
     private void init() {
         setContentView(R.layout.idcard_camera_view);
         mType = getIntent().getIntExtra(IDCardCameraSelect.TAKE_TYPE, 0);
@@ -165,6 +187,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         settingCameraType();
     }
 
+    /**
+     * 绑定布局控件并计算身份证扫描框的尺寸。
+     * <p>扫描框宽度 = 屏幕短边 - 32dp 边距，高度 = 屏幕长边的 30%。
+     */
     private void initView() {
         mProgressHelper = new ProgressDialogHelper(this);
         mCameraPreview = findViewById(R.id.camera_preview);
@@ -193,6 +219,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mIdCardCameraTipStrTv.setLayoutParams(tipParams);
     }
 
+    /**
+     * 根据当前拍摄状态（{@code curIDCardCamera} 和 {@code mType}）切换扫描框图标、标题和提示文字位置。
+     * <p>切换后延迟 500ms 显示预览控件，规避个别机型首次申请权限后预览启动慢的问题。
+     */
     private void settingCameraType() {
         switch (mType) {
             case IDCardCameraSelect.TYPE_IDCARD_FRONT:
@@ -227,6 +257,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }, 500);
     }
 
+    /**
+     * 注册各操作按钮的点击监听，委托给 {@link #onClick(android.view.View)}。
+     */
     private void initListener() {
         findViewById(R.id.iv_camera_close).setOnClickListener(this);
         findViewById(R.id.idcard_title_refresh_iv).setOnClickListener(this);
@@ -267,6 +300,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 调起系统相册选图，结果通过 {@link #onActivityResult} 回调处理。
+     */
     private void albumChoosePhoto() {
         //系统图库选择一张图片
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -409,7 +445,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    //设置裁剪布局
+    /**
+     * 切换到手动裁剪模式：隐藏取景器和拍照控件，显示裁剪控件和确认按钮。
+     * <p>拍照路径显示 {@code CropImageView}；相册路径显示 {@code AlbumClipImageView}。
+     */
     private void setCropLayout() {
         mIvCameraCrop.setVisibility(View.GONE);
         mCameraPreview.setVisibility(View.GONE);
@@ -429,7 +468,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mNextResultOk.setVisibility(View.VISIBLE);
     }
 
-    //设置拍照布局
+    /**
+     * 切换回拍照预览模式：恢复取景器和拍照控件，隐藏裁剪控件，同时触发一次对焦。
+     */
     private void setTakePhotoLayout() {
         mIdCardCameraRl.setVisibility(View.VISIBLE);
         mIvCameraCrop.setVisibility(View.VISIBLE);
@@ -443,7 +484,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mCameraPreview.focus();
     }
 
-    //点击确认【下一步】，返回图片路径
+    /**
+     * 点击「下一步 / 完成」按钮的处理逻辑。
+     * <ul>
+     *   <li>拍照路径（{@code curIDCardCamera < 2}）：调 {@link me.blankm.idcardlib.cropper.CropImageView#crop}
+     *       异步裁剪，写盘后通过 {@link #cameraCropNext} 推进状态机。</li>
+     *   <li>相册路径：调 {@link #clipImage} 完成相册图片裁剪。</li>
+     * </ul>
+     */
     private void NextConfirm() {
         if (curIDCardCamera < 2) {
             //拍照后裁剪确定的图片
@@ -482,6 +530,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 相机拍照裁剪完成后的状态推进。
+     * <ul>
+     *   <li>双面模式：正面（0）完成后推进到反面（1）；反面完成后回传结果。</li>
+     *   <li>单面模式：直接回传结果。</li>
+     * </ul>
+     */
     private void cameraCropNext() {
         if (mType == IDCardCameraSelect.TYPE_IDCARD_All) {
             if (curIDCardCamera == 0) {
@@ -514,6 +569,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         finish();
     }
 
+    /**
+     * 相册选图裁剪完成后的状态推进，逻辑与 {@link #cameraCropNext} 对称：
+     * 双面模式下正面（2）完成后切换到反面（3），反面完成后回传结果。
+     */
     private void albumCropNext() {
         if (mType == IDCardCameraSelect.TYPE_IDCARD_All) {
             if (curIDCardCamera == 2) {
@@ -534,6 +593,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    /**
+     * 相册图片裁剪并保存到缓存目录。
+     * <p>裁剪和写盘在 {@code mIoExecutor} 后台线程执行，完成后通过 {@code mMainHandler} 回到主线程更新状态。
+     * 仅写盘成功后才将路径加入结果列表，避免回传不存在的文件。
+     */
     private void clipImage() {
 
         mOutputPath = new File(getExternalCacheDir(), System.currentTimeMillis() + "_album.jpg").getPath();
@@ -579,7 +643,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    //裁剪
+    /**
+     * 从 {@code AlbumClipImageView} 中提取最终的裁剪位图。
+     * <p>当前 {@code mSampleSize} 始终 ≤ 1（字段从未被赋值），因此固定走 {@code mAlbumClipIv.clip()} 分支。
+     * {@code BitmapRegionDecoder} 分支为历史遗留代码，实际不可达。
+     */
     private Bitmap createClippedBitmap() {
         if (mSampleSize <= 1) {
             return mAlbumClipIv.clip();
@@ -645,10 +713,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         return sample;
     }
 
+    /**
+     * 在主线程将 {@code AlbumClipImageView} 的图片引用置空，便于 GC 回收解码后的大 bitmap。
+     */
     private void recycleImageViewBitmap() {
         mAlbumClipIv.post(() -> mAlbumClipIv.setImageBitmap(null));
     }
 
+    /**
+     * 将显示坐标系中的裁剪矩形还原到原始图片坐标系。
+     * <p>图片可能因 EXIF 信息被旋转 90 / 180 / 270 度，
+     * 需要对 {@code srcRect} 做对应的逆变换后才能用于 {@link android.graphics.BitmapRegionDecoder#decodeRegion}。
+     *
+     * @param srcRect 在旋转后的图片坐标系中的裁剪区域
+     * @return 对应原始图片坐标系中的裁剪矩形
+     */
     private Rect getRealRect(RectF srcRect) {
         switch (mDegree) {
             case 90:
@@ -666,6 +745,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    /**
+     * 弹出权限说明对话框。
+     * <p>「去设置」按钮跳转到系统应用详情页，用户授权后通过 {@link #onResume} 重新检查权限。
+     * 「取消」按钮直接关闭界面。
+     *
+     * @param errorMsg 对话框正文，描述缺少的具体权限
+     */
     private void showPermissionsDialog(String errorMsg) {
         if (isFinishing()) {
             return;

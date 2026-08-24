@@ -26,7 +26,11 @@ import java.util.concurrent.Executors;
 import me.blankm.idcardlib.utils.LogUtils;
 
 /**
- * 裁剪区域布局
+ * 可拖拽四点裁剪框视图，支持透视变换矫正。
+ * <p>用户通过拖动四个角点调整裁剪区域，确认后在后台线程执行透视变换和裁剪运算。
+ * 主要用于 {@link me.blankm.idcardlib.camera.CameraActivity} 的拍照路径手动裁剪。
+ *
+ * <p>裁剪运算使用全局单线程池 {@code CROP_EXECUTOR}，避免多实例并发时的内存峰值。
  */
 public class CropOverlayView extends View {
 
@@ -52,20 +56,35 @@ public class CropOverlayView extends View {
 
     private int minX, maxX, minY, maxY;
 
+    /**
+     * 单参数构造。
+     */
     public CropOverlayView(Context context) {
         super(context);
     }
 
+    /**
+     * 双参数构造，从布局 XML 实例化时调用。
+     */
     public CropOverlayView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * 设置待裁剪的原始图片，并重置裁剪框到默认位置。
+     *
+     * @param bitmap 原始图片，为 {@code null} 时清空裁剪状态
+     */
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
         resetPoints();
         invalidate();
     }
 
+    /**
+     * 绘制裁剪框和半透明蒙层。
+     * <p>绘制顺序：蒙层（裁剪区域外变暗）→ 四条边框线 → 四个角点控制柄。
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -82,6 +101,10 @@ public class CropOverlayView extends View {
         //drawGrid(canvas);//裁剪框内部宫格线条
     }
 
+    /**
+     * 根据当前 View 尺寸和图片尺寸计算裁剪框的默认位置（四个角点）。
+     * <p>裁剪框初始化为图片在 View 中的可见区域，减去 {@code defaultMargin} 边距。
+     */
     private void resetPoints() {
         LogUtils.d(TAG, "resetPoints, bitmap=" + bitmap);
         // 1. calculate bitmap size in new canvas
@@ -130,6 +153,10 @@ public class CropOverlayView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
+    /**
+     * 绘制裁剪区域外的半透明黑色蒙层（透明度 40%）。
+     * <p>使用 {@link PorterDuffXfermode#CLEAR} 将裁剪框内区域擦除为透明。
+     */
     private void drawBackground(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#66000000"));
@@ -148,6 +175,9 @@ public class CropOverlayView extends View {
         canvas.restore();
     }
 
+    /**
+     * 绘制四个角点控制柄（白色圆点，半径 20px）。已被 {@link #onDraw} 注释掉，保留备用。
+     */
     private void drawVertex(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -158,6 +188,9 @@ public class CropOverlayView extends View {
         canvas.drawCircle(bottomRight.x, bottomRight.y, vertexSize, paint);
     }
 
+    /**
+     * 绘制裁剪框的四条边线（白色实线，宽度 5px）。
+     */
     private void drawEdge(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -170,6 +203,9 @@ public class CropOverlayView extends View {
         canvas.drawLine(bottomRight.x, bottomRight.y, bottomLeft.x, bottomLeft.y, paint);
     }
 
+    /**
+     * 绘制裁剪框内的九宫格辅助线（白色虚线，宽度 2px）。已被 {@link #onDraw} 注释掉，保留备用。
+     */
     private void drawGrid(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -238,6 +274,9 @@ public class CropOverlayView extends View {
         return true;
     }
 
+    /**
+     * 处理 {@link MotionEvent#ACTION_DOWN} 事件，记录触摸起点并判断是否命中角点。
+     */
     private void onActionDown(MotionEvent event) {
         touchDownX = event.getX();
         touchDownY = event.getY();
@@ -258,6 +297,11 @@ public class CropOverlayView extends View {
         }
     }
 
+    /**
+     * 计算两点间的欧几里得距离。
+     *
+     * @return 距离的整数部分
+     */
     private int distance(Point src, Point dst) {
         return (int) Math.sqrt(Math.pow(src.x - dst.x, 2) + Math.pow(src.y - dst.y, 2));
     }
@@ -288,6 +332,9 @@ public class CropOverlayView extends View {
         touchDownY = event.getY();
     }
 
+    /**
+     * 调整左上角点坐标，限制在有效范围内。
+     */
     private void adjustTopLeft(int deltaX, int deltaY) {
         int newX = topLeft.x + deltaX;
         if (newX < minX) newX = minX;
@@ -300,6 +347,9 @@ public class CropOverlayView extends View {
         topLeft.set(newX, newY);
     }
 
+    /**
+     * 调整右上角点坐标，限制在有效范围内。
+     */
     private void adjustTopRight(int deltaX, int deltaY) {
         int newX = topRight.x + deltaX;
         if (newX > maxX) newX = maxX;
@@ -312,6 +362,9 @@ public class CropOverlayView extends View {
         topRight.set(newX, newY);
     }
 
+    /**
+     * 调整左下角点坐标，限制在有效范围内。
+     */
     private void adjustBottomLeft(int deltaX, int deltaY) {
         int newX = bottomLeft.x + deltaX;
         if (newX < minX) newX = minX;
@@ -324,6 +377,9 @@ public class CropOverlayView extends View {
         bottomLeft.set(newX, newY);
     }
 
+    /**
+     * 调整右下角点坐标，限制在有效范围内。
+     */
     private void adjustBottomRight(int deltaX, int deltaY) {
         int newX = bottomRight.x + deltaX;
         if (newX > maxX) newX = maxX;
@@ -456,6 +512,13 @@ public class CropOverlayView extends View {
     private int WIDTH_BLOCK = 40;
     private int HEIGHT_BLOCK = 40;
 
+    /**
+     * 为 {@link Canvas#drawBitmapMesh} 生成网格顶点数组。
+     * <p>将图片均匀分割为 {@code WIDTH_BLOCK × HEIGHT_BLOCK} 个小块，
+     * 返回的顶点数组供透视变换时使用，可减少变形边缘锯齿。
+     *
+     * @return 长度为 {@code (WIDTH_BLOCK+1) × (HEIGHT_BLOCK+1) × 2} 的顶点坐标数组
+     */
     private float[] generateVertices(int widthBitmap, int heightBitmap) {
 
         float[] vertices = new float[(WIDTH_BLOCK + 1) * (HEIGHT_BLOCK + 1) * 2];

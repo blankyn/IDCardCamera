@@ -61,6 +61,22 @@ import me.blankm.idcardlib.utils.ProgressDialogHelper;
 import me.blankm.idcardlib.utils.ScreenUtils;
 import me.blankm.idcardlib.utils.Tools;
 
+/**
+ * 身份证拍照界面（CameraX 实现）
+ *
+ * <p>入口：通过 {@link IDCardCameraSelect#takePhoto(int)} 启动，支持三种模式：
+ * 单拍正面（{@code TYPE_IDCARD_FRONT}）、单拍反面（{@code TYPE_IDCARD_BACK}）、
+ * 连拍双面（{@code TYPE_IDCARD_All}）。
+ *
+ * <p>拍照后会先预览照片，用户确认后裁剪保存，再以
+ * {@link IDCardCameraSelect#RESULT_CODE} 回传结果，
+ * 用 {@link IDCardCameraSelect#getImagePath(android.content.Intent)} 取路径列表。
+ *
+ * <p>与 {@link CameraActivity} 的主要区别：
+ * 本类使用 CameraX（{@link androidx.camera.lifecycle.ProcessCameraProvider}），
+ * 裁剪逻辑完全由 {@link me.blankm.idcardlib.utils.Tools#saveBitmap} 独立实现，
+ * 不复用 {@code cropper/} 包的手动四点框。
+ */
 public class CameraXActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
@@ -115,6 +131,9 @@ public class CameraXActivity extends AppCompatActivity {
         if (checkPermissionFirst) init();
     }
 
+    /**
+     * 权限校验通过后的初始化入口，设置布局、读取拍摄类型参数、依次初始化控件、监听器和相机数据。
+     */
     private void init() {
         setContentView(R.layout.activity_camera_x);
         mType = getIntent().getIntExtra(IDCardCameraSelect.TAKE_TYPE, 0);
@@ -245,6 +264,10 @@ public class CameraXActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 初始化相机数据：反射设置预览比例、获取当前 Display ID、构建 CameraX 用例。
+     * <p>需在 {@code viewFinder.post} 回调中执行，以确保 Display 已就绪。
+     */
     private void initData() {
         Tools.reflectPreviewRatio(viewFinder, Tools.aspectRatio(this));
         viewFinder.post(new Runnable() {
@@ -270,6 +293,10 @@ public class CameraXActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 根据当前拍摄状态（{@code curIDCardCamera} 和 {@code mType}）切换扫描框图标和提示文字位置，
+     * 逻辑与 {@link CameraActivity#settingCameraType()} 对称。
+     */
     private void settingCameraType() {
         switch (mType) {
             case IDCardCameraSelect.TYPE_IDCARD_FRONT:
@@ -301,6 +328,13 @@ public class CameraXActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 根据正式输出路径生成临时文件路径（在文件名末尾插入 {@code _temp}）。
+     * <p>拍照时先写入临时路径，用户确认后再裁剪保存到最终路径，
+     * 临时文件由 {@link me.blankm.idcardlib.utils.Tools#deletTempFile} 清理。
+     *
+     * @return 临时文件的绝对路径
+     */
     public String getPictureTempPath() {
         File file = new File(Tools.getPicturePath(this));
         String pictureName = file.getName();
@@ -316,6 +350,9 @@ public class CameraXActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 构建相机操作 UI（预留方法，暂无实现内容）。
+     */
     private void updateCameraUi() {
 
     }
@@ -542,6 +579,11 @@ public class CameraXActivity extends AppCompatActivity {
     /**
      * Returns true if the device has an available back camera. False otherwise
      */
+    /**
+     * 检查设备是否有后置摄像头。
+     *
+     * @return 有后置摄像头返回 {@code true}；设备不支持或查询异常时返回 {@code false}
+     */
     private boolean hasBackCamera() {
         try {
             return cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
@@ -553,6 +595,11 @@ public class CameraXActivity extends AppCompatActivity {
 
     /**
      * Returns true if the device has an available front camera. False otherwise
+     */
+    /**
+     * 检查设备是否有前置摄像头。
+     *
+     * @return 有前置摄像头返回 {@code true}；设备不支持或查询异常时返回 {@code false}
      */
     private boolean hasFrontCamera() {
         try {
@@ -617,6 +664,12 @@ public class CameraXActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 弹出权限说明对话框，「去设置」跳转系统应用详情页，
+     * 用户授权返回后通过 {@link #onResume} 重新检查权限。
+     *
+     * @param errorMsg 对话框正文，描述缺少的具体权限
+     */
     private void showPermissionsDialog(String errorMsg) {
         if (isFinishing()) {
             return;

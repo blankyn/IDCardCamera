@@ -12,7 +12,12 @@ import me.blankm.idcardlib.utils.ScreenUtils;
 import java.util.List;
 
 /**
- * 相机预览
+ * 传统 Camera API 的预览控件（{@link android.hardware.Camera}）。
+ * <p>继承自 {@link ResizeAbleSurfaceView}，自动调整预览尺寸以匹配相机输出。
+ * 内置传感器监听（{@link SensorControler}），在设备倾斜稳定时自动触发对焦。
+ *
+ * <p>生命周期需外部管理：{@link #onStart} 注册传感器和 Surface 回调，
+ * {@link #onStop} 反注册传感器，{@link SurfaceHolder.Callback#surfaceDestroyed} 释放相机资源。
  */
 public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolder.Callback {
 
@@ -24,11 +29,17 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
     private Context mContext;
     private SurfaceHolder mSurfaceHolder;
 
+    /**
+     * 单参数构造。
+     */
     public CameraPreview(Context context) {
         super(context);
         init(context);
     }
 
+    /**
+     * 双参数构造，从布局 XML 实例化时调用。
+     */
     public CameraPreview(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
@@ -45,6 +56,10 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
         init(context);
     }
 
+    /**
+     * 初始化 Surface 和传感器监听。
+     * <p>设置 {@link SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS}（已废弃但仍需声明兼容旧设备）。
+     */
     private void init(Context context) {
         mContext = context;
         mSurfaceHolder = getHolder();
@@ -54,6 +69,11 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
         mSensorControler = SensorControler.getInstance(context.getApplicationContext());
     }
 
+    /**
+     * Surface 创建时打开后置摄像头并启动预览。
+     * <p>选择与 View 尺寸最接近的预览分辨率，竖屏时旋转 90 度。
+     * 启动失败时会重试一次降级配置（无最优预览尺寸）。
+     */
     public void surfaceCreated(SurfaceHolder holder) {
         camera = CameraUtils.openCamera();
         if (camera != null) {
@@ -152,10 +172,17 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
 
     }
 
+    /**
+     * Surface 尺寸变化时的回调。
+     * <p>因为 Activity 已设置固定屏幕方向，实际不会触发。
+     */
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         //因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法
     }
 
+    /**
+     * Surface 销毁时释放相机资源。
+     */
     public void surfaceDestroyed(SurfaceHolder holder) {
         holder.removeCallback(this);
         //回收释放资源
@@ -227,12 +254,19 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
         }
     }
 
+    /**
+     * 启动相机预览（外部调用，例如重新拍摄时恢复预览）。
+     */
     public void startPreview() {
         if (camera != null) {
             camera.startPreview();
         }
     }
 
+    /**
+     * Activity 进入前台时调用，注册 Surface 回调和传感器监听。
+     * <p>传感器检测到设备倾斜稳定时自动触发 {@link #focus()}。
+     */
     public void onStart() {
         addCallback();
         if (mSensorControler != null) {
@@ -246,12 +280,19 @@ public class CameraPreview extends ResizeAbleSurfaceView implements SurfaceHolde
         }
     }
 
+    /**
+     * Activity 退到后台时调用，反注册传感器监听以节省电量。
+     */
     public void onStop() {
         if (mSensorControler != null) {
             mSensorControler.onStop();
         }
     }
 
+    /**
+     * 重新注册 Surface 回调。
+     * <p>外部调用场景：刷新重拍时需要重新启动预览，通过此方法触发 {@link #surfaceCreated}。
+     */
     public void addCallback() {
         if (mSurfaceHolder != null) {
             mSurfaceHolder.addCallback(this);
